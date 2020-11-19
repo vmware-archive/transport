@@ -1,0 +1,28 @@
+#footer {
+  background-color: hsl(198, 0%, 19%);
+  padding: 10px;
+  //color: #beb8cc;
+}
+
+.build-version {
+  //color: #68617b;
+}
+
+.connection-status {
+  float: right;
+}
+
+@media (max-width: 420px) {
+  .connection-status {
+    display: none;
+  }
+  .build-version {
+    display: none;
+  }
+
+  #footer {
+    font-size: 0.7em;
+    padding: 5px;
+  }
+}
+

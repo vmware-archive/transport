@@ -1,0 +1,252 @@
+
+.transport-hero-cover {
+  position: absolute;
+  right: 0px;
+  width: 100%;
+  height: 562px;
+  top: -124px;
+  background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(0,0,0,0.0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  z-index: 11;
+}
+
+.transport-hero {
+  position: relative;
+ overflow-y: hidden;
+  background: linear-gradient(to right, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.20) 120%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+
+.transport-hero-background {
+  position: absolute;
+  right: 0px;
+  width: 1252px;
+  height: 562px;
+  top: -124px;
+  z-index: 10;
+}
+
+
+.transport-hero-content {
+  //background-color: #111020;
+  padding-top: 60px;
+  height: 400px;
+  max-width: 1248px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 12;
+}
+
+
+
+.bold {
+  font-weight: bolder;
+  //color: orange;
+}
+
+.white {
+  color: #ffffff;
+}
+
+
+
+.welcome-bg {
+
+}
+
+
+.fabric-hero-logo {
+  height: 510px;
+  width: 693px;
+  position: absolute;
+  bottom: -170px;
+  left: 612px;
+  background-size: cover;
+  background-image: url(/assets/af-text.svg);
+  background-position: top left;
+}
+
+.transport-hero button {
+  width: 168px;
+  height: 48px;
+  line-height: 47px;
+  margin: 50px 18px 0 0;
+  font-weight: 400;
+
+}
+
+
+
+#fabric-banner {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+  text-align: center;
+}
+
+.transport-hero h1 {
+  font-weight: 200;
+  letter-spacing: -.02em;
+  line-height: 72px;
+  font-size: 64px;
+  margin-bottom: 12px;
+}
+
+#welcome-content {
+  //background-image: linear-gradient(to bottom, #111020 0%, #211b31 25%);
+}
+
+.welcome-content-cols {
+  //border: 2px solid #4c4169;
+  border-radius: 5px;
+  //background-color: #02000657;
+  //box-shadow: 0 3px 0 0 #2f254c;
+  padding: 20px 0px 20px 0px;
+}
+
+.welcome-content-container {
+  text-align: center;
+  min-height: 300px;
+  width: 100%;
+  max-width: 1248px;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+
+}
+
+
+#welcome-content h1 {
+  margin: 20px 0 20px 0;
+  font-size: 2.6em;
+  //color: white;
+}
+
+#fabric-banner h2 {
+  line-height: 0px;
+}
+
+.main-container .content-container .content-area {
+  padding: 0px;
+}
+
+.hero-icons {
+  height: 100px;
+  width: 100px;
+  //color: #aa9dcc;
+}
+
+.home-card {
+  padding: 20px 50px 20px 50px;
+}
+
+.home-card p {
+  font-size: 1.2em;
+}
+
+.home-card h3 {
+  font-size: 1.7em;
+}
+
+.video-content {
+  width: 854px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.video-content h1 {
+  font-size: 2.7em;
+  //color: #b5a8d6;
+}
+
+.video {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  width: 854px;
+  height: 480px;
+  border: none;
+}
+
+@media (max-width: 420px) {
+
+  .fabric-hero-content {
+    padding-top: 0px;
+    height: 300px;
+    max-width: 420px;
+  }
+
+  .fabric-hero h1 {
+    font-size: 38px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+  }
+
+  .fabric-hero h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .fabric-hero button {
+    min-width: 168px;
+    width: 80%;
+    max-width: 220px;
+    display: block;
+    line-height: 47px;
+    margin: 20px auto;
+  }
+
+  .fabric-hero .fabric-hero-logo {
+    display: none;
+  }
+
+  #welcome-content h1 {
+    font-size: 2.0em;
+  }
+
+  .home-card {
+    position: relative;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 45px;
+    width: 100%;
+    max-width: 100%;
+    border-bottom: 1px dashed #65578a;
+  }
+
+  .home-card p {
+    text-align: left;
+  }
+
+  .home-cards-wrapper {
+    display: block;
+  }
+
+  .video {
+    width: 375px;
+    height: 240px;
+    border: none;
+    margin-top: 10px;
+  }
+
+  .video-content {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .video-content h1 {
+    font-size: 1.7em;
+    color: #b5a8d6;
+  }
+
+
+}
+
+
