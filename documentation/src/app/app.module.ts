@@ -9,6 +9,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AnimatedConsoleComponent } from './animated-console/animated-console.component';
+import { TransportHeroAnimationComponent } from './transport-hero-animation/transport-hero-animation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AnimatedConsoleComponent } from './animated-console/animated-console.co
     WelcomeComponent,
     HeaderComponent,
     FooterComponent,
-    AnimatedConsoleComponent
+    AnimatedConsoleComponent,
+    TransportHeroAnimationComponent
   ],
   imports: [
     BrowserModule,
