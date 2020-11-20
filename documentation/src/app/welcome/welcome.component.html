@@ -1,82 +1,105 @@
 <clr-main-container>
-  <transport-header></transport-header>
-  <div class="content-container">
-    <div class="content-area">
-      <section class="transport-hero">
+    <transport-header></transport-header>
+    <div class="content-container">
+        <div class="content-area">
+            <section class="transport-hero">
 
-        <div class="transport-hero-content">
-          <h1>
-            Transport
-          </h1>
-          <h2>The event bus you've been looking for.</h2>
+                <div class="transport-hero-content">
 
-          <a routerLink="/what-is-transport">
-            <button class="btn btn-primary">
-              What is This?
-            </button>
-          </a>
+                    <h1>
+                        <img src="assets/transport-logo-dark.svg" class="transport-logo"/>
+                        Transport
+                    </h1>
+                    <h2>The event bus you've been looking for.</h2>
 
-          <a routerLink="/documentation">
-            <button class="btn btn-primary-outline">
-              Quick Start
-            </button>
-          </a>
+                    <a routerLink="/what-is-transport">
+                        <button class="btn btn-primary">
+                            What is This?
+                        </button>
+                    </a>
 
-          <div class="fabric-hero-logo">
-          </div>
+                    <a routerLink="/documentation">
+                        <button class="btn btn-primary-outline">
+                            Quick Start
+                        </button>
+                    </a>
+
+                    <div class="fabric-hero-logo">
+                    </div>
+
+                </div>
+                <div class="transport-hero-cover"></div>
+                <transport-hero-animation></transport-hero-animation>
+
+            </section>
+
+            <section id="welcome-content">
+                <div class="welcome-content-container">
+                    <div class="welcome-content-cols">
+                        <h1>
+                            Get started in 10 seconds.
+                        </h1>
+                        <div class="clr-row">
+                            <div class="clr-col-12 tabbed-console-content">
+
+
+                                <clr-tabs>
+                                    <clr-tab>
+                                        <button clrTabLink id="go-link">Go</button>
+                                        <clr-tab-content id="go-tab" *clrIfActive="true">
+                                            <br/>
+                                            <section *ngFor="let cmd of goCommands; index as i">
+                                                <h4 class="code-step">{{cmd.title}}</h4>
+                                                <transport-animated-console [inputCommand]="cmd.command"
+                                                                            [helperTxt]="cmd.notes"
+                                                                            [consoleTheme]="'macOS'"
+                                                                            [loopAnimation]="false"
+                                                                            [delay]="i * 1000"
+
+                                                ></transport-animated-console>
+
+                                            </section>
+
+                                        </clr-tab-content>
+                                    </clr-tab>
+                                    <clr-tab>
+                                        <button clrTabLink id="java-link">Java</button>
+                                        <clr-tab-content id="java-tab" *clrIfActive>
+                                            <br/>
+                                            <transport-animated-console [inputCommand]="'Do you have any bagels?'"
+                                                                        [consoleTheme]="'macOS'"
+                                                                        [loopAnimation]="true"
+                                                                        [helperTxt]="'# do you want chicken?'"></transport-animated-console>
+
+                                        </clr-tab-content>
+                                    </clr-tab>
+                                    <clr-tab>
+                                        <button clrTabLink id="typescript-link">TypeScript</button>
+                                        <clr-tab-content id="typescript-tab" *clrIfActive>
+                                            <br/>
+                                            <transport-animated-console [inputCommand]="'Do you have any bagels?'"
+                                                                        [consoleTheme]="'macOS'"
+                                                                        [loopAnimation]="true"
+                                                                        [helperTxt]="'# do you want chicken?'"></transport-animated-console>
+
+                                        </clr-tab-content>
+                                    </clr-tab>
+                                </clr-tabs>
+
+                                <h4 class="code-step">Ready for more?</h4>
+                                <button class="btn btn-primary btn-block btn-outline">read the documentation</button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
 
         </div>
-        <div class="transport-hero-cover"></div>
-        <transport-hero-animation></transport-hero-animation>
-
-      </section>
-
-      <section id="welcome-content">
-        <div class="welcome-content-container">
-          <div class="welcome-content-cols">
-            <h1>
-              No more spaghetti code and technical debt
-            </h1>
-            <div class="clr-row home-cards-wrapper">
-              <div class="clr-col-4 home-card">
-
-                <clr-icon shape="bolt" class="hero-icons"></clr-icon>
-                <h3>Build Really Fast</h3>
-                <p>
-                  Build new UIs and new features 150% faster than you
-                  do today.
-                </p>
-
-              </div>
-              <div class="clr-col-4 home-card">
-
-                <clr-icon shape="cloud-traffic" class="hero-icons"></clr-icon>
-                <h3>Pub-Sub Made Simple</h3>
-                <p>
-                  Integrate async messaging and Pub-Sub into your UIs with
-                  little to no code.
-                </p>
-
-              </div>
-              <div class="clr-col-4 home-card">
-
-                <clr-icon shape="world" class="hero-icons"></clr-icon>
-                <h3>Universal Design</h3>
-                <p>
-                  Works in any browser, using any UI technology stack or framework.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="video-content">
-
-
-      </section>
-
     </div>
-  </div>
- <transport-footer></transport-footer>
+    <transport-footer></transport-footer>
 </clr-main-container>
 
