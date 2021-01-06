@@ -49,53 +49,55 @@ export class TransportHeroAnimationComponent extends BaseComponent implements On
     ngOnInit(): void {
 
         this.hero = Snap('#transport-hero-banner');
-        this.pinkPath1 = this.hero.select("#pink-path-1");
-        this.pinkPath2 = this.hero.select("#pink-path-2");
-        this.pinkPath3 = this.hero.select("#pink-path-3");
-        this.bluePath1 = this.hero.select("#blue-path-1");
-        this.bluePath2 = this.hero.select("#blue-path-2");
-        this.purplePath = this.hero.select("#purple-path");
-        this.lightBluePath1 = this.hero.select("#light-blue-path-1");
-        this.lightBluePath2 = this.hero.select("#light-blue-path-2");
-        this.pinkMessage = this.hero.select("#pink-message");
-        this.blueMessage = this.hero.select("#blue-message");
-        this.purpleMessage = this.hero.select("#purple-message");
-        this.lightBlueMessage = this.hero.select("#light-blue-message");
+        if (this.hero != null) {
+            this.pinkPath1 = this.hero.select("#pink-path-1");
+            this.pinkPath2 = this.hero.select("#pink-path-2");
+            this.pinkPath3 = this.hero.select("#pink-path-3");
+            this.bluePath1 = this.hero.select("#blue-path-1");
+            this.bluePath2 = this.hero.select("#blue-path-2");
+            this.purplePath = this.hero.select("#purple-path");
+            this.lightBluePath1 = this.hero.select("#light-blue-path-1");
+            this.lightBluePath2 = this.hero.select("#light-blue-path-2");
+            this.pinkMessage = this.hero.select("#pink-message");
+            this.blueMessage = this.hero.select("#blue-message");
+            this.purpleMessage = this.hero.select("#purple-message");
+            this.lightBlueMessage = this.hero.select("#light-blue-message");
 
-        // hide paths
-        this.bluePath1.attr({
-            display: "none"
-        });
-        this.bluePath2.attr({
-            display: "none"
-        });
+            // hide paths
+            this.bluePath1.attr({
+                display: "none"
+            });
+            this.bluePath2.attr({
+                display: "none"
+            });
 
-        this.lightBluePath1.attr({
-            display: "none"
-        });
-        this.lightBluePath2.attr({
-            display: "none"
-        });
+            this.lightBluePath1.attr({
+                display: "none"
+            });
+            this.lightBluePath2.attr({
+                display: "none"
+            });
 
-        this.pinkPath1.attr({
-            display: "none"
-        });
+            this.pinkPath1.attr({
+                display: "none"
+            });
 
-        this.pinkPath2.attr({
-            display: "none"
-        });
+            this.pinkPath2.attr({
+                display: "none"
+            });
 
-        this.pinkPath3.attr({
-            display: "none"
-        });
-
-
-        this.purplePath.attr({
-            display: "none"
-        });
+            this.pinkPath3.attr({
+                display: "none"
+            });
 
 
-        this.startAnimations();
+            this.purplePath.attr({
+                display: "none"
+            });
+
+
+            this.startAnimations();
+        }
     }
 
     public startAnimations(): void {

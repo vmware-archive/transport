@@ -145,82 +145,157 @@ h4.code-step {
   border: none;
 }
 
-@media (max-width: 420px) {
+#welcome-content h1 {
+    color: #4aaed9;
+}
 
-  .fabric-hero-content {
-    padding-top: 0px;
-    height: 300px;
-    max-width: 420px;
-  }
 
-  .fabric-hero h1 {
-    font-size: 38px;
-    text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-top: 10px;
-  }
+@media (max-width: 1024px) {
 
-  .fabric-hero h2 {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 0px;
-  }
+    .transport-hero {
+        height: 224px;
+        overflow: hidden;
+    }
 
-  .fabric-hero button {
-    min-width: 168px;
-    width: 80%;
-    max-width: 220px;
-    display: block;
-    line-height: 47px;
-    margin: 20px auto;
-  }
+    .transport-logo {
+        width: 100px;
+    }
+    .welcome-content-container {
+        min-height: 300px;
+        width: 100%;
+        max-width: 1248px;
+        margin: 0 auto;
+        z-index: 1;
+        position: relative;
+    }
 
-  .fabric-hero .fabric-hero-logo {
-    display: none;
-  }
+    .welcome-content-cols {
+        padding: 20px;
+    }
 
-  #welcome-content h1 {
-    font-size: 2.0em;
-  }
+    .transport-hero-content .btn {
+        margin: 15px 10px 0 0;
+    }
 
-  .home-card {
-    position: relative;
-    padding-left: 45px;
-    padding-right: 45px;
-    padding-bottom: 45px;
-    width: 100%;
-    max-width: 100%;
-    border-bottom: 1px dashed #65578a;
-  }
 
-  .home-card p {
-    text-align: left;
-  }
+    .transport-hero-content h1 {
 
-  .home-cards-wrapper {
-    display: block;
-  }
+        letter-spacing: -.02em;
+        line-height: 72px;
+        font-size: 2.0rem;
+        margin-bottom: 12px;
+    }
 
-  .video {
-    width: 375px;
-    height: 240px;
-    border: none;
-    margin-top: 10px;
-  }
+    .transport-hero-content h2 {
 
-  .video-content {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-  }
+        font-size: 0.9rem;
+        letter-spacing: -0.02em;
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
 
-  .video-content h1 {
-    font-size: 1.7em;
-    color: #b5a8d6;
-  }
+    .transport-hero-content {
+        padding: 0 20px 20px 20px;
+        height: 253px;
+    }
+
+    .transport-hero-cover {
+        top: 0;
+
+    }
 
 
 }
 
 
+@media (max-width: 420px) {
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+    }
+    .action-buttons {
+        text-align: center;
+    }
+
+    .transport-hero-cover {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        height: 562px;
+        top: -124px;
+        background: rgba(0,0,0,0.8);
+        z-index: 11;
+    }
+
+    .transport-hero-content {
+        padding: 0 20px 20px 20px;
+        height: 253px;
+    }
+
+    .transport-hero-content .btn {
+        margin: 15px 0 0 0;
+    }
+
+    .transport-hero {
+        max-width: 420px;
+        overflow: hidden;
+    }
+
+    .transport-logo {
+        width: 100px;
+    }
+    .welcome-content-container {
+        min-height: 300px;
+        width: 100%;
+        max-width: 1248px;
+        margin: 0 auto;
+        z-index: 1;
+        position: relative;
+    }
+
+    .welcome-content-cols {
+        padding: 0 10px 20px 10px;
+    }
+
+    #welcome-content h1 {
+        margin: 0;
+        padding: 0 20px 0 20px;
+        font-size: 1.2rem;
+    }
+    .transport-hero-content h1 {
+
+        letter-spacing: -.02em;
+        line-height: 72px;
+        font-size: 2.0rem;
+        margin-bottom: 12px;
+    }
+
+    .transport-hero-content h2 {
+
+        font-size: 0.8rem;
+        letter-spacing: -0.02em;
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
+
+
+    .transport-hero-content .btn {
+        margin: 15px 10px 0 0;
+    }
+}
+
+
+@media (max-width: 375px) {
+
+    .transport-hero {
+        height: 280px;
+    }
+
+
+}

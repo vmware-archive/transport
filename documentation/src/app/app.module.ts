@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AnimatedConsoleComponent } from './animated-console/animated-console.component';
 import { TransportHeroAnimationComponent } from './transport-hero-animation/transport-hero-animation.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TransportHeroAnimationComponent } from './transport-hero-animation/tran
     HeaderComponent,
     FooterComponent,
     AnimatedConsoleComponent,
-    TransportHeroAnimationComponent
+    TransportHeroAnimationComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
