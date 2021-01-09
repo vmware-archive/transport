@@ -1,0 +1,85 @@
+<h1>
+    Connecting to multiple brokers
+</h1>
+
+<h3>One UI, multiple brokers</h3>
+<p>
+    Sometimes you want to connect to more than one fabric endpoint in your UI. Uou can easily achieve that by using
+    the same method as when you would connect to a single fabric instance. As long as the brokers
+    follow the STOMP v1.2 specifications and are provided through either Transport or any other means, you can communicate with
+    galactic channels across multiple brokers. See below the detailed step-by-step guide to learn how to leverage this feature
+    and what to look out for.
+</p>
+<hr/>
+<h3>Step 1: Connect to multiple brokers</h3>
+<p>
+    Connecting to multiple Transport instances is no different from connecting to a single instance. You create connection
+    and disconnection handlers per broker and establish connection using <code class="clr-code">fabric.connect()</code>.
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>// first endpoint
+this.fabric.connect(
+    () => &#123;&#125;,
+    () => &#123;&#125;,
+    'mybroker.mycompany.com'
+);
+
+// second endpoint
+this.fabric.connect(
+    () => &#123;&#125;,
+    () => &#123;&#125;,
+    'somehost',
+    12345,
+    '/custom-fabric-endpoint'
+);
+</code></pre>
+<p>
+    Next, you may want to set up listeners for connection events for the brokers using <code class="clr-code">fabric.whenConnectionStateChanges()</code>.
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>this.bus.fabric.whenConnectionStateChanges(
+    BusUtil.getFabricConnectionString('appfabric.vmware.com', 80, '/fabric'))
+        .subscribe((state: FabricConnectionState) => &#123; ... &#125; );
+</code></pre>
+<hr/>
+<h3>Step 2: Mark galactic channels across multiple fabric endpoints</h3>
+<p>
+    Just like you would in the previous chapter, <a routerLink="./ts/connecting-broker">
+    Connecting to the Fabric</a>, you use the same <code class="clr-code">bus.markChannelAsGalactic()</code> for marking a channel
+    galactic and <code class="clr-code">bus.markChannelAsLocal()</code> for converting it back to a local channel. A major difference
+    to keep in mind though is that when you have more than one broker session connected, you will need to
+    specify the target broker endpoint, as a second parameter, that you wish to associate the channel with:
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>// mark channel-A as galactic on the first broker
+this.bus.markChannelAsGalactic('channel-A',
+    BusUtil.getFabricConnectionString('mybroker.mycompany.com', 80, '/fabric'));
+
+// mark channel-B as galactic on the second broker
+this.bus.markChannelAsGalactic('channel-B',
+    BusUtil.getFabricConnectionString('somehost', 12345, '/custom-fabric-endpoint'));
+</code></pre>
+<p>
+    If you don't specify the second parameter, Transport will not be able to tell which channel should be mapped to which broker
+    and eventually throws an error in the console asking you to explicitly provide it. <strong>If there is only one
+    broker to connect to, however, you don't need to provide the second parameter</strong>, as Transport will
+    automatically fill it out for you.
+</p>
+<p>
+    And that is how to talk to galactic channels mapped across different brokers!
+</p>
+
+<hr/>
+<h3>Extra: Multiple galactic channels across distributed brokers with the same channel name</h3>
+<p>
+    In the example above, we mapped two channels of differing names to their respective broker. It naturally makes sense
+    that you will invoke different channels for different operations. However, you can assign the same channel name to the both mappings
+    if you meet the following conditions:
+</p>
+<br/>
+<ol>
+    <li>
+        All of your distributed brokers communicate over WebSocket with STOMP
+    </li>
+    <li>
+        The channel deals with the same type of request and response data no matter what broker instance
+    </li>
+</ol>

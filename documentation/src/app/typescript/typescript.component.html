@@ -47,8 +47,11 @@
             <clr-vertical-nav-group routerLinkActive="active">
                 Extending To Brokers
                 <clr-vertical-nav-group-children *clrIfExpanded="true">
-                    <a clrVerticalNavLink routerLink="./broker" routerLinkActive="active">
-                        Connecting a Broker
+                    <a clrVerticalNavLink routerLink="./broker-overview" routerLinkActive="active">
+                        Overview
+                    </a>
+                    <a clrVerticalNavLink routerLink="./connecting-broker" routerLinkActive="active">
+                        Connecting to a Broker
                     </a>
                     <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">
                         Connecting Multiple Brokers
@@ -88,8 +91,8 @@
             </clr-vertical-nav-group>
 
         </clr-vertical-nav>
-        <div class="content-area">
-            <router-outlet></router-outlet>
+        <div class="content-area" id="main-content" #mainContent>
+            <router-outlet (activate)="onActivate($event)"></router-outlet>
         </div>
     </div>
 

@@ -1,0 +1,82 @@
+
+<h3>Connecting to a broker</h3>
+
+<p>
+    If you're using the Java or Golang version of Transport, they both come with a local, very simple broker that you can run. However because Transport uses <a href="http://stomp.github.io/" target="_blank">STOMP</a>, it means
+    you can connect directly to any STOMP compatible broker (like RabbitMQ for example).
+</p>
+
+<h4>How do I connect my bus to a broker?</h4>
+
+<p>
+    We've tried to keep this as simple as possible. You should really just need to provide a connected and disconnected event handler.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>// Called when connected to broker
+const connectedHandler = (sessionId: string) => &#123;
+    this.bus.logger.info(`Connected to Broker with sessionId $&#123;sessionId&#125;`, 'main.ts');
+&#125;;
+
+// Called when disconnected.
+const disconnectedHandler = () => &#123;
+    this.bus.logger.info('Disconnected from Broker.', 'main.ts');
+&#123;
+
+// Connect to Broker.
+this.fabric.connect(connectedHandler, disconnectedHandler);</code></pre>
+
+<p>
+    If you need to configure the endpoint, host, port etc, you can also pass those in also as optional args.
+</p>
+<hr/>
+<p>
+    Disconnecting is easy, you'll go offline instantly.
+</p>
+
+<h4>Disconnecting from broker</h4>
+<pre class="code"><code class="language-typescript" ngNonBindable>// Disconnect (close socket completely).
+this.fabric.disconnect();</code></pre>
+
+<hr/>
+
+<h3>How does my application monitor the broker connection state?</h3>
+
+<p>
+    How do I know if my application gets knocked offline? What if there is a hiccup on the WebSocket? The <code class="clr-code">this.fabric.whenConnectionStateChanges()</code>
+    returns a <code class="clr-code">StoreStream&lt;FabricConnectionState&gt;</code> instance, that will stream connection state changes to the consumer.
+</p>
+<p>
+    There are three different state changes emitted from this stream.
+</p>
+<ol class="list">
+    <li><code class="clr-code">FabricConnectionState.Connected</code> - <span class="emphasis">Broker connected!</span></li>
+    <li><code class="clr-code">FabricConnectionState.Disconnected</code> - <span class="emphasis">Broker disconnected!</span></li>
+    <li><code class="clr-code">FabricConnectionState.Failed</code> - <span class="emphasis">Broker unable to connect!</span></li>
+</ol>
+
+<h4>Using whenConnectionStateChanges()</h4>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; FabricConnectionState &#125; from '@vmware/transport/fabric.api';
+
+this.fabric.whenConnectionStateChanges(BusUtil.getFabricConnectionString('mybroker.mycompany.com', 80, '/fabric'))
+    .subscribe(
+        (stateChange: FabricConnectionState) => &#123;
+            switch (stateChange) &#123;
+                case FabricConnectionState.Connected:
+                    // .. do something, now we're online.
+                    break;
+
+                case FabricConnectionState.Disconnected:
+                    // .. do something, now we're offline.
+                    break;
+
+                case FabricConnectionState.Failed:
+                    // .. do something important, we can't connect!
+                    break;
+                &#125;
+            &#125;
+     );
+</code></pre>
+<hr/>
+<a routerLink="/ts/multiple-brokers" class="btn btn-primary btn-block btn-outline">Next Steps: Connecting to multiple brokers</a>
+
+

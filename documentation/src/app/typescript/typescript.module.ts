@@ -14,10 +14,12 @@ import { AdvancedMessagingComponent } from './advanced-messaging/advanced-messag
 import { TransactionsComponent } from './transactions/transactions.component';
 import { LoggingComponent } from './logging/logging.component';
 import { BrokerOverviewComponent } from './broker-overview/broker-overview.component';
+import { ConnectingBrokerComponent } from './connecting-broker/connecting-broker.component';
+import { MultipleBrokersComponent } from './multiple-brokers/multiple-brokers.component';
 
 
 @NgModule({
-    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent],
+    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent],
     imports: [
         CommonModule,
         TypescriptRoutingModule,

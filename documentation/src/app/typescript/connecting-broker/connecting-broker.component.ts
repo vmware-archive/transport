@@ -3,13 +3,13 @@ import {AbstractBase} from "@vmw/transport/core";
 import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
 
 @Component({
-  selector: 'transport-broker-overview',
-  templateUrl: './broker-overview.component.html',
-  styleUrls: ['./broker-overview.component.scss']
+  selector: 'transport-connecting-broker',
+  templateUrl: './connecting-broker.component.html',
+  styleUrls: ['./connecting-broker.component.scss']
 })
-export class BrokerOverviewComponent extends AbstractBase implements OnInit, AfterViewChecked {
+export class ConnectingBrokerComponent extends AbstractBase implements OnInit, AfterViewChecked {
     constructor(private highlightService: HighlightService) {
-        super('BrokerOverviewComponent')
+        super('ConnectingBrokerComponent')
     }
     public highlighted = false;
 
@@ -22,5 +22,3 @@ export class BrokerOverviewComponent extends AbstractBase implements OnInit, Aft
         }
     }
 }
-
-
