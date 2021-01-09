@@ -39,7 +39,6 @@ export class WelcomeComponent extends BaseComponent implements OnInit {
                 command: './transport demo',
                 notes: 'Run a simple example that connects to the sample service and makes a request'
             },
-
         ];
     }
 

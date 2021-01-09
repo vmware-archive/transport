@@ -1,0 +1,96 @@
+<clr-main-container>
+    <transport-header></transport-header>
+    <div class="content-container">
+        <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
+            <a clrVerticalNavLink routerLink="./overview" routerLinkActive="active">
+                TypeScript Overview
+            </a>
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Getting Started
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./importing" routerLinkActive="active">
+                        Importing Transport
+                    </a>
+                    <a clrVerticalNavLink routerLink="./initializing" routerLinkActive="active">
+                        Initializing Transport
+                    </a>
+                    <a clrVerticalNavLink routerLink="./hello-world" routerLinkActive="active">
+                        Hello World!
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Operations
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./building-services" routerLinkActive="active">
+                       Building Services
+                    </a>
+                    <a clrVerticalNavLink routerLink="./calling-services" routerLinkActive="active">
+                        Calling Services
+                    </a>
+                    <a clrVerticalNavLink routerLink="./advanced-messaging" routerLinkActive="active">
+                        Advanced Messaging
+                    </a>
+                    <a clrVerticalNavLink routerLink="./transactions" routerLinkActive="active">
+                        Transactions
+                    </a>
+                    <a clrVerticalNavLink routerLink="./logging" routerLinkActive="active">
+                        Logging
+                    </a>
+
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Extending To Brokers
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./broker" routerLinkActive="active">
+                        Connecting a Broker
+                    </a>
+                    <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">
+                        Connecting Multiple Brokers
+                    </a>
+                    <a clrVerticalNavLink routerLink="./extended-channels" routerLinkActive="active">
+                        Extending Channels
+                    </a>
+                    <a clrVerticalNavLink routerLink="./distributed" routerLinkActive="active">
+                        Distributed Messaging
+                    </a>
+
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Using Stores
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./store-basics" routerLinkActive="active">
+                        Stores: Basics
+                    </a>
+                    <a clrVerticalNavLink routerLink="./store-basics" routerLinkActive="active">
+                        Stores: Advanced
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Utilities
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./iframes" routerLinkActive="active">
+                        Messaging Across iFrames
+                    </a>
+                    <a clrVerticalNavLink routerLink="./abstractions" routerLinkActive="active">
+                        Built in Abstractions
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+        </clr-vertical-nav>
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</clr-main-container>

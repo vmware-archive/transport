@@ -1,0 +1,10 @@
+<section *ngFor="let cmd of commands; index as i">
+    <h4 class="code-step">{{cmd.title}}</h4>
+    <transport-animated-console [inputCommand]="cmd.command"
+                                [helperTxt]="cmd.notes"
+                                [consoleTheme]="'macOS'"
+                                [loopAnimation]="false"
+                                [delay]="i * 1000">
+
+    </transport-animated-console>
+</section>

@@ -1,0 +1,158 @@
+<h1>Calling Message Based Services.</h1>
+<p>
+    In order to call <code class="clr-code">PongService</code> from a component, we just need to make a request over the
+    <code class="clr-code">PongService</code> channel
+    and handle the response. In this example, we're going to use a 'broadcast' mechanism. This is explained in more
+    detail below, but in a nutshell - it means that
+    it's an open conversation between the component and the service.
+</p>
+<p>
+    This means any other component listening for
+    responses on <code class="clr-code">PongService</code>
+    would also receive that response. This can be useful if you want a bunch of different components to update, every
+    time a request for a list of something is requested (however
+    it would be a better design to use the store for this usecase).
+</p>
+
+<p>Lets create a simple component called <code class="clr-code">PingComponent</code></p>
+
+<h3>Angular PingComponent</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractBase &#125; from '@vmware/transport/core';
+import &#123; Component &#125; from '@angular/core';
+import &#123; PongRequestType, PongServiceChannel, PongServiceRequest, PongServiceResponse &#125; from './pong.service.model';
+import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+
+@Component(&#123;
+    selector: 'ping-component',
+    template: `
+        &lt;button &#40;click&#41;="sendPingBasic()"&gt;Ping (Basic)&lt;/button&gt;
+        &lt;button &#40;click&#41;="sendPingFull()"&gt;Ping (Full)&lt;/button&gt;
+        Response: &#123;&#123;response&#125;&#125;`
+&#125;)
+export class PingComponent extends AbstractBase &#123;
+
+    public response = 'nothing yet, request something!';
+
+    constructor() &#123;
+        super('PingComponent');
+    &#125;
+
+    /**
+     * Send a basic ping request to the pong service.
+     */
+    public sendPingBasic(): void &#123;
+
+        const request = this.fabric.generateFabricRequest(PongRequestType.Basic, 'basic ping');
+        this.sendPingRequest(request);
+
+    &#125;
+
+    /**
+     * Send a full ping request to the pong service.
+     */
+    public sendPingFull(): void &#123;
+
+        const request = this.fabric.generateFabricRequest(PongRequestType.Full, 'full ping');
+        this.sendPingRequest(request);
+
+    &#125;
+
+    private sendPingRequest(request: PongServiceRequest): void &#123;
+         this.bus.requestOnceWithId(GeneralUtil.genUUIDShort(), PongServiceChannel, request)
+            .handle(
+                (response: PongServiceResponse) => &#123;
+                    this.response = response.payload;
+                &#125;
+            );
+    &#125;
+&#125;</code></pre>
+
+<p>
+    Now that we have our <code class="clr-code">PingComponent</code>, it should be able to call our <code class="clr-code">PongService</code>.
+</p>
+
+<p>And a version using React:</p>
+
+<h3>React PingComponent</h3>
+<pre class="code">
+<code class="language-typescript" ngNonBindable>
+import React, &#123; useState &#125; from 'react';
+import &#123; useTransport &#125; from 'react-Transport';
+import &#123; PongRequestType, PongServiceChannel, PongServiceRequest, PongServiceResponse &#125; from 'pong.service.model';
+import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+
+export default function PingComponent() &#123;
+
+    const transport = useTransport();
+    const [ pingResponse, setPingResponse ] = useState&#60;string&#62;('nothing yet, hit a button');
+
+    function sendPingBasic()  &#123;
+        sendPingRequest(transport.fabric.generateFabricRequest(PongRequestType.Basic, 'basic ping'));
+     &#125;
+
+    function sendPingFull()  &#123;
+        sendPingRequest(transport.fabric.generateFabricRequest(PongRequestType.Full, 'full ping'));
+    &#125;
+
+    function sendPingRequest(request: PongServiceRequest) &#123;
+        transport.bus.requestOnceWithId(GeneralUtil.genUUIDShort(), PongServiceChannel, request)
+            .handle(
+                (response: PongServiceResponse) =&#62; &#123;
+                    setPingResponse(response.payload);
+                &#125;
+            );
+    &#125;
+
+    return (
+        &#60;div&#62;
+            &#60;button onClick=&#123;() =&#62; sendPingBasic()&#125; className='btn btn-primary'&#62;Ping (Basic)&#60;/button&#62;
+            &#60;button onClick=&#123;() =&#62; sendPingFull()&#125; className='btn btn-primary'&#62;Ping (Full)&#60;/button&#62;
+            &#60;br/&#62;
+            Response: &#123;pingResponse&#125;
+        &#60;/div&#62;
+    );
+&#125;
+</code>
+</pre>
+
+<p>
+    The actual code that sends the request to the service, and handles the response sent back is handled by the <code
+    class="clr-code">sendPingRequest()</code> method on the component.
+</p>
+<p>
+    The method used in here <code class="clr-code">this.bus.requestOnceWithId()</code> essentially takes in the channel you
+    want to send your payload on, and the actual payload. This method
+    returns what is known as a <code class="clr-code">MessageHandler</code> interface. In this example we use the <code
+    class="clr-code">handle()</code> method to pass in
+    a lambda that is executed once the response is provided by the service.
+</p>
+<p>
+    The ID is used to ensure this the response we get back, is a response to my request only. Channels are public
+    so in order to have 1-1 communication, you need to use the bus methods with ID's.
+</p>
+<p>
+    The <code class="clr-code">handle()</code>
+    method also accepts an error lambda. This is executed if the service
+    returns an error of some kind. In fact this is the exact same API signature used by <strong>RxJS</strong> (which is
+    what we used at the core of the event bus).
+</p>
+<p>
+    One of the key benefits to using the bus, is that unlike RxJS, when an error is thrown on a stream, the stream
+    <strong>remains open</strong>. You don't have to worry about managing
+    the subscription to that stream if something goes wrong.
+</p>
+
+<p>
+    This example uses <code class="clr-code">requestOnce()</code> which means a single request is sent and a single
+    response is handled. However there are quite a few other methods
+    available that will send a request and listen for multiple responses (<code class="clr-code">requestStream()</code>)
+    Or you could avoid sending a request altogether and just
+    listen for responses (<code class="clr-code">listenStream()</code>).
+</p>
+<p>
+    To find out more about the available API's,
+    You can <a href="https://github.com/vmware/transport-typescript/blob/master/src/bus.api.ts" target="_blank">take a
+    look at the API here</a>
+</p>
+<hr/>
+<a routerLink="/ts/advanced-messaging" class="btn btn-primary btn-block btn-outline">Next Steps: Advanced Messaging</a>

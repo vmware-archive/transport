@@ -8,6 +8,21 @@
 }
 
 
+
+@media (max-width: 1024px) {
+
+    .transport-hero-background {
+        right: -270px;
+        width: 1034px;
+        height: 562px;
+        top: -139px;
+
+    }
+
+}
+
+
+
 @media (max-width: 420px) {
 
     .transport-hero-background {
@@ -20,18 +35,3 @@
     }
 
 }
-
-
-@media (max-width: 1024px) {
-
-    .transport-hero-background {
-        right: -188px;
-        width: 1034px;
-        height: 562px;
-        top: -139px;
-
-    }
-
-}
-
-

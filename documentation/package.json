@@ -26,6 +26,7 @@
     "@clr/ui": "4.0.6",
     "@vmw/transport": "^1.2.2",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "prismjs": "^1.23.0",
     "rxjs": "~6.6.3",
     "snapsvg-cjs": "0.0.6",
     "tslib": "^2.0.0",

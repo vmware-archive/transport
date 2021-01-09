@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../models/base.component';
+import { BaseComponent } from '../../models/base.component';
 import { VERSION } from '@vmw/transport-docs/environments/version';
 
 @Component({

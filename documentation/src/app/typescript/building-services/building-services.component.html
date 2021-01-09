@@ -1,0 +1,191 @@
+<h1>Building Message Based Services</h1>
+
+<p>
+    You're free to build applications however you want, however this is a pattern we use frequently. We combine this pattern with auto-generation, so that we don't need to build
+    this code out each time - it's driven by OpenAPI specifications (if API driven).
+</p>
+<hr/>
+<h3>Using <code class="clr-code">AbstractService</code></h3>
+
+<h3>Example </h3>
+
+<p>
+    To get started, we should create a new class called <code
+    class="clr-code">PongService</code> in a folder named <code class="clr-code">services</code>
+    that sits off the root of your <code class="clr-code">src/</code> folder. Your path should be <code
+    class="clr-code">~/my-app-folder/src/services</code>
+</p>
+<p>
+    The first thing we need to do in order to create our first simple <code class="clr-code">PongService</code> is
+    create a <code class="clr-code">PongServiceRequest</code> model and a
+    <code class="clr-code">PongServiceResponse</code> model. These two models are responsible for allowing other actors
+    to know what to send to our service, and what to expect in response.
+</p>
+<p>
+    In the <code class="clr-code">services/</code> folder, we will create a new file called <code class="clr-code">pong.service.model.ts</code>.
+    This is our request/response model that defines
+    what our <code class="clr-code">PongService</code> listens for and responds with.
+</p>
+
+<h3>Create Service Request/Response Models.</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ChannelName &#125; from '@vmw/bifrost';
+import &#123; AbstractMessageObject &#125; from '@vmware/transport/core';
+
+export const PongServiceChannel: ChannelName = 'services-PongService';
+
+export enum PongRequestType &#123;
+    Basic = 'Basic',
+    Full = 'Full'
+&#125;
+
+export interface PongServiceRequest extends AbstractMessageObject&lt;PongRequestType, string&gt; &#123;
+    request: PongRequestType;
+    payload: string;
+&#125;
+
+export interface PongServiceResponse extends AbstractMessageObject&lt;PongRequestType, string&gt; &#123;
+    payload: string;
+&#125;</code></pre>
+
+<p>
+    Pretty simple right? We have defined a channel on which to talk, an enum to define the command we want to send and
+    then two simple interfaces that define request and responses.
+    You're not restricted to interfaces here, you can also use classes. The important thing to remember here is that
+    this is <strong>*ALL*</strong> that is required in order to
+    talk to our new <code class="clr-code">PongService</code>.
+</p>
+
+<p>
+    The reason why we extend from <code class="clr-code">AbstractMessageObject</code> is because is provides some important properties
+    that we will need when making Fabric calls across the distributed bus.
+</p>
+
+<p>
+    Next, lets create our actual <code class="clr-code">PongService</code>. It looks like this:
+</p>
+
+<hr/>
+
+<h3>PongService</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractService &#125; from '@vmware/transport/core';
+import &#123; EventBus, MessageArgs &#125; from '@vmware/transport';
+import &#123;
+    PongRequestType,
+    PongServiceChannel,
+    PongServiceRequest,
+    PongServiceResponse
+&#125; from './pong.service.model';
+
+export class PongService extends AbstractService&lt;PongServiceRequest, PongServiceResponse&gt; &#123;
+
+    constructor() &#123;
+
+        // identify the name of this service, and the channel it operates on.
+        super('PongService', PongServiceChannel);
+
+        // log that the service is online (if logging enabled)
+        this.log.info('PongService Loaded');
+    &#125;
+
+    /**
+     * Handle a request send on the service channel.
+     * @param serviceRequest the request object
+     * @param args automatically passed by superclass, important details within.
+     */
+    protected handleServiceRequest(serviceRequest: PongServiceRequest, args?: MessageArgs): void &#123;
+
+        switch (serviceRequest.request) &#123;
+            case PongRequestType.Basic:
+                this.handleBasicRequest(request.payload, args);
+                break;
+
+            case PongRequestType.Full:
+                this.handleFullRequest(request.payload, args);
+                break;
+        &#125;
+    &#125;
+
+    /**
+     * Handle a basic request (limited details)
+     * @param message this is the message sent by the requesting actor.
+     * @param args these are important values that identify who sent the request.
+     */
+    private handleBasicRequest(message: string, args: MessageArgs): void &#123;
+
+        const basicResponse = &#123;
+            value: `pong '$&#123;message&#125;'`
+        &#125;;
+
+        // send a response to whomever requested it.
+        this.postResponse(PongServiceChannel, basicResponse, args);
+    &#125;
+
+    /**
+     * Handle a more detailed response (more details)
+     * @param message this is the message sent by the requesting actor.
+     * @param args these are important values that identify who sent the request.
+     */
+    private handleFullRequest(message: string, args: MessageArgs): void &#123;
+
+        // get a timestamp.
+        const date = new Date();
+        const dateString = date.toLocaleDateString('en-US');
+        const perf = performance.now();
+
+        const basicResponse = &#123;
+            value: `pong '$&#123;message&#125;' (on $&#123;date&#125; by event bus with id $&#123;EventBus.id&#125;) time: $&#123;perf&#125;`
+        &#125;;
+
+        // send a response to whomever requested it.
+        this.postResponse(PongServiceChannel, basicResponse, args);
+
+    &#125;
+&#125;</code></pre>
+<p>
+    Now we can load <code class="clr-code">PongService</code> whenever we like.
+</p>
+
+<hr/>
+
+<h3 id="loadingservice">Loading Services</h3>
+
+<p>
+    To load a service you can use the in-built static <code class="clr-code">ServiceLoader</code>
+    utility. The <code class="clr-code">ServiceLoader</code> takes the service class type as the first argument, and
+    then as many other constructor properties as you need for your service (variable args). In this example, we could load our
+    service at the same time we boot the bus (i.e. before Angular even loads).
+</p>
+<p>
+    We could also load the service on demand when it's required, by loading the service as a part of a module definition.
+    It's really up to you. The general rule is that a global service, should be ready before your application boots, other services can be booted on demand.
+</p>
+<p>
+    How do I boot <code class="clr-code">PongService</code>? Easy. Just pass your class to <code class="clr-code">ServiceLoader</code>.
+    Just like this:
+</p>
+
+<h3>Using ServiceLoader</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ServiceLoader &#125; from '@vmw/bifrost/util/service.loader';
+
+ServiceLoader.addService(PongService);</code></pre>
+
+<p>
+    If you want to create a service that accepts constructor arguments, and you want to pass them to the service loader? You can just add your constructor args
+    to the  <code class="clr-code">AddService</code> method.
+</p>
+
+<h3>Using ServiceLoader with constructor args</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+    constructor(arg1, arg2, arg3) &#123;
+...
+
+ServiceLoader.addService(PongService, arg1, arg2, arg3);</code></pre>
+
+<p>
+    Once the service has loaded, you should see some output in the developer console, that looks something like...
+</p>
+<pre class="log-output">▫️️<span class="console-purple">[Inf]:</span> 🌎 <span class="console-pink">Service Adaptor: PongService (3e4f3014) online and listening on 'services::PongService'</span> <span class="console-who">[PongService]</span> <span class="console-time">(9:25:39 AM)</span>
+▫️️<span class="console-purple">[Inf]:</span> <span class="console-pink">PongService Loaded</span>
+</pre>
+<hr/>
+<a routerLink="/ts/calling-services" class="btn btn-primary btn-block btn-outline">Next Steps: Calling Services</a>
