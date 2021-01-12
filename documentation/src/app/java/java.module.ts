@@ -10,10 +10,17 @@ import { ImportingComponent } from './importing/importing.component';
 import { InitializingComponent } from './initializing/initializing.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { ConfiguringComponent } from './configuring/configuring.component';
+import { BuildingServicesComponent } from './building-services/building-services.component';
+import { PrivateChannelsComponent } from './private-channels/private-channels.component';
+import { MessagingComponent } from './messaging/messaging.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { LoggingComponent } from './logging/logging.component';
+import { RestComponent } from './rest/rest.component';
+import { AbstractionsComponent } from './abstractions/abstractions.component';
 
 
 @NgModule({
-    declarations: [OverviewComponent, JavaComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, ConfiguringComponent],
+    declarations: [OverviewComponent, JavaComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, ConfiguringComponent, BuildingServicesComponent, PrivateChannelsComponent, MessagingComponent, TransactionsComponent, LoggingComponent, RestComponent, AbstractionsComponent],
     imports: [
         CommonModule,
         SharedModule,

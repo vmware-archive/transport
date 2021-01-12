@@ -28,14 +28,14 @@
             <clr-vertical-nav-group routerLinkActive="active">
                 Operations
                 <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./messaging" routerLinkActive="active">
+                        Messaging Types
+                    </a>
                     <a clrVerticalNavLink routerLink="./building-services" routerLinkActive="active">
                         Building Services
                     </a>
-                    <a clrVerticalNavLink routerLink="./calling-services" routerLinkActive="active">
-                        Calling Services
-                    </a>
-                    <a clrVerticalNavLink routerLink="./advanced-messaging" routerLinkActive="active">
-                        Advanced Messaging
+                    <a clrVerticalNavLink routerLink="./private-channels" routerLinkActive="active">
+                        Private Channels
                     </a>
                     <a clrVerticalNavLink routerLink="./transactions" routerLinkActive="active">
                         Transactions
@@ -47,41 +47,41 @@
                 </clr-vertical-nav-group-children>
             </clr-vertical-nav-group>
 
-            <clr-vertical-nav-group routerLinkActive="active">
-                Extending To Brokers
-                <clr-vertical-nav-group-children *clrIfExpanded="true">
-                    <a clrVerticalNavLink routerLink="./broker-overview" routerLinkActive="active">
-                        Overview
-                    </a>
-                    <a clrVerticalNavLink routerLink="./connecting-broker" routerLinkActive="active">
-                        Connecting to a Broker
-                    </a>
-                    <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">
-                        Connecting Multiple Brokers
-                    </a>
-                    <a clrVerticalNavLink routerLink="./extending-channels" routerLinkActive="active">
-                        Extending Channels
-                    </a>
-                </clr-vertical-nav-group-children>
-            </clr-vertical-nav-group>
+<!--            <clr-vertical-nav-group routerLinkActive="active">-->
+<!--                Extending To Brokers-->
+<!--                <clr-vertical-nav-group-children *clrIfExpanded="true">-->
+<!--                    <a clrVerticalNavLink routerLink="./broker-overview" routerLinkActive="active">-->
+<!--                        Overview-->
+<!--                    </a>-->
+<!--                    <a clrVerticalNavLink routerLink="./connecting-broker" routerLinkActive="active">-->
+<!--                        Connecting to a Broker-->
+<!--                    </a>-->
+<!--                    <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">-->
+<!--                        Connecting Multiple Brokers-->
+<!--                    </a>-->
+<!--                    <a clrVerticalNavLink routerLink="./extending-channels" routerLinkActive="active">-->
+<!--                        Extending Channels-->
+<!--                    </a>-->
+<!--                </clr-vertical-nav-group-children>-->
+<!--            </clr-vertical-nav-group>-->
 
-            <clr-vertical-nav-group routerLinkActive="active">
-                Using Stores
-                <clr-vertical-nav-group-children *clrIfExpanded="true">
-                    <a clrVerticalNavLink routerLink="./store-basics" routerLinkActive="active">
-                        Stores: Basics
-                    </a>
-                    <a clrVerticalNavLink routerLink="./store-advanced" routerLinkActive="active">
-                        Stores: Advanced
-                    </a>
-                </clr-vertical-nav-group-children>
-            </clr-vertical-nav-group>
+<!--            <clr-vertical-nav-group routerLinkActive="active">-->
+<!--                Using Stores-->
+<!--                <clr-vertical-nav-group-children *clrIfExpanded="true">-->
+<!--                    <a clrVerticalNavLink routerLink="./store-basics" routerLinkActive="active">-->
+<!--                        Stores: Basics-->
+<!--                    </a>-->
+<!--                    <a clrVerticalNavLink routerLink="./store-advanced" routerLinkActive="active">-->
+<!--                        Stores: Advanced-->
+<!--                    </a>-->
+<!--                </clr-vertical-nav-group-children>-->
+<!--            </clr-vertical-nav-group>-->
 
             <clr-vertical-nav-group routerLinkActive="active">
                 Utilities
                 <clr-vertical-nav-group-children *clrIfExpanded="true">
-                    <a clrVerticalNavLink routerLink="./iframes" routerLinkActive="active">
-                        Messaging Across iFrames
+                    <a clrVerticalNavLink routerLink="./rest" routerLinkActive="active">
+                        Calling RESTful APIs
                     </a>
                     <a clrVerticalNavLink routerLink="./abstractions" routerLinkActive="active">
                         Built in Abstractions

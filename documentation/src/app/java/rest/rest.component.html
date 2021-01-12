@@ -1,0 +1,249 @@
+<h1>Making RESTful API Requests</h1>
+
+<p>
+    At some point (pretty quickly) you will need to start making remote calls to APIs in order to do interesting things.
+</p>
+<p>
+    Transport provides a built-in service that abstracts the need to be concerned with handling HTTP operations. The Java version of the RestService is a little
+    more advanced than the TypeScript version.
+</p>
+<p>
+    The Java version of <code class="clr-code">RestService</code> knows how to make remote calls to external URIs, as well as knowing how to make calls to local
+    Rest Controllers in your existing application. If the URI is local to your Java application, the RestService will <strong>Look up your Rest Controller using reflection</strong>
+    and ensure it's a match. Once the local controller has been found, the RestService will <strong class="emphasis">call your controller locally</strong>. This means
+    all existing security is also honoured and evaluated, there is also no additional network hop.
+</p>
+<p>
+    The <code class="clr-code">RestService</code> provides operations for <code class="clr-code">GET, PUT, POST,
+    PATCH</code> and <code class="clr-code">DELETE</code> RESTful RPC calls.
+    It can be called from your service when you extend from <code class="clr-code">AbstractService</code>. It can also
+    be called from your class when you extend from
+    <code class="clr-code">AbstractBase</code>.
+</p>
+
+<hr/>
+
+<h3>Loading the RestService</h3>
+
+<p>
+    The RestService is automatically loaded when Transport boots. There is no need to instantiate it manually
+</p>
+<p>
+    In Angular applications, this would be in your <code class="clr-code">main.ts</code> file. Like with Services you build yourself, you would use the
+    <code class="clr-code">ServiceLoader</code> to instantiate and boot the <code class="clr-code">RestService</code> and start it listening for requests.
+</p>
+
+<h3>Calling RestService from a Java Class</h3>
+
+<p>
+    When your service extends from <code class="clr-code">AbstractBase</code> or  <code class="clr-code">AbstractService</code>, a method named <code class="clr-code">restServiceRequest()</code>
+    is provided. There are a couple of overloaded versions of the method, however we will focus on the main one.
+</p>
+
+<pre class="code"><code class="language-java" ngNonBindable>/**
+ * Used By RestService to convert an incoming request into a RestOperation.
+ * @param &lt;Payld&gt; The Request Payload Type (what is being sent)
+ * @param &lt;Resp&gt; The Response Payload Type (what we're expecting back)
+ */
+public class RestOperation&lt;Payld, Resp&gt; &#123;
+    @Getter @Setter
+    private UUID id;
+
+    @Getter @Setter
+    private URI uri;
+
+    @Getter @Setter
+    private HttpMethod method;
+
+    @Getter @Setter
+    private Payld body;
+
+    @Getter @Setter
+    private String apiClass;
+
+    @Getter @Setter
+    private Map&lt;String,String&gt; headers;
+
+    @Getter @Setter
+    private String sentFrom;
+
+    @Getter @Setter
+    private Consumer&lt;Resp&gt; successHandler;
+
+    @Getter @Setter
+    private Consumer&lt;RestError&gt; errorHandler;
+&#123;
+
+/**
+ * Make a new RestService call.
+ *
+ * @param operation RestOperation for call Encapsulates individual argument calls.
+ * @param &lt;Req&gt;     Type of the payload being sent.
+ * @param &lt;Resp&gt;    Type of the response being returned.
+ */
+protected &lt;Req, Resp> void restServiceRequest(RestOperation&lt;Req, Resp&gt; operation);</code></pre>
+
+<hr/>
+
+<p>
+    Let's create a simple service called <code class="clr-code">CloudServicesStatus</code> that calls a remote API via the
+    <code class="clr-code">RestService</code> to check the status of VMware Cloud Services as an example.
+</p>
+
+<h3>Java VMWCloudServicesStatus</h3>
+<pre class="code"><code class="language-java" ngNonBindable>package samples.rest;
+
+import com.vmware.transport.bridge.Request;
+import com.vmware.transport.bridge.Response;
+import com.vmware.transport.bus.model.Message;
+import com.vmware.transport.core.AbstractService;
+import com.vmware.transport.core.error.RestError;
+import com.vmware.transport.core.model.RestOperation;
+import com.vmware.transport.core.model.RestServiceResponse;
+import com.vmware.transport.core.util.ClassMapper;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+
+import java.net.URI;
+import java.util.UUID;
+
+/**
+ * Sample service that makes calls to VMW Cloud Services status API.
+ */
+@Component
+public class VMWCloudServiceStatus extends AbstractService&lt;Request&lt;String&gt;, Response&lt;CloudServicesStatusResponse&gt;&gt; &#123;
+
+    VMCCloudServiceStatus() &#123;
+        super("services-CloudServiceStatus");
+    &#125;
+
+    @Override
+    protected void handleServiceRequest(Request&lt;String&gt; request, Message busMessage) throws Exception &#123;
+
+        // there is only a single operation for this service. We can ignore all requests and auto run our
+        // one request handler.
+        this.handleCloudServiceStatusRequest(request);
+    &#125;
+
+    private void handleCloudServiceStatusRequest(Request req) throws Exception &#123;
+
+        // create a rest call for cloud services.
+        super.restServiceRequest(
+                UUID.randomUUID(),
+                new URI("https://status.vmware-services.io/api/v2/status.json"),
+                HttpMethod.GET,
+                null, null,
+                "samples.rest.CloudServicesStatusResponse",
+                (Response&lt;CloudServicesStatusResponse&gt; resp) -> &#123;
+                    this.sendResponse(resp, req.getId(), req.getTargetUser());
+                &#125;,
+                (Response&lt;RestError&gt; error) -> &#123;
+                    this.sendError(error, req.getId());
+                &#125;
+        );
+
+    &#125;
+&#125;</code></pre>
+
+
+<h3>👉 No more CORS Issues! 👈</h3>
+
+<p>
+    You can call any API you want now, without having to worry about CORS.
+</p>
+
+<h3>What does the UI Component look like?</h3>
+
+<p>
+    If you have been following along with the TypeScript Examples, this should look pretty familiar now.
+</p>
+
+<h3>Angular CloudServicesApiComponent </h3>
+<pre class="code"><code class="language-java" ngNonBindable>import &#123; Component, OnDestroy, OnInit &#125; from '@angular/core';
+import &#123; ClrLoadingState &#125; from '@clr/angular';
+import &#123; APIResponse &#125; from '@vmware/transport';
+import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+import &#123; FabricConnectionState &#125; from '@vmware/transport/fabric.api';
+import &#123; CloudServicesStatusResponse &#125; from './cloud-services.models';
+
+@Component(&#123;
+    selector: 'cloudapi-service-component',
+    template: `
+        &lt;div *ngIf="connected"&gt;
+            &lt;section&gt;
+                &lt;button [clrLoading]="requestLoading" class="btn btn-primary-outline btn-sm" (click)="makeRequest()"&gt;
+                    Request Cloud Services Status
+                &lt;/button&gt;
+            &lt;/section&gt;
+            &lt;div *ngIf="response"&gt;
+                &lt;table class="table left table-verticaltable-compact"&gt;
+                    &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Status ID&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.page.id&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Name&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.page.name&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Timezone&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.page.time_zone&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Last Updated&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.page.updated_at&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Fetched From&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.page.url&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Indicator&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.status.indicator&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Service Status&lt;/th&gt;
+                        &lt;td&gt;&#123;&#123;response.status.description&#125;&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;strong *ngIf="!connected"&gt;Not connected to fabric, connect to run this code&lt;/strong&gt;`
+&#125;)
+export class CloudServicesApiComponent extends AbstractBase implements OnInit, OnDestroy &#123;
+
+    public response: CloudServicesStatusResponse;
+    requestLoading: ClrLoadingState = ClrLoadingState.DEFAULT;
+
+    constructor() &#123;
+        super('CloudServicesApiComponent');
+    &#125;
+
+    ngOnDestroy() &#123;
+        // stop channel from being extended to fabric.
+        this.bus.markChannelAsLocal('services-CloudServiceStatus');
+    &#125;
+
+    ngOnInit(): void &#123;
+        // extend channel to fabric.
+        this.bus.markChannelAsGalactic('services-CloudServiceStatus');
+    &#125;
+
+    private makeRequest() &#123;
+        // show state on the button
+        this.requestLoading = ClrLoadingState.LOADING;
+
+        const request = this.fabric.generateFabricRequest('');
+
+        // make request.
+        this.bus.requestOnceWithId(GeneralUtil.genUUIDShort(), 'services-CloudServiceStatus', request)
+            .handle((response: APIResponse&lt;CloudServicesStatusResponse&gt;) =&gt; &#123;
+                this.response = response.payload;
+                this.requestLoading = ClrLoadingState.DEFAULT;
+            &#125;);
+    &#125;
+&#125;
+</code></pre>
+

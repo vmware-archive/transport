@@ -1,0 +1,248 @@
+<h1>Using Transactions.</h1>
+<p>
+    A technique that can be used to encapsulate a conversation between a component and a service, or between
+    services themselves - is to use a transaction.
+</p>
+<p>
+    Transactions via Transport are not traditional transactions, in the sense that they can be rolled back if they fail, instead they are defined as a
+    group of requests and responses that have to occur before the transaction can be considered complete.
+</p>
+<p>
+    For example, if you need to call a number of services to get a number of responses, in order to be able to construct
+    a response for a component - this would be a transactions.
+
+</p>
+<p>
+    Similarly if you need to make a number of calls to services and wait for stores to be available and populated, this would also be a
+    transaction. Transactions can be either synchronous, or asynchronous.
+</p>
+<p>
+    Transactions are asynchronous by default. Essentially when you commit transactions, all the requests will be fired
+    at once, the transaction will complete once responses to all those requests have been
+    completed. These responses can arrive in any order and at any time (hence the asynchronous nature).
+</p>
+<p>
+    However there may be times when you want your logic to run in a synchronous manner
+    (due to your API design for example). When running a synchronous transaction, each request in the transaction will
+    only fire once the previous one has completed. This is obviously a lot slower,
+    but may be required based on your needs.
+</p>
+
+<hr/>
+<h3>
+    How do I create / start a transaction?
+</h3>
+
+<p>
+    <code class="clr-code">this.bus.createTransaction()</code> is the simplest way to create any transaction. You will be returned a <code class="clr-code">Transaction</code>
+    object, which allows you to track progress of the transaction and more.
+</p>
+
+<h3>
+    What types of transactions are there available?
+</h3>
+
+<p>
+    There are two types of transactions available.
+</p>
+<ol class="list">
+    <li><code class="clr-code">Asynchronous</code> - <span class="emphasis">All requests fired at once, no way to determine which response comes back in which order.</span></li>
+    <li><code class="clr-code">Synchronous</code> - <span class="emphasis">Each request is fired only after the previous request has returned.</span></li>
+</ol>
+
+<p>
+    If don't care about which order your responses come back in, then <code class="clr-code">Asynchronous</code> is what you're looking for. If you need all your
+    responses to be returned in sequence, ensuring a stepped one-at-a-time process, then <code class="clr-code">Synchronous</code> is what you need. <code class="clr-code">Asynchronous</code> transactions are <strong class="emphasis">MUCH FASTER</strong>
+</p>
+
+
+<h3>
+    What happens if something goes wrong mid-transaction?
+</h3>
+
+<p>
+    Like with every other fabric concept, we have built success and error handlers for every operation. If a service errors out during the transaction,
+    then the error handler you supply via <code class="clr-code">transaction.onError()</code> will be triggered. You will receive the error that occurred. The remainder
+    of the transaction will be stopped.
+</p>
+
+<hr/>
+
+<p>
+    Below is an example of a Java Consumer that calls <code class="clr-code">PongService</code> and <code class="clr-code">CalendarService</code> via an
+    asynchronous transaction
+</p>
+
+<h3>Java PongCalendarServiceConsumer</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>package samples.pong;
+
+import com.vmware.transport.bridge.Request;
+import com.vmware.transport.bridge.Response;
+import com.vmware.transport.bus.Transaction;
+import com.vmware.transport.bus.model.Message;
+import com.vmware.transport.core.AbstractBase;
+import com.vmware.transport.core.util.ClassMapper;
+import org.springframework.stereotype.Component;
+import samples.calendar.CalendarService;
+
+import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+@Component
+public class PongCalendarServiceConsumer extends AbstractBase &#123;
+
+    private ScheduledExecutorService executorService;
+
+    PongCalendarServiceConsumer() &#123; this.executorService = Executors.newScheduledThreadPool(5); &#125;
+
+    /**
+     * Call PongService and Calendar Service as a part of a transaction
+     */
+    @Override
+    public void initialize() &#123;
+        // create task, wait 1 second before executing.
+        Runnable runTransactionTask = () -&gt; this.runTransaction();
+        executorService.schedule(runTransactionTask, 1000,  TimeUnit.MILLISECONDS);
+    &#125;
+
+    private void runTransaction() &#123;
+        // create async transaction
+        UUID transactionId = UUID.randomUUID();
+        Transaction transaction = bus.createTransaction(Transaction.TransactionType.ASYNC, transactionId);
+
+        // send request to PongService
+        transaction.sendRequest(
+                PongService.Channel,
+                new Request&lt;String&gt;(transactionId, "Basic") // request basic pong
+        );
+
+        // send request to CalendarService
+        transaction.sendRequest(
+                CalendarService.Channel,
+                new Request&lt;String&gt;(transactionId, "time") // request time
+        );
+
+        // when transaction is done
+        transaction.onComplete(
+                (Message[] responses) -&gt; &#123;
+
+                    // concatenate service responses into a string.
+                    StringBuilder serviceResponses = new StringBuilder();
+                    for(Message msg: responses) &#123;
+
+                        String serviceResponse = ClassMapper.CastPayload(String.class, (Response)msg.getPayload());
+                        serviceResponses.append("&gt; " + serviceResponse + " "); // add each response together.
+                    &#125;
+
+                    // log output.
+                    this.logInfoMessage("PongCalendarServiceConsumer:", "Response", serviceResponses.toString());
+                &#125;
+        );
+
+        // commit transaction.
+        transaction.commit();
+    &#125;
+&#125;</code></pre>
+
+<hr/>
+
+<h3>
+    What is happening in this example?
+</h3>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+@Component
+public class PongCalendarServiceConsumer extends AbstractBase &#123;
+
+    private ScheduledExecutorService executorService;
+
+    PongCalendarServiceConsumer() &#123; this.executorService = Executors.newScheduledThreadPool(5); &#125;
+
+    /**
+     * Call PongService and Calendar Service as a part of a transaction
+     */
+    @Override
+    public void initialize() &#123;
+        // create task, wait 1 second before executing.
+        Runnable runTransactionTask = () -&gt; this.runTransaction();
+        executorService.schedule(runTransactionTask, 1000,  TimeUnit.MILLISECONDS);
+    &#125;
+
+...</code></pre>
+
+<p>The first thing this example does is create a new scheduled Java Executor, this is so we can push a Runnable lambda that performs
+    a unit of work, after a certain delay. We do this because this is a working demo, we have to ensure every other service is up before we
+    can start calling them.</p>
+
+<p>
+    One thing we're also doing here is ensuring that all service requests in a transaction, use the same ID for each message
+    going across each channel. You can see this in action when we create a <code class="clr-code">UUID</code> that is fed
+    into the transaction, and each request going out.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+private void runTransaction() &#123;
+    // create async transaction
+    UUID transactionId = UUID.randomUUID();
+    Transaction transaction = bus.createTransaction(Transaction.TransactionType.ASYNC, transactionId);
+...</code></pre>
+
+<p>
+    In this next step, we created a new <code class="clr-code">Transaction</code> that is <code class="clr-code">ASYNC</code>. This means
+    our transaction will fire every request at the same time and collect responses in any order they arrive.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+// send request to PongService
+transaction.sendRequest(
+    PongService.Channel,
+    new Request&lt;String&gt;(transactionId, "Basic") // request basic pong
+);
+
+// send request to CalendarService
+transaction.sendRequest(
+        CalendarService.Channel,
+        new Request&lt;String&gt;(transactionId, "time") // request time
+);
+...</code></pre>
+
+<p> In the above step, we actually queue up requests to be sent out as a part of the transaction. In this case, there are two requests, once is for t
+    the <code class="clr-code">CalendarService</code> and the other is for the <code class="clr-code">PongService</code></p>.
+
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+// when transaction is done
+transaction.onComplete(
+    (Message[] responses) -&gt; &#123;
+
+        // concatenate service responses into a string.
+        StringBuilder serviceResponses = new StringBuilder();
+        for(Message msg: responses) &#123;
+
+            String serviceResponse = ClassMapper.CastPayload(String.class, (Response)msg.getPayload());
+            serviceResponses.append("&gt; " + serviceResponse + " "); // add each response together.
+        &#125;
+
+        // log output.
+        this.logInfoMessage("PongCalendarServiceConsumer:", "Response", serviceResponses.toString());
+    &#125;
+);
+...</code></pre>
+
+<p>
+    In the above sample, we're defining our success handler for a successfully completed transaction. Your success handler
+    will simply be passed an array of <code class="clr-code">Message</code> objects. YOu can then do what you need to with these
+    objects, they will be in a random order if the transaction is async, otherwise they will be in the same order your requests were
+    queued up in.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>...
+ // commit transaction.
+transaction.commit();
+...</code></pre>
+
+<p>
+    The last step is to commit the transaction, this essentially fires everything off. Nothing happens until you commit the transaction. The
+    <code class="clr-code">commit()</code> method returns immediately and the transaction begins.
+</p>

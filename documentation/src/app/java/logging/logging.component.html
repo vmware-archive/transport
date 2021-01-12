@@ -1,0 +1,37 @@
+<h1>Logging (Java)</h1>
+<h3>
+    >> Please don't use <code class="clr-code">System.out.println()</code> <<
+</h3>
+<p>
+    When using any of the abstractions provided, they all extend from a single base class called <code class="clr-code">Loggable</code>.
+</p>
+<p>
+    We have created simple helper methods, that provide consistent console output for all levels of logging, however you also
+    have access to <code class="clr-code">log</code> Which allows you to control your own logging if you don't want to use
+    the pre-defined logging methods available.
+</p>
+
+<p>
+    There are a number of logging methods, for each standardized level
+</p>
+
+<hr/>
+
+<ol class="list">
+    <li><code class="clr-code">logInfoMessage(String emoji, String message, String value)</code> - <span class="emphasis"> INFO level message</span></li>
+    <li><code class="clr-code">logErrorMessage(String message, String value)</code> - <span class="emphasis">ERROR level message.</span></li>
+    <li><code class="clr-code">logDebugMessage(String message, String value)</code> - <span class="emphasis">DEBUG level message.</span></li>
+    <li><code class="clr-code">logDebugMessage(String message)</code> - <span class="emphasis">DEBUG level message.</span></li>
+    <li><code class="clr-code">logTraceMessage(String message, String value)</code> - <span class="emphasis">TRACE level message.</span></li>
+    <li><code class="clr-code">logWarnMessage(String message)</code> - <span class="emphasis">WARN level message.</span></li>
+</ol>
+
+<hr/>
+<h3>Using standard logging</h3>
+
+<p>
+    If you don't want to use the methods supplied, for what ever reason - you can access <code class="clr-code">this.log</code> when using
+    <code class="clr-code">AbstractBase</code> as your superclass. When using <code class="clr-code">this.log</code>, you actually
+    have a reference to <code class="clr-code">org.slf4j.Logger</code>.
+</p>
+

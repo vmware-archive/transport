@@ -1,0 +1,73 @@
+<h1>Understanding 'broadcast' vs 'direct' messaging</h1>
+
+<p>
+    Transport is analogous to Slack (for software), except Transport allows direct messages inside a channel, where
+    as Slack opens up stand-alone conversations between actors outside of a channel.
+    The concept however remains the same. When a component needs to restrict a conversation between its self, and a
+    service - we can use a direct message.
+</p>
+<p>
+    When another Class/Service is interested in everything being broadcast by a service, then that actor can simply
+    subscribe to the service channel and listen for everything.
+</p>
+
+<p>
+    The use case for direct messaging between a consumer and service arrives when you need a specific response to be
+    delivered to a specific consumer, i.e. you don't want every other listener on that channel
+    getting that same response (because we're operating on a single channel). It's like talking in a public chat, vs
+    talking in a direct message with that service.
+</p>
+
+<hr/>
+
+<h3>Sending requests using ID's</h3>
+
+<p>
+    There are three ways to conduct direct messaging. The first is to use methods in the
+    API that accept an ID. Every API (like request once <code class="clr-code">()</code>)
+    has two variations, the first is the same method name that has <code class="clr-code">...withId()</code> appended to
+    the end of the name.
+</p>
+<p>
+    The second is <code class="clr-code">...withIdAndVersion()</code>.
+    The signature for both is mostly the same, except they obviously take an ID, or an ID and a version. Versions are not
+    used yet, however support is coming in future versions of the fabric.
+</p>
+<p>
+    The third is with a <strong class="empahsis">Transaction</strong>.
+</p>
+
+<p>
+    Let's take a look at an example of using one of these methods:
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>const request: PongServiceRequest = &#123;
+    command: PongRequestType.Basic,
+    message: 'basic ping'
+&#125;;
+
+this.bus.requestOnceWithId&lt;PongServiceRequest, PongServiceResponse&gt;(
+    UUID.randomUUID();,           // message id
+    'my-channel',                 // channel on which to send request
+    request,                      // payload to be sent on the channe
+).handle(
+    (response: SomeTypedResponse) =&gt; &#123;
+        // do something with this successful request
+    &#125;,
+    (error: GeneralError) =&gt; &#123;
+        // something went wrong, lets handle it.
+    &#125;
+);</code></pre>
+
+<p>
+    The above example will send a request to <code class="clr-code">PongService</code>, but this time, we're sending
+    that message with a <strong>Random UUID</strong>. This means that the consumer
+    is only going to listen for a response that <strong>also contains that same ID</strong>. Any other response coming
+    in over <code class="clr-code">PongServiceChannel</code> that has a different ID, or
+    has no ID <strong>will be ignored</strong> by the <code class="clr-code">handle(...)</code> method.
+</p>
+
+<hr/>
+<h3>Quick note on generating UUID's</h3>
+<p>
+    Always use a valid UUID. Java makes it really easy. <code class="clr-code">UUID.randomUUID()</code> is all you need.
+</p>

@@ -1,0 +1,103 @@
+<h1>Using Private Channels</h1>
+<p>
+    The three ways to conduct direct messaging, as discussed in <a routerLink="/java/messaging">Messaging Types</a>,
+    have one caveat; it uses a single WebSocket endpoint for both broadcast and direct messaging. The filtering mechanism is
+    implemented on the client side.
+    What this implies is that while the UI will not be able to see and process the response meant for another client's request
+    with a different request ID, under the hood you can still see the message packet arriving at your browser using inspection tools.
+    This could pose a security problem and might not be a feasible solution.
+</p>
+<p>
+    With Transport, you can now set up 1:1 private channels between the broker and clients
+    which ensures all communication between a client and the broker will always happen on a dedicated channel and other clients
+    will not be able to see the message at all.
+</p>
+<p>
+    See the following steps to configure and send to and receive from a private channel.
+</p>
+<hr>
+<h3>
+    Configure Spring Boot to add a broker endpoint for private channels
+</h3>
+<p>
+    Take MyConfiguration from <a routerLink="/java/configuring">Configuring Spring</a> as the starting
+    point.  Here we want to 1) add a new endpoint <code class="clr-code">/queue</code> as the main endpoint for
+    private conversations, and 2) configure a default handshake handler for the STOMP session.
+    The handshake handler is responsible for generating and assigning a unique ID to each session.
+</p>
+<h3>MyConfiguration</h3>
+<pre class="code"><code class="language-java" ngNonBindable>// ...
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) &#123;
+        config.enableSimpleBroker("/topic", "/queue", "/pub");
+        config.setApplicationDestinationPrefixes("/pub");
+    }
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) &#123;
+        registry.addEndpoint("/fabric")
+                .setAllowedOrigins("*")
+                .setHandshakeHandler(new DefaultHandshakeHandler() &#123;
+                    @Override
+                    protected Principal determineUser(ServerHttpRequest request,
+                                                      WebSocketHandler wsHandler,
+                                                      Map&lt;String, Object>&gt; attributes) &#123;
+                        return new SessionPrincipal(UUID.randomUUID().toString());
+                    }
+                });
+    }
+
+    @Override
+    public void registerTransportDestinationPrefixes(TransportBridgeConfiguration configuration) &#123;
+        configuration.addTransportDestinationPrefixes("/topic", "/pub", "/user/queue");
+    }
+// ...
+</code></pre>
+<h3>Principal implementation example</h3>
+<pre class="code"><code class="language-java" ngNonBindable>public class SessionPrincipal implements Principal &#123;
+    private String name;
+
+    public SessionPrincipal(String name) &#123;
+        this.name = name;
+    }
+
+    @Override
+    public String getName() &#123;
+        return name;
+    }
+
+    public void setName(String name) &#123;
+        this.name = name;
+    }
+}
+</code></pre>
+<hr>
+<h3>
+    Then modify your service's <code class="clr-code">sendResponse()</code> and <code class="clr-code">sendError()</code>
+</h3>
+<p>
+    See how <code class="clr-code">sendResponse()</code> in <code class="clr-code">PongService</code> of the
+    <a routerLink="/java/building-services">Building Services</a> section accepts three arguments.
+    The last argument describes the destination's session identifier so that the message or error message,
+    in the case of <code class="clr-code">sendError()</code>, will reach its intended audience.
+</p>
+<hr>
+<h3>
+    And finally, mark the channel as private from the UI
+</h3>
+<p>
+    <code class="clr-code">markChannelAsGalactic()</code> method accepts a channel name as the first required argument,
+    and whether it's a private channel as the second, optional boolean value. By default it is set to false, meaning
+    if you marked your channel without explicitly specifying that it should be a private channel, it would be a
+    broadcast channel. See <a routerLink="/ts/extending-channels">Extending channels</a>
+    as a reference. If you wanted to turn the servbot channel private, you would need to simply turn the following:
+</p>
+<pre class="code"><code class="language-ts" ngNonBindable>this.bus.markChannelAsGalactic('sergeant-fox');</code></pre>
+<p>
+    into this:
+</p>
+<pre class="code"><code class="language-ts" ngNonBindable>this.bus.markChannelAsGalactic('sergeant-fox', true);</code></pre>
+<p>
+    Try out the sample in multiple browser tabs and notice using your browser's inspect tools how each response is
+    delivered only to the client that made the request.
+</p>
