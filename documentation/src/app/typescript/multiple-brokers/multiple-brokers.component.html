@@ -36,7 +36,7 @@ this.fabric.connect(
     Next, you may want to set up listeners for connection events for the brokers using <code class="clr-code">fabric.whenConnectionStateChanges()</code>.
 </p>
 <pre class="code"><code class="language-typescript" ngNonBindable>this.bus.fabric.whenConnectionStateChanges(
-    BusUtil.getFabricConnectionString('appfabric.vmware.com', 80, '/fabric'))
+    BusUtil.getFabricConnectionString('mybroker.mycompany.com', 80, '/fabric'))
         .subscribe((state: FabricConnectionState) => &#123; ... &#125; );
 </code></pre>
 <hr/>
@@ -83,3 +83,6 @@ this.bus.markChannelAsGalactic('channel-B',
         The channel deals with the same type of request and response data no matter what broker instance
     </li>
 </ol>
+<hr/>
+<a routerLink="/ts/extending-channels" class="btn btn-primary btn-block btn-outline">Next Steps: extending channels</a>
+

@@ -1,0 +1,117 @@
+<h1>Importing Transport into your Spring Application</h1>
+
+<p>
+    The Java version of Transport can be consumed via gradle, or maven.
+</p>
+
+<h3>What does the Transport depend on?</h3>
+
+<p>
+    Magic doesn't come for free, so Transport heavily depends on RxJava, Spring, Jackson, Apache Commons and a few others.
+</p>
+
+<hr/>
+
+<h3>Configuring Gradle</h3>
+<p>
+    Add a dependency to the desired Transport jar version and its dependencies.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>dependencies &#123;
+    compile "com.vmware.transport:vmw-transport:1.0.0"
+    compile "org.springframework.boot:spring-boot-starter-web:1.5.18.RELEASE"
+    compile "org.springframework.boot:spring-boot-starter-websocket:1.5.18.RELEASE"
+    compile "org.springframework.security:spring-security-web:4.2.2.RELEASE"
+    compile "org.springframework.security:spring-security-config:4.2.2.RELEASE"
+    compile "io.reactivex.rxjava2:rxjava:2.1.9"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.9.4"
+    compile "com.fasterxml.jackson.module:jackson-module-jsonSchema:2.9.4"
+    compile "org.slf4j:slf4j-api:1.7.25"
+    compile "ch.qos.logback:logback-classic:1.2.3"
+    compile "com.google.code.gson:gson:2.8.1"
+    compile "joda-time:joda-time:2.9.9"
+    compile "org.apache.httpcomponents:httpclient:4.5.6"
+    compile "org.apache.commons:commons-lang3:3.8.1"
+&#125;</code></pre>
+
+<h3>Configuring Maven</h3>
+
+<p>
+    Next add a dependency to Transport
+</p>
+
+<pre class="code">
+<code class="language-markup" ngNonBindable>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.vmware.transport&lt;/groupId&gt;
+        &lt;artifactId&gt;vmw-transport&lt;/artifactId&gt;
+        &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;version&gt;1.5.18.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;
+        &lt;version&gt;1.5.18.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;
+        &lt;version&gt;4.2.2.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-security-config&lt;/artifactId&gt;
+        &lt;version&gt;4.2.2.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.reactivex.rxjava2&lt;/groupId&gt;
+        &lt;artifactId&gt;rxjava&lt;/artifactId&gt;
+        &lt;version&gt;2.1.9&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+        &lt;version&gt;2.9.4&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.module&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-module-jsonSchema&lt;/artifactId&gt;
+        &lt;version&gt;2.9.4&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.slf4j:slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+        &lt;version&gt;1.7.25&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+        &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+        &lt;version&gt;1.2.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+        &lt;artifactId&gt;gson&lt;/artifactId&gt;
+        &lt;version&gt;2.8.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;joda-time&lt;/groupId&gt;
+        &lt;artifactId&gt;joda-time&lt;/artifactId&gt;
+        &lt;version&gt;2.9.9&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+        &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
+        &lt;version&gt;4.5.6&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+        &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;
+        &lt;version&gt;3.8.1&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+<hr/>
+<a routerLink="/java/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>

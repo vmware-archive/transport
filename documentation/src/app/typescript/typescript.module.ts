@@ -16,10 +16,16 @@ import { LoggingComponent } from './logging/logging.component';
 import { BrokerOverviewComponent } from './broker-overview/broker-overview.component';
 import { ConnectingBrokerComponent } from './connecting-broker/connecting-broker.component';
 import { MultipleBrokersComponent } from './multiple-brokers/multiple-brokers.component';
+import { ExtendingChannelsComponent } from './extending-channels/extending-channels.component';
+import { StoreBasicsComponent } from './store-basics/store-basics.component';
+import { StoreAdvancedComponent } from './store-advanced/store-advanced.component';
+import { IframesComponent } from './iframes/iframes.component';
+import { IframeDemoComponent } from './iframes/iframe-demo/iframe-demo.component';
+import { AbstractionsComponent } from './abstractions/abstractions.component';
 
 
 @NgModule({
-    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent],
+    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent, StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent],
     imports: [
         CommonModule,
         TypescriptRoutingModule,

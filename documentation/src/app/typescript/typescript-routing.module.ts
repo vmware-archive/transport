@@ -13,6 +13,11 @@ import {LoggingComponent} from "@vmw/transport-docs/typescript/logging/logging.c
 import {BrokerOverviewComponent} from "@vmw/transport-docs/typescript/broker-overview/broker-overview.component";
 import {ConnectingBrokerComponent} from "@vmw/transport-docs/typescript/connecting-broker/connecting-broker.component";
 import {MultipleBrokersComponent} from "@vmw/transport-docs/typescript/multiple-brokers/multiple-brokers.component";
+import {ExtendingChannelsComponent} from "@vmw/transport-docs/typescript/extending-channels/extending-channels.component";
+import {StoreBasicsComponent} from "@vmw/transport-docs/typescript/store-basics/store-basics.component";
+import {StoreAdvancedComponent} from "@vmw/transport-docs/typescript/store-advanced/store-advanced.component";
+import {IframesComponent} from "@vmw/transport-docs/typescript/iframes/iframes.component";
+import {AbstractionsComponent} from "@vmw/transport-docs/typescript/abstractions/abstractions.component";
 
 const routes: Routes = [
     {
@@ -32,6 +37,11 @@ const routes: Routes = [
             {path: 'broker-overview', component: BrokerOverviewComponent},
             {path: 'connecting-broker', component: ConnectingBrokerComponent},
             {path: 'multiple-brokers', component: MultipleBrokersComponent},
+            {path: 'extending-channels', component: ExtendingChannelsComponent},
+            {path: 'store-basics', component: StoreBasicsComponent},
+            {path: 'store-advanced', component: StoreAdvancedComponent},
+            {path: 'iframes', component: IframesComponent},
+            {path: 'abstractions', component: AbstractionsComponent},
         ]
     }
 ];

@@ -1,0 +1,44 @@
+.chat-container {
+    width: 100%;
+    margin: 0px;
+    min-height: 300px;
+    background: #0e161b;
+}
+
+.message-count {
+    text-align: center;
+    font-size: 3em;
+    color: #93b3c3;
+
+}
+
+.message-label {
+    padding-top: 60px;
+    text-align: center;
+    font-size: 1.3em;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.broadcast {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.flash {
+    animation: color_change 1s;
+}
+
+@keyframes color_change {
+    from {
+        background-color: orange;
+        color: white;
+        font-size: 6em;
+    }
+    to {
+        background-color: #0e161b;
+        color: #93b3c3;
+        font-size: 3em;
+    }
+}

@@ -1,0 +1,102 @@
+<h1>Hello World! (Java)</h1>
+
+<p>To demonstrate the simplest possible use of Transport, we will create a simple class that simply
+    talks to its self.</p>
+
+<h3>Java HelloWorld</h3>
+<pre class="code"><code class="language-java" ngNonBindable>import com.vmware.transport.bus.model.Message;
+import com.vmware.transport.core.AbstractBase;
+import org.springframework.stereotype.Component;
+
+@Component
+public class HelloWorld extends AbstractBase &#123;
+
+    // define a channel.
+    private String myChannel;
+
+    // initialize is the only mandatory method required. This will always run on boot.
+    public void initialize() &#123;
+
+        // create a local channel.
+        myChannel = "myChannel";
+
+        // create a responder
+        this.createResponder();
+        this.sendRequest();
+    &#125;
+
+    // send a response to a request.
+    private void createResponder() &#123;
+        this.bus.respondOnce(myChannel,
+                (Message msg) -> msg.getPayload().toString() + " world"
+        );
+    &#125;
+
+    // send a request
+    private void sendRequest() &#123;
+        this.bus.requestOnce(myChannel, "hello",
+                (Message msg) -> &#123;
+                    this.logInfoMessage("HelloWorld:", "Got a response! ", msg.getPayload().toString());
+                &#125;
+        );
+    &#125;
+&#125;</code></pre>
+
+<p>The output of the component is pretty basic. If you look at your console, you will see something like this</p>
+
+<pre class="log-output">2021-03-20 22:19:37.229 <span class="console-green">DEBUG</span> <span class="console-pink">1526</span> --- [main] <span class="console-blue">com.vmware.transport.bus.EventBusImpl</span>      : 🔹  <span class="console-grey">Initializing Transport Service: HelloWorld</span>
+2021-03-20 22:19:37.248 <span class="console-green">INFO</span>  <span class="console-pink">1526</span> --- [main] <span class="console-blue">samples.HelloWorld</span>                         : <span class="console-grey">HelloWorld:  Got a response!:</span> <strong class="console-pink">hello world</strong>
+</pre>
+
+<hr/>
+
+<h3>Breakdown of what is happening</h3>
+
+<p>
+    The first requirement is to annotate your class with the <code class="clr-code">@Component</code> annotation provided by Spring. This marks your class as a
+    Spring Bean, meaning it will be picked up and loaded automatically.
+</p>
+
+<pre class="code"><code class="language-java" ngNonBindable>@Component
+public class HelloWorld extends AbstractBase &#123;
+    // ...
+&#125;
+</code></pre>
+
+<p>
+    The next step is to ensure your class extends from <code class="clr-code">AbstractBase</code>. This is the same as the TypeScript version, however the
+    Java version is mandatory, where the TypeScript version is optional.
+</p>
+<p>
+    When you extend from <code class="clr-code">AbstractBase</code>. You're also implementing the <code class="clr-code">TransportEnabled</code> interface, which has
+    a single method you need to implement. <code class="clr-code">initialize()</code>
+</p>
+
+<pre class="code"><code class="language-java" ngNonBindable>@Component
+public class HelloWorld extends AbstractBase &#123;
+    public initialize() &#123;
+        // ...
+    &#125;
+&#125;
+</code></pre>
+
+<p>
+    <code class="clr-code">initialize()</code> is your start point. You can use a Constructor, however you may not have access to the event bus at that point. It's
+    <strong class="emphasis">Highly Recommended</strong> that you kick off anything you want to run from this method and <strong class="emphasis">Not the constructor.</strong>
+</p>
+
+<p>
+    The rest of the example simply sets up a responder and sends a request on the <code class="clr-code">myChannel</code> channel. The API is similar to the
+    TypeScript API, with a few small differences. There is no <code class="clr-code">handle()</code> method. You simply pass in your lambdas as and argument.
+</p>
+<hr/>
+
+<h3>Why is the API slightly different to TypeScript?</h3>
+
+<p>
+    Java and TypeScript are completely different languages that operate in very different ways. TypeScript isn't executed, it's transpiled to JavaScript.
+    All languages are different and bring their own designs, we have tried to keep the APIs as close as possible where it makes sense. We have used language specific
+    techniques and designs in some places however.
+</p>
+
+

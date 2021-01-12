@@ -1,0 +1,107 @@
+<h1>
+    Configuring your Spring Application
+</h1>
+
+<p>
+   Transport makes use of Spring's magic under the covers, in a significant way. This has advantages and disadvantages. It's good because
+    we don't have to re-invent the wheel. It's bad because it means the Java version of Transport is dependent on Spring to operate.
+</p>
+<hr/>
+
+<h3>
+    The Transport Config Class.
+</h3>
+
+<p>
+    We use the <code class="clr-code">@Configuration</code> annotation provided by Spring to set things up. We also then use the
+    built in STOMP, Messaging, Broker and WebSocket support.
+</p>
+
+<p>
+    When creating your configuration class, you need to implement the <code class="clr-code">TransportBridgeConfigurer</code>.
+    This interface allows you to define which endpoints your want your application to expose. This will default to '/fabric'.
+</p>
+<p>
+    To enable the Bifröst functionality for automatic local and remote broker integration, you need the <code class="clr-code">@EnableTransport</code> annotation also.
+    You can use the bus internally without this, but you won't get the benefits of connecting the bus to a broker.
+</p>
+<hr/>
+<h3>
+    What is an endpoint?
+</h3>
+
+<p>
+    An endpoint is the destination you want to expose the STOMP pub-sub interface used by the TypeScript client, or any STOMP compatible client. The choice is up to you, however
+    for consistency across applications, we recommend the default '/fabric' endpoint.
+</p>
+<hr/>
+<p>
+    Inside your configuration, you can configure the endpoints, the allows origins (defaults to all), local broker (/topic) definitions and
+    the publication prefix (/pub)
+</p>
+<p>
+    The publication prefix is where messages are pushed into the local broker. You should not directly push to /topic, because you will
+    receive an echo back yourself. The publication prefix ensures all subscribers get your message, but you don't get a copy back yourself if you're
+    also subscribed to a destination.
+</p>
+
+<p>
+    Here is an example of a Configuration that uses all the defaults. There isn't a need to change any of this, unless you have specific needs or conflicts.
+</p>
+
+<h3>MyAppFabricConfiguration</h3>
+<pre class="code"><code class="language-java" ngNonBindable>package com.vmware.skyscraper.configs;
+
+import com.vmware.transport.bridge.spring.config.TransportBridgeConfiguration;
+import com.vmware.transport.bridge.spring.config.TransportBridgeConfigurer;
+import com.vmware.transport.bridge.spring.config.annotation.EnableTransport;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+
+/**
+ * Transport Configuration.
+ */
+@Configuration
+@EnableTransport
+@EnableWebSocketMessageBroker
+public class MyConfiguration extends AbstractWebSocketMessageBrokerConfigurer
+        implements TransportBridgeConfigurer &#123;
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) &#123;
+        config.enableSimpleBroker("/topic");
+        config.setApplicationDestinationPrefixes("/pub");
+    &#125;
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) &#123;
+        registry.addEndpoint("/fabric").setAllowedOrigins("*");
+    }
+
+    @Override
+    public void registerTransportDestinationPrefixes(TransportBridgeConfiguration configuration) &#123;
+        configuration.addTransportDestinationPrefixes("/topic", "/pub");
+    }
+}
+</code></pre>
+
+<h4 class="emphasis">
+    And you're done!
+</h4>
+
+<hr/>
+<h3>
+    How do I know I am done?
+</h3>
+
+<p>When you boot you application, you will see something like the following in your console.</p>
+
+<pre class="log-output">2019-03-01 14:34:42.968  <span class="console-green">INFO</span>  <span class="console-pink">50737</span>  --- [main] <span class="console-blue">o.s.w.s.s.s.WebSocketHandlerMapping</span>         : <span class="console-white">Mapped URL path [/transport] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]</span>
+2021-03-20 14:34:42.969  <span class="console-green">INFO</span>  <span class="console-pink">50737</span>  --- [main] <span class="console-blue">o.s.w.s.s.s.WebSocketHandlerMapping</span>         : <span class="console-white">Mapped URL path [/fabric] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]</span>
+2021-03-20 14:34:43.154  <span class="console-green">INFO</span>  <span class="console-pink">50737</span>  --- [main] <span class="console-blue">.WebSocketAnnotationMethodMessageHandler</span>    : <span class="console-white">Mapped "&#123;[/&#123;topicDestination&#125;],messageType=[MESSAGE]&#125;" onto public void com.vmware.transport.bridge.spring.controllers.MessageController.bridgeMessage(com.vmware.transport.bridge.Request,java.lang.String) throws com.vmware.transport.bridge.RequestException</span>
+2021-03-20 14:34:43.887  <span class="console-green">INFO</span>  <span class="console-pink">50737</span>  --- [main] <span class="console-blue">com.vmware.transport.bus.EventBusImpl</span>       : 🌈  <strong class="console-pink">Starting Transport</strong>
+2021-03-20 14:34:43.912  <span class="console-green">DEBUG</span> <span class="console-pink">50737</span>  --- [main] <span class="console-blue">com.vmware.transport.bus.EventBusImpl</span>       : 🔹  <span class="console-grey">Initializing Transport Service: RestService</span>
+2021-03-20 14:34:43.912  <span class="console-green">INFO</span>  <span class="console-pink">50737</span>  --- [main] <span class="console-blue">c.v.transport.core.operations.RestService</span>   : 📣  <span class="console-white">RestService initialized, handling requests on channel: <strong class="console-pink">transport-services::REST</strong></span></pre>

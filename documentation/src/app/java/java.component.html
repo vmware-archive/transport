@@ -3,7 +3,7 @@
     <div class="content-container">
         <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
             <a clrVerticalNavLink routerLink="./overview" routerLinkActive="active">
-                TypeScript Overview
+                Java Overview
             </a>
 
             <clr-vertical-nav-group routerLinkActive="active">
@@ -11,6 +11,9 @@
                 <clr-vertical-nav-group-children *clrIfExpanded="true">
                     <a clrVerticalNavLink routerLink="./importing" routerLinkActive="active">
                         Importing Transport
+                    </a>
+                    <a clrVerticalNavLink routerLink="./configuring" routerLinkActive="active">
+                        Configuring Spring
                     </a>
                     <a clrVerticalNavLink routerLink="./initializing" routerLinkActive="active">
                         Initializing Transport
@@ -26,7 +29,7 @@
                 Operations
                 <clr-vertical-nav-group-children *clrIfExpanded="true">
                     <a clrVerticalNavLink routerLink="./building-services" routerLinkActive="active">
-                       Building Services
+                        Building Services
                     </a>
                     <a clrVerticalNavLink routerLink="./calling-services" routerLinkActive="active">
                         Calling Services
@@ -93,3 +96,4 @@
     </div>
 
 </clr-main-container>
+

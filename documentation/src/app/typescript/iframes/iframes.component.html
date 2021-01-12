@@ -1,0 +1,218 @@
+<h1>Creating a distributed bus across iFrames</h1>
+
+<p>
+    The bus has the capability to connect up event bus instances running inside child applications. This allows a third party application that is also using Transport to connect
+    to the parent / master event bus. This allows the child application to talk to services in the parent UI, or even open connections to brokers and tap directly into live streams.
+</p>
+
+<p>
+    You have the ability to control which origins are allowed to join the distributed bus, also which channels are authorized to be exposed across the distributed bus. This ensures that
+    channels can be restricted across applications. You can also configure which iFrames are authorized to allow the bus instances to be connected.
+</p>
+
+<hr/>
+
+<h2>
+    Talking across applications in iFrames.
+</h2>
+
+<p>
+    Here we have three iframes, inside each iframe is an instance of this same application, but we have loaded a demo component into each iframe. This will give us a total of 4 independent instances
+    of Transport, One for each iframe and one that is running in this application, hosting the three iframes.
+</p>
+<p>
+    There is only a single channel that they care about. This is a channel we named <span class="emphasis">'chatty-chat'</span>. Transport has been bridged between the three iframes and the main application. This means they can all talk
+    on the <span class="emphasis">'chatty-chat'</span> channel, as if each separate application was running on the same event bus.
+</p>
+
+<br/>
+<div class="clr-row chatty-demo-container">
+    <div class="clr-col-4">
+        <section class="sample-container">
+            <h3>iFrame A</h3>
+            <iframe scrolling="no" src="/iframe-demo"></iframe>
+        </section>
+    </div>
+    <div class="clr-col-4">
+        <section class="sample-container">
+            <h3>iFrame B</h3>
+            <iframe scrolling="no" src="/iframe-demo"></iframe>
+        </section>
+    </div>
+    <div class="clr-col-4">
+        <section class="sample-container">
+            <h3>iFrame C</h3>
+            <iframe scrolling="no" src="/iframe-demo"></iframe>
+        </section>
+    </div>
+</div>
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                In the demo above, the same application is loaded three times, all in separate iframes. They are all talking on individual instances of Transport,
+                that have all been bridged together, to form a distributed bus. iFrames are essentially sandboxed applications
+                that make it quite difficult to talk to and from.
+                There is a very limited messaging API via <code class="clr-code">window.postMessage()</code> that allows parent and child applications to communicate, Transport uses this extensively to distribute streams.
+            </span>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<h3>The Parent (Main Application)</h3>
+
+<p>
+    With this extensibility design, there will always be a parent application and child applications. The parent is the shell or containing application, it would provide shared infrastructure to any child application. Child applications are
+    applications loaded inside iframes, or in a ShadowDOM that is sandboxed.
+</p>
+<p>
+    This means a child application is completely isolated from the parent application. The parent cannot reach into down into its children and the child cannot reach back up to the parent.
+</p>
+
+<h3>Chatty Chat Parent</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>@Component( &#123;
+    selector: 'chatty-chat-app',
+    template: ` &lt;div class="clr-row chatty-demo-container" &gt;
+     &lt;div class="clr-col-4" &gt;
+         &lt;section class="sample-container" &gt;
+             &lt;h3 &gt;iFrame A &lt;/h3 &gt;
+             &lt;iframe scrolling="no" src="/chatty-chat" &gt; &lt;/iframe &gt;
+         &lt;/section &gt;
+     &lt;/div &gt;
+     &lt;div class="clr-col-4" &gt;
+         &lt;section class="sample-container" &gt;
+             &lt;h3 &gt;iFrame B &lt;/h3 &gt;
+             &lt;iframe scrolling="no" src="/chatty-chat" &gt; &lt;/iframe &gt;
+         &lt;/section &gt;
+     &lt;/div &gt;
+     &lt;div class="clr-col-4" &gt;
+         &lt;section class="sample-container" &gt;
+             &lt;h3 &gt;iFrame C &lt;/h3 &gt;
+             &lt;iframe scrolling="no" src="/chatty-chat" &gt; &lt;/iframe &gt;
+         &lt;/section &gt;
+     &lt;/div &gt;`
+ &#125;)
+export class ChattyChatParent extends AbstractBase implements OnInit  &#123;
+
+    constructor()  &#123;
+        super('ChattyChatParent');
+     &#125;
+
+    ngOnInit()  &#123;
+        // enable bus message proxy (enable distributed event bus mode)
+        this.bus.enableMessageProxy( &#123;
+            protectedChannels: ['chatty-chat'],
+            proxyType: ProxyType.Parent,                    // runs as parent
+            parentOrigin: `https://github.com`,
+            acceptedOrigins: [
+                'http://localhost:4200',                    // local dev
+                'https://github.com'],             // production
+            targetAllFrames: true,
+            targetSpecificFrames: null,
+         &#125;);
+
+        // ensure we open the chatty chat channel, to ensure messages are not dropped.
+        // we don't however care about doing anything with the traffic on the stream here.
+        this.bus.listenStream('chatty-chat')
+            .handle(() = &gt;  &#123;
+             &#125;); // do nothing, just ensure the channel is open.
+     &#125;
+ &#125;</code></pre>
+
+<hr/>
+
+
+<h3>Chatty Chat Child</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>@Component(&#123;
+    selector: 'chatty-chat-child',
+    template: `&lt;section class="chat-container"&gt;
+        &lt;div class="message-label"&gt;
+            Messages Received
+        &lt;/div&gt;
+        &lt;div [ngClass]="&#123; 'message-count': true, flash: flash&#125;"&gt;
+            &#123;&#123;messageCount&#125;&#125;
+        &lt;/div&gt;
+        &lt;div class="broadcast"&gt;
+            &lt;button (click)="sendChat()" class="btn btn-primary-outline" [disabled]="buttonDisabled"&gt;
+                Broadcast Something
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;`
+&#125;)
+export class ChattyChatChildApp extends AbstractBase implements OnInit &#123;
+
+    public messageCount = 0;
+    public flash = false;
+    public buttonDisabled = false;
+
+    constructor() &#123;
+        super('ChattyChatComponent');
+    &#125;
+
+    ngOnInit(): void &#123;
+        // enable message proxy.
+        this.bus.enableMessageProxy(&#123;
+            protectedChannels: ['chatty-chat'],
+            proxyType: ProxyType.Child,                     // runs as child.
+            parentOrigin: `https://github.com`,
+            acceptedOrigins: [
+                'http://localhost:4200',                    // local dev
+                'https://github.com'],             // production
+            targetAllFrames: true,
+            targetSpecificFrames: null,
+        &#125;);
+
+        // listen to chatty chat, increment message count for every message that comes in.
+        this.bus.listenStream('chatty-chat')
+            .handle(
+                () =&gt; &#123;
+                    // increase message count.
+                    this.messageCount++;
+
+                    // flash message
+                    this.flash = true;
+
+                    // wait a second then remove flash and re-enable button
+                    this.bus.api.tickEventLoop(
+                        () =&gt; &#123;
+                            this.buttonDisabled = false;
+                            this.flash = false;
+                        &#125;, 1000
+                    );
+                &#125;
+            );
+    &#125;
+
+    sendChat(): void &#123;
+        if (!this.buttonDisabled) &#123;
+            // disable button.
+            this.buttonDisabled = true;
+
+            // send an empty message to chatty-chat.
+            this.bus.sendResponseMessage('chatty-chat', &#123;&#125;);
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<hr/>
+
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                <a href="https://github.com/vmware/transport-typescript/blob/master/src/proxy/message.proxy.api.ts">You can take a look at the API</a> if you'd like to know more.
+            </span>
+        </div>
+    </div>
+</div>
+
+<hr/>
+<a routerLink="/ts/abstractions" class="btn btn-primary btn-block btn-outline">Next Steps: Abstractions</a>

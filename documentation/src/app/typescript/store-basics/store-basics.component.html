@@ -1,0 +1,130 @@
+<h1>Understanding and using Stores.</h1>
+
+<h3>Stores are used to represent source-of-truth state in your applications.</h3>
+<p>
+
+</p>
+
+<p>
+    Transport provides a very simple API for creating a single source of truth for state inside your app.
+</p>
+
+<p>
+    The store API has no dependencies on other frameworks. The design was lifted from <a href="http://www.ehcache.org/" target="_blank">EHCache</a>,
+    a well known, supported and widely used industry standard cache platform for Java.
+</p>
+<p>
+    You can create as many different stores as you like, each store should ideally contain a single type of object
+    mixing objects types in a store is generally a bad design. For each type of object you want to maintain state for, you would create a store for that
+    object. Once you have created a store, you can populate it with an existing single object collection of objects.
+</p>
+<p>
+    The store you create is essentially a hash map of key's to values. When you put an object into your store, you give it a unique key (which is a string
+    you define). Once an object is in the store, every and any actor inside your application can pull that specific object (or all objects) from that
+    store as there is only a single instance of the store inside your application. There is no defined limit to the
+    number of stores you can create and the number of objects you can keep in that store.
+</p>
+
+<hr/>
+<h2>Creating Stores</h2>
+
+<p>
+    Every class that extends from <code class="clr-code">AbstractBase</code> or <code
+    class="clr-code">AbstractCore</code> will receive a reference to <code class="clr-code">this.storeManager</code>.
+    This object has has a type of
+    <code class="clr-code"><a href="https://github.com/vmware/transport-typescript/blob/master/src/store.api.ts">BusStoreApi</a></code>.
+</p>
+<p>
+    In order to create a store, you can use the method
+    <code class="clr-code">this.storeManager.createStore(objectType: StoreType, map?: Map&lt;UUID, T&gt;)</code>.
+    The only mandatory argument is the 'type' of the store (<code class="clr-code">StoreType</code>) which is actually
+    just a string. The second argument allows you to pass a pre-populated map to the store that will populate it with
+    all the key / values of the supplied map.
+</p>
+
+<h3>Creating 'MyObject' Store</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>interface MyObject &#123;
+    message: string
+&#125;
+
+// create a store called 'MyObject' that holds instances of MyObject
+const myStore: BusStore&lt;MyObject&gt; = this.storeManager.createStore&lt;MyObject&gt;('MyObject');</code></pre>
+
+<p>
+    You have just created an empty store that is named 'MyObject' that is now supposed to hold objects of type <code class="clr-code">MyObject</code>. <strong>You can only create a store once</strong>, it exists as a singleton.
+    If you make another call to create a store with the same name/object type definition - you will receive a reference to the same (already created and existing store).
+</p>
+
+<p>
+    <code class="clr-code">this.storeManager.createStore()</code> is safe to use always to gain a reference to your store, it won't re-create it, if it already exists.
+</p>
+
+<hr/>
+
+<h2>Populating Stores</h2>
+
+<p>
+    When you create a store, you can pass a map containing all your key/value pairs. This will instantly create,
+    populate and activate the store. However if you would like to perform this operation later on, you can do so by
+    calling the <code class="clr-code">populateStore()</code> method and passing in your values.
+</p>
+<p>
+    When you use <code class="clr-code">myStore.populateStore(Map&lt;K,V&gt;)</code>, your store will be marked as initialized. When a
+    store is initialized, any actor inside your application that is waiting
+    for that store to be ready (see below), will be notified and receive updates on any objects they are interested in.
+</p>
+
+<h3>Populating 'MyObject' Store</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>// Populate store with initial state
+const initialData: Map&lt;string, MyObject&gt; = new Map();
+initialData.put('123', &#123; message: 'pretty' &#125;);
+initialData.put('456', &#123; message: 'kitty' &#125;);
+
+myStore.populateStore(initData);</code></pre>
+
+<hr/>
+
+<h2>Creating, Reading, Updating and Deleting objects from a Store</h2>
+<p>
+    Once you have a reference to a store, you can easily add, update and remove items
+    from that store using the <code class="clr-code">put(), get()</code> and <code class="clr-code">remove()</code>
+    methods on that store.
+</p>
+
+<p>
+    One of the concepts to know about the store is that it uses a 'bring your own state change types' model, Batteries not included here.
+    This means you can define your own state changes, beyond CRUD style events (if you want)
+</p>
+
+
+<h3>Adding and removing stuff from 'MyObject' Store</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>// define our own state changes
+enum MyObjectState &#123;
+    Added,
+    Changed,
+    Sleeping
+&#125;
+
+// add new object
+myStore.put('789', &#123; message: 'happy' &#125;, MyObjectState.Added);
+
+// replace object
+myStore.put('789', &#123; message: 'puppy' &#125;, MyObjectState.Changed);
+
+// delete object
+myStore.remove('789', MyObjectState.Sleeping);</code></pre>
+
+
+<h3>Getting stuff from 'MyObject' Store</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>// Get single objects from store
+const myObject_123: MyObject = myStore.get('123');
+const myObject_456: MyObject = myStore.get('456');
+
+// get all objects from store
+const myObjects: Array&lt;MyObject&gt; = myStore.allValues();
+
+// get all objects from a store as a map.
+const myObjectsMap: Map&lt;string, MyObject&lt; = myStore.allValuesAsMap();</code></pre>
+
+<hr/>
+<a routerLink="/ts/store-advanced" class="btn btn-primary btn-block btn-outline">Next Steps: Store Advanced Use</a>
