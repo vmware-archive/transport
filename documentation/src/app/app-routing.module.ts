@@ -9,6 +9,7 @@ const routes: Routes = [
     {path: 'about', component: AboutComponent},
     { path: 'ts', loadChildren: () => import('./typescript/typescript.module').then(m => m.TypescriptModule) },
     { path: 'java', loadChildren: () => import('./java/java.module').then(m => m.JavaModule) },
+    { path: 'golang', loadChildren: () => import('./golang/golang.module').then(m => m.GolangModule) },
     {path: 'iframe-demo', component: IframeDemoComponent},
 ];
 

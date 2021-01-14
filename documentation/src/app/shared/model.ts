@@ -3,9 +3,7 @@ export interface TermCommand {
     command: string;
     notes: string;
 }
-
-// go commands, used by multiple quickstart components.
-export const goCommands = [
+ export const goTerminalCommands = [
     {
         title: 'Step 1: Get the code',
         command: 'git clone https://github.com/vmware/transport-go.git',
@@ -22,9 +20,34 @@ export const goCommands = [
         notes: 'Start the transport-go sample services'
     },
     {
-        title: 'Step 3: Play with the code',
+        title: 'Step 4: Play with the code',
         command: './transport demo',
         notes: 'Run a simple example that connects to the sample service and makes a request'
     },
+];
 
+ export const javaTerminalCommands = [
+    {
+        title: 'Step 1: Get the code',
+        command: 'git clone https://github.com/vmware/transport-java.git',
+        notes: 'Pull down the transport-java code from github'
+    },
+    {
+        title: 'Step 2: Run the code',
+        command: './gradlew :sample-app:bootRun',
+        notes: 'Build the example application and watch the logs'
+    },
+    {
+        title: 'Step 3: Play with the code',
+        command: 'ls sample-app/src/main/java/samples',
+        notes: 'Explore the various examples, see how they work'
+    }
+];
+
+ export const tsTerminalCommands = [
+    {
+        title: 'Step 1:  Install the code',
+        command: 'npm install @vmware/transport-typescript --save',
+        notes: 'Install transport-typescript into your app'
+    },
 ];

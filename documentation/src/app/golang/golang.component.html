@@ -1,0 +1,32 @@
+<clr-main-container>
+    <transport-header></transport-header>
+    <div class="content-container">
+        <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
+            <a clrVerticalNavLink routerLink="./overview" routerLinkActive="active">
+                Golang Overview
+            </a>
+
+            <clr-vertical-nav-group routerLinkActive="active">
+                Getting Started
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./importing" routerLinkActive="active">
+                        Importing Transport
+                    </a>
+                    <a clrVerticalNavLink routerLink="./initializing" routerLinkActive="active">
+                        Initializing Transport
+                    </a>
+                    <a clrVerticalNavLink routerLink="./hello-world" routerLinkActive="active">
+                        Hello World!
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
+
+        </clr-vertical-nav>
+        <div class="content-area" id="main-content" #mainContent>
+            <router-outlet (activate)="onActivate($event)"></router-outlet>
+        </div>
+    </div>
+    <transport-footer></transport-footer>
+</clr-main-container>
+

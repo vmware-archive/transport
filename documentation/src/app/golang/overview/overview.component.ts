@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {BaseComponent} from "@vmw/transport-docs/base.component";
-import {TermCommand} from "@vmw/transport-docs/welcome/welcome.component";
 import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
-import {javaTerminalCommands} from "@vmw/transport-docs/shared/model";
+import {goTerminalCommands, javaTerminalCommands, tsTerminalCommands} from "@vmw/transport-docs/shared/model";
+import {TermCommand} from "@vmw/transport-docs/welcome/welcome.component";
+import {BaseComponent} from "@vmw/transport-docs/base.component";
 
 @Component({
-  selector: 'transport-overview',
+  selector: 'transport-golang-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
 
-    public javaCommands: Array<TermCommand>;
+    public goCommands: Array<TermCommand>;
     public highlighted = false;
 
     constructor(private highlightService: HighlightService) {
@@ -23,7 +23,8 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.javaCommands = javaTerminalCommands;
+        this.goCommands = goTerminalCommands;
+
     }
 
     ngAfterViewChecked() {

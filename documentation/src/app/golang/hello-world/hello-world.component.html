@@ -1,0 +1,55 @@
+<h1>Hello World in Golang</h1>
+
+<p>
+    This is a very simple example, but it should shows the mechanics of how it works. These segments of code could be anywhere in your code base,
+    it would work exactly the same.
+</p>
+<br/>
+<pre class="code"><code class="language-go" ngNonBindable>// listen for a single request on 'some-channel'
+tr := bus.GetBus()
+channel := "hello-world"
+
+// create new channel
+tr.GetChannelManager().CreateChannel(channel)
+
+// listen for a single request on 'hello-world'
+requestHandler, _ := tr.ListenRequestStream(channel)
+
+// define request handler logic
+requestHandler.Handle(
+   func(msg *model.Message) &#123;
+        resp := msg.Payload.(string)
+        fmt.Printf("\\nHello: %s\\n", resp)
+
+        // send a response back.
+        tr.SendResponseMessage(channel, resp + " Doodly", msg.DestinationId)
+   &#125;,
+   func(err error) &#123;
+        // something went wrong...
+   &#125;
+)
+
+// send a request to 'hello-world' and handle a single response
+responseHandler, _ := tr.RequestOnce(channel, "Howdy")
+
+// define response handler logic
+responseHandler.Handle(
+   func(msg *model.Message) &#123;
+        fmt.Printf("World: %s\\n", msg.Payload.(string))
+   &#125;,
+   func(err error) &#123;
+        // something went wrong...
+   &#125;)
+
+// fire the request.
+responseHandler.Fire()
+</code></pre>
+
+<p>
+    This will produce something like...
+</p>
+
+<pre class="log-output">🌈 Transport booted with id [e495e5d5-2b72-46dd-8013-d49049bd4800]
+Hello: Howdy
+World: Howdy Doodly
+</pre>

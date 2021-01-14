@@ -60,7 +60,7 @@ export default function HelloWorld(props: any) &#123;
 
     useEffect(() => &#123;
         // listen for requests on 'myChannel' and return a response.
-        bifrost.bus.respondOnce(myChannel).generate((request: string) => &#123;
+        transport.bus.respondOnce(myChannel).generate((request: string) => &#123;
             transport.log.info(`Request Received: $&#123;request&#125;, Sending Response...`);
             return 'world';
         &#125;);

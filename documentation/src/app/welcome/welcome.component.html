@@ -28,7 +28,6 @@
                 </div>
                 <div class="transport-hero-cover"></div>
                 <transport-hero-animation></transport-hero-animation>
-
             </section>
 
             <section id="welcome-content">
@@ -39,12 +38,15 @@
                         </h1>
                         <div class="clr-row">
                             <div class="clr-col-12 tabbed-console-content">
-
-
                                 <clr-tabs>
                                     <clr-tab>
                                         <button clrTabLink id="go-link">Go</button>
-                                        <clr-tab-content id="go-tab" *clrIfActive="true">
+                                        <clr-tab-content id="go-tab">
+                                            <section class="source-link">
+                                                <img src="assets/github.png" alt="github" title="transport on github" class="github-logo"/>
+                                                <a href="https://github.com/vmware/transport-typescript">View Golang source on Github</a>
+                                            </section>
+
                                             <br/>
                                             <section *ngFor="let cmd of goCommands; index as i">
                                                 <h4 class="code-step">{{cmd.title}}</h4>
@@ -52,41 +54,93 @@
                                                                             [helperTxt]="cmd.notes"
                                                                             [consoleTheme]="'macOS'"
                                                                             [loopAnimation]="false"
-                                                                            [delay]="i * 1000"
-
-                                                ></transport-animated-console>
+                                                                            [delay]="i * 1000">
+                                                </transport-animated-console>
 
                                             </section>
+
+                                            <h4 class="code-step">Ready for more?</h4>
+                                            <a routerLink="/go" class="btn btn-primary btn-block btn-outline">read the golang documentation</a>
+
+
 
                                         </clr-tab-content>
                                     </clr-tab>
                                     <clr-tab>
                                         <button clrTabLink id="java-link">Java</button>
-                                        <clr-tab-content id="java-tab" *clrIfActive>
+                                        <clr-tab-content id="java-tab">
+                                            <section class="source-link">
+                                                <img src="assets/github.png" alt="github" title="transport on github" class="github-logo"/>
+                                                <a href="https://github.com/vmware/transport-java">View Java source on Github</a>
+                                            </section>
                                             <br/>
-                                            <transport-animated-console [inputCommand]="'Do you have any bagels?'"
-                                                                        [consoleTheme]="'macOS'"
-                                                                        [loopAnimation]="true"
-                                                                        [helperTxt]="'# do you want chicken?'"></transport-animated-console>
+                                            <section *ngFor="let cmd of javaCommands; index as i">
+                                                <h4 class="code-step">{{cmd.title}}</h4>
+                                                <transport-animated-console [inputCommand]="cmd.command"
+                                                                            [helperTxt]="cmd.notes"
+                                                                            [consoleTheme]="'macOS'"
+                                                                            [loopAnimation]="false"
+                                                                            [delay]="i * 1000">
+                                                </transport-animated-console>
+                                            </section>
+
+                                            <h4 class="code-step">Ready for more?</h4>
+                                            <a routerLink="/java" class="btn btn-primary btn-block btn-outline">read the java documentation</a>
 
                                         </clr-tab-content>
                                     </clr-tab>
                                     <clr-tab>
-                                        <button clrTabLink id="typescript-link">TypeScript</button>
-                                        <clr-tab-content id="typescript-tab" *clrIfActive>
+                                        <button clrTabLink id="typescript-link" (click)="highlight">TypeScript</button>
+                                        <clr-tab-content id="typescript-tab">
+                                            <section class="source-link">
+                                                <img src="assets/github.png" alt="github" title="transport on github" class="github-logo"/>
+                                                <a href="https://github.com/vmware/transport-typescript">View TypeScript source on Github</a>
+                                            </section>
                                             <br/>
-                                            <transport-animated-console [inputCommand]="'Do you have any bagels?'"
-                                                                        [consoleTheme]="'macOS'"
-                                                                        [loopAnimation]="true"
-                                                                        [helperTxt]="'# do you want chicken?'"></transport-animated-console>
+                                            <section *ngFor="let cmd of tsCommands; index as i">
+                                                <h4 class="code-step">{{cmd.title}}</h4>
+                                                <transport-animated-console [inputCommand]="cmd.command"
+                                                                            [helperTxt]="cmd.notes"
+                                                                            [consoleTheme]="'macOS'"
+                                                                            [loopAnimation]="false"
+                                                                            [delay]="i * 1000">
+                                                </transport-animated-console>
+                                            </section>
+                                            <h4 class="code-step">Step 2: Import the code</h4>
+                                            <pre class="code"><code class="language-typescript" ngNonBindable> import &#123; EventBus &#125; from '@vmware/transport-typescript';</code></pre>
 
+                                            <h4 class="code-step">Step 3: Hello World</h4>
+
+                                            <pre class="code"><code class="language-typescript">// listen for requests on 'my-channel' and return a response.
+this.bus.respondOnce('my-channel')
+    .generate(
+        (request: string) => &#123;
+            this.log.info(`Request Received: $&#123;request&#125;, Sending Response...`);
+            return 'world';
+        &#125;
+    );
+
+// send request 'hello' on channel 'my-channel'.
+this.bus.requestOnce('my-channel', 'hello')
+    .handle(
+        (response: string) => &#123;
+            this.log.info(`hello $&#123;response&#125;`);
+        &#125;
+    );
+</code></pre>
+                                            <h4 class="code-step">Ready for more?</h4>
+                                            <a routerLink="/ts" class="btn btn-primary btn-block btn-outline">read the typescript documentation</a>
                                         </clr-tab-content>
                                     </clr-tab>
                                 </clr-tabs>
 
-                                <h4 class="code-step">Ready for more?</h4>
-                                <button class="btn btn-primary btn-block btn-outline">read the documentation</button>
+                                <hr/>
 
+                                <h4 class="code-step">Watch a quick video</h4>
+                                <iframe class="video" src="https://www.youtube.com/embed/k-KDPtCQyls"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
 
                             </div>
                         </div>

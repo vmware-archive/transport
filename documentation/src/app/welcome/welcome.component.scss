@@ -139,7 +139,7 @@
 }
 
 .video {
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 30px;
     width: 854px;
     height: 480px;
@@ -148,6 +148,12 @@
 
 #welcome-content h1 {
     color: #4aaed9;
+}
+
+
+.video {
+    width: 1250px;
+
 }
 
 
@@ -206,8 +212,26 @@
 
     }
 
-
+    .video {
+        width: 980px;
+    }
 }
+
+.github-logo {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.source-link {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .video {
+        width: 720px;
+    }
+}
+
 
 
 @media (max-width: 420px) {
@@ -290,6 +314,10 @@
     .transport-hero-content .btn {
         margin: 15px 10px 0 0;
     }
+
+    .video {
+        width: 390px;
+    }
 }
 
 
@@ -299,5 +327,14 @@
         height: 280px;
     }
 
+    .video {
+        width: 355px;
+        height: 250px;
+    }
 
 }
+
+
+
+
+

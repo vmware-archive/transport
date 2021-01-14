@@ -2,11 +2,11 @@ import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
 
 @Component({
-  selector: 'transport-abstractions',
-  templateUrl: './abstractions.component.html',
-  styleUrls: ['./abstractions.component.scss']
+  selector: 'transport-hello-world',
+  templateUrl: './hello-world.component.html',
+  styleUrls: ['./hello-world.component.scss']
 })
-export class AbstractionsComponent implements OnInit, AfterViewChecked {
+export class HelloWorldComponent implements OnInit, AfterViewChecked {
     constructor(private highlightService: HighlightService) {}
     public highlighted = false;
 
@@ -17,6 +17,7 @@ export class AbstractionsComponent implements OnInit, AfterViewChecked {
         if (!this.highlighted) {
             this.highlightService.highlightAll();
             this.highlighted = true;
+
         }
     }
 }
