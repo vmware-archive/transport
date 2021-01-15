@@ -28,8 +28,8 @@
 </p>
 
 <h3>Create Service Request/Response Models.</h3>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ChannelName &#125; from '@vmware/transport';
-import &#123; AbstractMessageObject &#125; from '@vmware/transport/core';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ChannelName &#125; from '@vmw/transport';
+import &#123; AbstractMessageObject &#125; from '@vmw/transport/core';
 
 export const PongServiceChannel: ChannelName = 'services-PongService';
 
@@ -67,8 +67,8 @@ export interface PongServiceResponse extends AbstractMessageObject&lt;PongReques
 <hr/>
 
 <h3>PongService</h3>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractService &#125; from '@vmware/transport/core';
-import &#123; EventBus, MessageArgs &#125; from '@vmware/transport';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractService &#125; from '@vmw/transport/core';
+import &#123; EventBus, MessageArgs &#125; from '@vmw/transport';
 import &#123;
     PongRequestType,
     PongServiceChannel,
@@ -165,7 +165,7 @@ export class PongService extends AbstractService&lt;PongServiceRequest, PongServ
 </p>
 
 <h3>Using ServiceLoader</h3>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ServiceLoader &#125; from '@vmware/transport/util/service.loader';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ServiceLoader &#125; from '@vmw/transport/util/service.loader';
 
 ServiceLoader.addService(PongService);</code></pre>
 

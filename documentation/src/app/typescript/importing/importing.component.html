@@ -4,7 +4,7 @@
     Pretty standard really. Package is available via npm.
 </p>
 <br/>
-<transport-animated-console [inputCommand]="'npm install @vmware/transport-typescript --save'"
+<transport-animated-console [inputCommand]="'npm install @vmw/transport --save'"
                             [consoleTheme]="'macOS'"
                             [loopAnimation]="false"
                             [disableAnimation]="true">
@@ -33,7 +33,7 @@
 <h3>Configuring <code class="clr-code">angular.json</code></h3>
 <pre class="code"><code class="language-json" ngNonBindable>...
 "scripts": [
-    "node_modules/@vmware/transport/transport.umd.min.js"
+    "node_modules/@vmw/transport/transport.umd.min.js"
 ]
 ...</code></pre>
 
@@ -52,7 +52,7 @@
     The main interface you will need is <code class="clr-code">EventBus</code>. It provides access to the most common methods.
 </p>
 
-<pre class="code"><code class="language-typescript" ngNonBindable> import &#123; EventBus &#125; from '@vmware/transport-typescript';</code></pre>
+<pre class="code"><code class="language-typescript" ngNonBindable> import &#123; EventBus &#125; from '@vmw/transport';</code></pre>
 <hr/>
 <a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
 

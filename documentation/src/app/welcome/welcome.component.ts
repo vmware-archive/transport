@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 import {AfterViewChecked, Component, OnChanges, OnInit} from '@angular/core';
 import {BaseComponent} from '../models/base.component';
 import {HighlightService} from "@vmw/transport-docs/services/highlight.service";

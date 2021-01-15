@@ -16,14 +16,14 @@
     The simplest and quickest way to initialize the bus is in this init script, you just need a single line of code.
 </p>
 <h4 class="orange">Simplest Way</h4>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmware/transport/util/bus.util';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport (event bus)
 BusUtil.bootBus();
 </code></pre>
 
 <h4 class="orange">Using Options</h4>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmware/transport/util/bus.util';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport, with debug logging enabled, and the boot message is not disabled.
 BusUtil.bootBusWithOptions(LogLevel.Debug, false);
@@ -53,7 +53,7 @@ BusUtil.bootBusWithOptions(LogLevel.Debug, false);
 
 
 <pre class="code"><code class="language-typescript" ngNonBindable>import React, &#123; useContext &#125; from 'react';
-import &#123; AbstractCore &#125; from '@vmware/transport/core';
+import &#123; AbstractCore &#125; from '@vmw/transport/core';
 
 export class Transport extends AbstractCore &#123;&#125;
 export const TransportContext = React.createContext&lt;any&gt;(null);
