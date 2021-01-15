@@ -1,0 +1,12 @@
+<h1>Initializing Transport in Golang</h1>
+
+<p>
+    The bus exists as a singleton inside your application. The first time you ask for the bus, it will be created automatically and every supplemental call will return that same instance.
+</p>
+<br/>
+<pre class="code"><code class="language-go" ngNonBindable>import "github.com/vmware/transport-go/bus"
+
+var transport EventBus = bus.GetBus()</code></pre>
+
+<hr/>
+<a routerLink="/golang/hello-world" class="btn btn-primary btn-block btn-outline">Next Steps: Hello World</a>

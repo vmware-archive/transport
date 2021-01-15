@@ -1,0 +1,130 @@
+<h1 id="initializing">
+    Initializing Transport
+</h1>
+
+<p>
+    Transport operates outside of any vendor UI technology framework. It's completely decoupled, allowing it to be
+    used by any framework. Because it's independent, it needs to be initialized before any other frameworks have booted or started e.g. Angular.
+</p>
+<p>
+    There are a couple of ways to do this, the first is to create an initialization script that is auto-loaded into the
+    <code class="clr-code">&lt;head/&gt;</code> of the DOM and would therefore boot before the UI framework does. This
+    init/boot script serves as a great spot to set up and configure all your fabric needs.
+</p>
+<h3>Booting via init script</h3>
+<p>
+    The simplest and quickest way to initialize the bus is in this init script, you just need a single line of code.
+</p>
+<h4 class="orange">Simplest Way</h4>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmware/transport/util/bus.util';
+
+// initializing transport (event bus)
+BusUtil.bootBus();
+</code></pre>
+
+<h4 class="orange">Using Options</h4>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmware/transport/util/bus.util';
+
+// initializing transport, with debug logging enabled, and the boot message is not disabled.
+BusUtil.bootBusWithOptions(LogLevel.Debug, false);
+</code></pre>
+
+<p>
+    Transport is now active and ready to be be used. It operates as a singleton inside your application.
+</p>
+
+
+<hr/>
+
+<h2>Adding Transport to a React application</h2>
+
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                    We have not spent a huge amount of time integrating Transport into React just yet, so you need to create a Prop to access inside your components
+                </span>
+        </div>
+    </div>
+</div>
+
+
+<pre class="code"><code class="language-typescript" ngNonBindable>import React, &#123; useContext &#125; from 'react';
+import &#123; AbstractCore &#125; from '@vmware/transport/core';
+
+export class Transport extends AbstractCore &#123;&#125;
+export const TransportContext = React.createContext&lt;any&gt;(null);
+
+interface ProviderProps extends React.Props &#123;
+    transport: Transport;
+&#125;
+
+export const Provider: React.FC&lt;ProviderProps&gt; = props => (
+  &lt;TransportContext.Provider value=&#123;props.transport&#125;&gt;
+    &#123;props.children&#125;
+  &lt;/TransportContext.Provider&gt;
+);
+
+export const useTransport = () => useContext(TransportContext);
+</code></pre>
+
+<hr/>
+
+<h2>
+    Access to Transport in your app.
+</h2>
+
+<p>
+    There are two main ways to gain access to the singleton instance of transport in your app.
+</p>
+
+
+
+<div class="clr-row">
+    <div class="clr-col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                Using <code class="clr-code">window.AppEventBus</code>
+            </div>
+            <div class="card-block">
+                <div class="card-text">
+                    Transport is added to your <code class="clr-code">window</code> object under the property
+                    <code class="clr-code">AppEventBus</code>.
+                    <br/>
+                    This is most useful for non-TypeScript applications. Applications using vanilla JavaScript would use this method.
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clr-col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                Using built in <a routerLink="./abstractions">Abstract Classes</a>
+            </div>
+            <div class="card-block">
+                <div class="card-text">
+                    We created a few simple <a routerLink="./abstractions">abstract base classes</a> that prepare everything for you. This is the
+                    easiest and cleanest way if you're using TypeScript.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    You can find out about some of the other methods available by looking at the <code class="clr-code">BusUtil</code>
+    API, you can find the code here:
+    <a href="https://github.com/vmware/transport-typescript/blob/master/src/util/bus.util.ts" target="_blank">https://github.com/vmware/transport-typescript/blob/master/src/util/bus.util.ts</a>
+</p>
+<hr/>
+<a routerLink="/ts/hello-world" class="btn btn-primary btn-block btn-outline">Next Steps: Hello World</a>
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+<div class="console drop-shadow" [ngClass]="consoleTheme">
+    <div class="console-head">
+        <div class="console-control console-control-grayscale"></div>
+        <div class="console-control console-control-grayscale"></div>
+        <div class="console-control console-control-grayscale"></div>
+        <div class="console-control win-control console-control-close">
+            <clr-icon shape="window-close"></clr-icon>
+        </div>
+        <div class="console-control win-control console-control-max">
+            <clr-icon shape="window-max"></clr-icon>
+        </div>
+        <div class="console-control win-control console-control-min">
+            <clr-icon shape="window-min"></clr-icon>
+        </div>
+    </div>
+    <div class="console-body">
+        <div class="copy-to-clipboard-btn-container">
+            <a class="copy-to-clipboard-btn btn btn-link" (click)="copyToClipboard()">
+                <ng-container *ngIf="!copiedToClipboard">
+                    <clr-icon shape="copy-to-clipboard"></clr-icon> Copy
+                </ng-container>
+                <ng-container *ngIf="copiedToClipboard">
+                    <clr-icon shape="check"></clr-icon> Copied!
+                </ng-container>
+            </a>
+        </div>
+
+        <kbd *ngIf="helperTxt && helperTxt.trim().length > 0" class="cmdHelperTxt">{{ helperTxt }}</kbd>
+        <div class="console-prompt">
+            <kbd *ngIf="!interactiveMode" class="cmdInput">{{ display }}</kbd>
+            <input #cmdInputBox *ngIf="interactiveMode"
+                   [placeholder]="inputCommand"
+                   (keyup.enter)="executeLiveCommand()"
+                   type="text" class="cmdInputBox">
+        </div>
+
+        <ng-container *ngIf="!disableCommandOutput">
+            <kbd *ngIf="interactiveMode" class="output-text">
+                <div *ngFor="let out of cmdOutput">
+                    {{ out }}
+                </div>
+            </kbd>
+            <kbd *ngIf="!interactiveMode && commandExecuted" class="output-text">
+                <ng-content></ng-content>
+            </kbd>
+        </ng-container>
+    </div>
+</div>

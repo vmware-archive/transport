@@ -1,0 +1,11 @@
+<section class="chat-container">
+    <div class="message-label">
+        Messsages Received
+    </div>
+    <div [ngClass]="{ 'message-count': true, flash: flash}">
+        {{messageCount}}
+    </div>
+    <div class="broadcast">
+        <button (click)="sendChat()" class="btn btn-primary-outline" [disabled]="buttonDisabled">Broadcast Something</button>
+    </div>
+</section>

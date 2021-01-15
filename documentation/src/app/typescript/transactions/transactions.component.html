@@ -1,0 +1,151 @@
+<h1>Using Transactions with Transport</h1>
+<p>
+    Another technique that can be used to encapsulate a conversation between a component and a service, or between
+    services themselves - is to use a transaction.
+</p>
+<p>
+    Transactions via transport are not traditional transactions, in the sense that they can be rolled back if they fail, instead they are defined as a
+    group of requests and responses that have to occur before the transaction can be considered complete.
+</p>
+<p>
+    For example, if you need to call a number of services to get a number of responses, in order to be able to construct
+    a response for a component - this would be a transactions.
+
+</p>
+<p>
+    Similarly if you need to make a number of calls to services and wait for stores to be available and populated, this would also be a
+    transaction. Transactions can be either synchronous, or asynchronous.
+</p>
+<p>
+    Transactions are asynchronous by default. Essentially when you commit transactions, all the requests will be fired
+    at once, the transaction will complete once responses to all those requests have been
+    completed. These responses can arrive in any order and at any time (hence the asynchronous nature).
+</p>
+<p>
+    However there may be times when you want your logic to run in a synchronous manner
+    (due to your API design for example). When running a synchronous transaction, each request in the transaction will
+    only fire once the previous one has completed. This is obviously a lot slower,
+    but may be required based on your needs.
+</p>
+
+<p>
+    Below is an example of another component that calls <code class="clr-code">PongService</code> three times, via a
+    transaction
+</p>
+
+<h3>Angular PingTransactionComponent</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractBase &#125; from '@vmware/transport/core';
+import &#123; Component &#125; from '@angular/core';
+import &#123;
+    PongRequestType,
+    PongServiceChannel,
+    PongServiceRequest,
+    PongServiceResponse
+&#125; from './pong.service.model';
+import &#123; BusTransaction, TransactionType, APIRequest &#125; from '@vmware/transport';
+import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+import &#123; GeneralError &#125; from '@vmware/transport/core/model/error.model';
+
+@Component(&#123;
+    selector: 'ping-transaction-component',
+    template: `
+        &lt;button (click)="sendPingTransaction()"&gt;Ping (Transaction)&lt;/button&gt;&lt;br/&gt;
+        &lt;ul&gt;
+            &lt;li *ngFor="let response of responses"&gt;&#123;&#123;response.value&#125;&#125;&lt;/li&gt;
+        &lt;/ul&gt;`
+&#125;)
+export class PingTransactionComponent extends AbstractBase &#123;
+
+    public responses: PongServiceResponse[] = [&#123;value: 'nothing yet, request something!'&#125;];
+
+    constructor() &#123;
+        super('PingTransactionComponent');
+    &#125;
+
+    /**
+     * Send a three PongService requests as a part of a transaction.
+     */
+    public sendPingTransaction(): void &#123;
+
+        const createRequest = (type: PongRequestType, payload: string) => &#123;
+            return this.fabric.generateFabricRequest(type, payload);
+        &#125;;
+
+        // send the same request, three times.
+        this.pingTransaction([
+            createRequest(PongRequestType.Full, 'request 1'),
+            createRequest(PongRequestType.Full, 'request 2'),
+            createRequest(PongRequestType.Full, 'request 3')
+        ]);
+    &#125;
+
+    private pingTransaction(requests: APIRequest[]): void &#123;
+
+        // create a transaction
+        const transaction: BusTransaction =
+            this.bus.createTransaction(TransactionType.ASYNC, GeneralUtil.genUUIDShort());
+
+        // for each request submitted, queue up a request in transaction
+        for (let request of requests) &#123;
+
+            // add request to transaction
+            transaction.sendRequest(PongServiceChannel, request);
+        &#125;
+
+        // register a transaction completion handler
+        transaction.onComplete&lt;PongServiceResponse&gt;(
+            (pongResponses: PongServiceResponse[]) =&gt; &#123;
+
+                this.responses = [];
+
+                // push responses
+                pongResponses.forEach(
+                    (response: PongServiceResponse) =&gt; &#123;
+                        this.responses.push(response);
+                    &#125;
+                );
+            &#125;
+        );
+
+        // register a transaction error handler
+        transaction.onError&lt;GeneralError&gt;(
+            (error: GeneralError) =&gt; &#123;
+                // do something with this error
+            &#125;
+        );
+
+        // run the transaction!
+        transaction.commit();
+    &#125;
+&#125;</code></pre>
+
+<p>Try it below, you can see three requests come back all made at different times, indicated by the detailed timing.</p>
+
+<p>
+    If you have logging enabled (debug or verbose), you should see something like the following output in your developer console.<br/>
+</p>
+
+<pre class="log-output">▫️️ <span class="console-purple">[Inf]:</span> 🏦 <span class="console-pink">Transaction Created</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⏳ <span class="console-pink">Transaction: Bus Request Queued: [15870062]</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⏳ <span class="console-pink">Transaction: Bus Request Queued: [bcc554b4]</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⏳ <span class="console-pink">Transaction: Bus Request Queued: [602430e9]</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> 👋 <span class="console-pink">Transaction: Completed Handler Registered</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+▫️️ <span class="console-purple">[Inf]:</span> 🏦 <span class="console-pink">Transaction: Starting Asynchronous</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+<span class="badge badge-purple">3</span>🔸 <span class="console-purple">[Deb]:</span> ➡️ <span class="console-pink">Transaction: Sending Async Request to channel: services-PongService</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⬅️ <span class="console-pink">Transaction: Received Async Response on channel: services-PongService</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> <span class="console-pink">* Dropping Message 16b12963, handler only online for ae71734e</span> <span class="console-who">[f18faebe]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> <span class="console-pink">* Dropping Message 16b12963, handler only online for ae90e95e</span> <span class="console-who">[f18faebe]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⬅️ <span class="console-pink">Transaction: Received Async Response on channel: services-PongService</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> <span class="console-pink">* Dropping Message ae71734e, handler only online for ae90e95e</span> <span class="console-who">[f18faebe]</span> <span class="console-time">(8:36:04 AM)</span>
+🔸 <span class="console-purple">[Deb]:</span> ⬅️ <span class="console-pink">Transaction: Received Async Response on channel: services-PongService</span> <span class="console-who">[f18faebe.3a00b4ff]</span> <span class="console-time">(8:36:04 AM)</span>
+▫️️ <span class="console-purple">[Inf]:</span> 🎉 <span class="console-pink">Transaction Completed</span> <span class="console-who">[f18faebe.3a00b4ff] (8:36:04 AM)</span></pre>
+
+
+<p>
+    All of the underlying handling of requests, responses and mappings are encapsulated by the transaction. Each request
+    has it's own ID and is individually tracked by the
+    transaction, this allows any number of transactions to be operating simultaneously at any one time on a channel.
+</p>
+<hr/>
+<a routerLink="/ts/logging" class="btn btn-primary btn-block btn-outline">Next Steps: Logging</a>
+

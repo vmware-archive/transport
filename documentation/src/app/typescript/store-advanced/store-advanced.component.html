@@ -1,0 +1,198 @@
+<h1>Stores and Advanced use</h1>
+
+<p>
+    It's not really advanced, but you know, a little more functionality that just a map of maps. Stores can be
+    subscribed to for state changes and initializations, as well as delegate
+    mutation requests to business logic that handles API calls to mutate those models.
+</p>
+<p>
+    Let's first start with understanding how I can be notified when state in a store has changed.
+</p>
+<hr/>
+<h2>
+    Listening for state changes in a store.
+</h2>
+
+<p>
+    You can listen for any kind of state change on your store (state changes are defined by you), you can also listen
+    for multiple state changes, not just a single one. You can decide to listen for an update to a single object, or all
+    objects in the store.
+</p>
+<p>
+    Two methods provide access to streams that can be subscribed to. The first one will tick any time any object is
+    affected by any state change (you care about) in a store, this is
+    <code class="clr-code">onAllChanges&lt;S&gt;(...stateChangeType: S[]): StoreStream&lt;T&gt;</code>
+</p>
+
+<p>
+    The second one tick any time a specific object is affected by any state change (you care about) in a store, this is
+    <code class="clr-code">onChange&lt;S&gt;(id: UUID, ...stateChangeType: S[]): StoreStream&lt;T&gt;</code>
+</p>
+
+
+<h3>Listening for State Changes on 'MyObject' Store</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>// Listen for 'Added' state changes in 'myStore'
+myStore.onAllChanges(MyObjectState.Added)
+    .subscribe(
+        (updatedObject: MyObject) => &#123;
+            // do something interesting with this newly added thing.
+        &#125;
+    );
+
+// Listen for 'Sleeping' and 'Changed' state changes in 'myStore'
+myStore.onAllChanges(MyObjectState.Sleeping, MyObjectState.Changed)
+    .subscribe(
+        (updatedObject: MyObject) => &#123;
+            // do something interesting with this changed or sleeping thing.
+        &#125;
+    );</code></pre>
+
+<p>
+    You should notice that the return type of these methods is <code class="clr-code">StoreStream&lt;T&gt;</code>. This
+    interface provides you two simple methods: <code class="clr-code">subscribe(successHandler: MessageFunction&lt;T&gt;):
+    Subscription</code> and<code class="clr-code">unsubscribe(): void</code>.
+</p>
+<p>
+    Just like RxJS, this allows you subscribe to updates from the
+    store for which ever object(s) you're interested in. You can also unsubscribe from the stream as well, when you no
+    longer care about subscriptions. The return type of the <code class="clr-code">subscribe()</code> method is an RxJS
+    <code class="clr-code">Subscription</code>
+    object, which you can use at your leisure if you want.
+</p>
+
+<hr/>
+
+<h2>Waiting for a store to be available - <span class="emphasis">dealing with race conditions</span></h2>
+
+<p>
+    There are times when you need to ensure that components don't start pulling state from a store, before that store is
+    ready. Normally you would define a process to bootstrap a store, populate it with data and then inform every
+    consumer of that store, that the store is ready. There are a few ways to 'wait for a store to be ready'.
+</p>
+
+<h3>Using <code class="clr-code">whenReady()</code></h3>
+
+<p>
+    The first approach is to use the <code class="clr-code">myStore.whenReady(readyFunction: MessageFunction&lt;Map&lt;UUID,
+    T&gt;&gt;)</code> method. This allows you to pass a lambda in that will be passed the contents of the store when
+    it's been
+    'initialized'. This will execute asynchronously. This is the simplest way to wait for a store's state to be set up
+    before consuming it.
+</p>
+
+<h3>Using whenReady() on 'myStore'</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; UUID &#125; from '@vmware/transport';
+
+// Wait for store to be ready using whenReady();
+let myData: Array&lt;MyObject&gt; = [];
+
+myStore.whenReady(
+    (storeContents: Map&lt;UUID, MyObject&gt;) =>  &#123;
+
+            // set myData.
+            myData = storeContents.values();
+        &#125;
+    );
+
+...
+// ... somewhere else, initialize the store when it's loaded up.
+myStore.initialize();</code></pre>
+
+
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+
+                You can also use <code class="clr-code">myStore.populate()</code> to initialize the store. When you use <code
+                class="clr-code">populate()</code>,
+         the store is not only populated with bootstrapped state - it also initializes. Both will be broadcast to any consumer using <code
+                class="clr-code">whenReady()</code>.
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<h3>Using <code class="clr-code">readyJoin()</code> <span class="emphasis"> for multiple stores</span></h3>
+<p>
+    The second approach is for when you need to wait for <strong>multiple stores</strong> to be ready. This method is
+    available via <code class="clr-code">this.storeManager</code>. It's not attached to a particular store, as this
+    functionality is designed to wait for multiple stores to be available. <code class="clr-code">this.storeManager.readyJoin(stores:
+    Array&lt;StoreType&gt;): StoreReadyResult</code> returns an object of type <code class="clr-code">StoreReadyResult</code>.
+</p>
+<p>
+    This interface provides the same method name as the store based approach as <code class="clr-code">whenReady()</code>.
+    Except this doesn't deliver the contents of a store to the handling function, as all stores are being waited on and
+    the amount of data coming in could be significant.
+</p>
+
+<h3>Using readyJoin() for multiple stores.</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>// Create stores
+this.storeManager.createStore('store1');
+this.storeManager.createStore('store2');
+this.storeManager.createStore('store3');
+
+// wait for all stores to be ready
+this.storeManager.readyJoin(['store1', 'store2', 'store3'])
+        .whenReady(
+            () => &#123;
+                // stores are ready... do something fun.
+            &#125;
+        );
+
+// ... somewhere else, initialize stores.
+store1.initialize();
+store2.initialize();
+store3.initialize();</code></pre>
+
+<hr/>
+
+
+<h3>Using Transactions <span class="emphasis"> - preferred approach for multiple stores</span>&nbsp;✨</h3>
+
+<p>
+    Transactions are the cleanest way to wait for multiple stores to be ready. You can combine requests/responses and
+    waiting for stores to be ready into a single transaction.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>// Create stores
+this.storeManager.createStore&lt;string&gt;('store1');
+this.storeManager.createStore&lt;string&gt;('store2');
+this.storeManager.createStore&lt;string&gt;('store3');
+
+// create transaction.
+const transaction: Transaction = this.bus.createTransaction();
+
+// register transaction complete handler.
+transaction.onComplete(
+            (results: string[]) => &#123;
+                    // do something with fun with your results.
+
+            &#125;
+        );
+
+// register stores with transaction.
+transaction.waitForStoreReady('store1');
+transaction.waitForStoreReady('store2');
+transaction.waitForStoreReady('store3');
+
+// commit transaction.
+transaction.commit();
+
+// ... somewhere else, initialize stores.
+store1.initialize();
+store2.initialize();
+store3.initialize();</code></pre>
+
+<hr/>
+<a routerLink="/ts/iframes" class="btn btn-primary btn-block btn-outline">Next Steps: Messaging Across iFrames</a>
+
+
+
+

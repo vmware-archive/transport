@@ -1,0 +1,176 @@
+.console {
+    text-align: left;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    .console-head {
+        overflow: hidden;
+        background-color: hsl(198, 0%, 20%);
+        padding: 7px 12px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .console-control-grayscale {
+        background-color: hsl(198, 0%, 55%);
+    }
+
+    .console-control-red {
+        background-color: #ff6057;
+    }
+
+    .console-control-yellow {
+        background-color: #ffc22e;
+    }
+
+    .console-control-green {
+        background-color: #28ca40;
+    }
+
+    .console-body {
+        background-color: #000000;
+        padding: 20px 17px 20px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+
+        .copy-to-clipboard-btn-container {
+            position: relative;
+            float: right;
+            height: 0;
+            width: 0;
+            left: -120px;
+            top: -12px;
+
+            .copy-to-clipboard-btn {
+                position: relative;
+                width: 125px;
+                color: white;
+                text-align: right;
+            }
+        }
+
+        .cmdInput, .cmdHelperTxt {
+            overflow-wrap: break-word;
+            max-width: calc(100% - 130px);
+            display: inline-block;
+        }
+
+        .cmdHelperTxt {
+            color: hsl(198, 80%, 46%);
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .console-prompt {
+        display: block;
+        margin-bottom: 5px;
+        font-family: "Source Code Pro",monospace;
+        font-size: 15px;
+        color: #FFFFFF;
+    }
+
+    .console-prompt::before {
+        vertical-align: top;
+        content: "$";
+        padding-right: 15px;
+        user-select: none;
+        color: fuchsia;
+        font-weight: bold;
+    }
+
+    &.blue {
+        .console-head {
+            background-color: #001b41;
+        }
+
+        .console-control {
+            color: #61717D;
+        }
+
+        .console-body {
+            background-color: #012456;
+        }
+    }
+
+    &.macOS {
+        .console-control-min, .console-control-max, .console-control-close {
+            display: none;
+        }
+
+        .console-control {
+            float: left;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 7px;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
+        }
+    }
+
+    &.windows {
+        .console-head {
+            border-top-left-radius: unset;
+            border-top-right-radius: unset;
+            padding: 0 12px;
+        }
+
+        .win-control {
+            &.console-control-max, &.console-control-min {
+                margin-right: 30px;
+            }
+
+            &.console-control-close {
+                margin-right: 15px;
+            }
+        }
+
+        .console-control {
+            float: right;
+        }
+
+        .console-control-red, .console-control-yellow, .console-control-green {
+            display: none;
+        }
+
+        .console-prompt {
+            .cmdInput, .cmdHelperTxt {
+                max-width: calc(82% - 130px) !important;
+            }
+
+            &::before {
+                vertical-align: top;
+                content: "PS C:\\>";
+                color: white;
+            }
+        }
+    }
+}
+
+.drop-shadow {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+}
+
+kbd.output-text {
+    color: white;
+}
+
+input.cmdInputBox {
+    background-color: transparent;
+    font-family: 'Roboto Mono', monospace;
+    outline: none;
+    color: white;
+    width: 85%;
+    height: auto;
+    border: none;
+}
+
+div.clipboard-copied-banner {
+    width: auto;
+    height: 0;
+    text-align: right;
+    position: relative;
+    bottom: 8px;
+    font-family: 'Roboto Mono', monospace;
+    color: #bfff4a;
+}

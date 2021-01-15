@@ -1,0 +1,20 @@
+<h1>Importing Transport in Golang</h1>
+
+<p>
+    The Go version of Transport has go.mod support. You should be able to easily add it using <code class="clr-code">go get</code>
+</p>
+
+<h3>use <code class="clr-code">go get</code></h3>
+<br/>
+<transport-animated-console [inputCommand]="'go get github.com/vmware/transport-go/...'"
+                            [consoleTheme]="'macOS'"
+                            [loopAnimation]="false"
+                            [delay]="1">
+</transport-animated-console>
+
+<h3>Adding to your app</h3>
+<br/>
+<pre class="code"><code class="language-go" ngNonBindable>import "github.com/vmware/transport-go/bus"</code></pre>
+
+<hr/>
+<a routerLink="/golang/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>

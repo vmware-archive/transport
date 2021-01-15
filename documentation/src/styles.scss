@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~prismjs/plugins/toolbar/prism-toolbar.css";
+@import "~prismjs/plugins/line-highlight/prism-line-highlight.css";
+@import "~prismjs/themes/prism-tomorrow.css";
+
+/* prism override */
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+    background: #0e161b;
+    border: 1px solid #0e161b;
+    border-radius: 5px;
+}
+
+
+.sub-title {
+    color: #7a8e98;
+
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 1px;
+    background-color: #32485d;
+    border: none;
+}
+
+.content-area h1 {
+    margin-top: 0;
+}
+
+h4.code-step {
+    margin-bottom: 5px;
+    font-weight: bolder;
+    color: hsl(198, 66%, 57%);
+}
+
+code.clr-code {
+    color: #e2b44f
+}
+
+
+/* console colors */
+.console-pink {
+    color: #ec96fb;
+}
+
+.console-purple {
+    color: mediumpurple;
+}
+
+.console-green {
+    color: limegreen;
+}
+
+.console-darkgrey {
+    color: dimgrey;
+}
+
+.console-grey {
+    color: darkgrey;
+}
+
+.console-white {
+    color: white;
+}
+
+.console-who {
+    color: orange;
+    font-weight: bold;
+}
+
+.console-blue {
+    color: cyan;
+}
+
+.console-time {
+    color: cyan;
+}
+
+.console-orange {
+    color: orange;
+}
+
+.console-red {
+    color: red;
+}
+
+.emphasis {
+    font-style: italic;
+    color: #baa1de;
+}
+
+blockquote {
+    position: relative;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+blockquote:before {
+    position: absolute;
+    content: open-quote;
+    font-size: 4em;
+    margin-left: -0.6em;
+    margin-top: -0.0em;
+    color: #673ab7;
+}
+
+blockquote:after {
+    position: absolute;
+    content: close-quote;
+    font-size: 4em;
+    bottom: 0;
+    right: 0;
+    margin-right: -0.6em;
+    margin-bottom: -0.5em;
+    color: #673ab7;
+}
+
+blockquote p {
+    display: inline;
+}
+
+.log-output {
+    background: #0e161b;
+    border: 1px solid #0e161b;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+clr-vertical-nav-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.github-logo {
+    width: 50px;
+    margin-right: 5px;
+}

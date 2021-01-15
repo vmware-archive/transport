@@ -1,0 +1,75 @@
+<h1>Logging</h1>
+<h3>
+    >> Please don't use <code class="clr-code">console.log()</code> <<
+</h3>
+<p>
+    When using any of the abstractions provided, they all extend from a single base class called <code class="clr-code">AbstractCore</code>.
+    A key property provided is <code class="clr-code">this.log</code>, which is a
+    reference to a global singleton logger of type <code class="clr-code">Logger</code>. You can read the API here: <a
+    href="https://github.com/vmware/transport-typescript/blob/master/src/log/logger.service.ts">
+    https://github.com/vmware/transport-typescript/blob/master/src/log/logger.service.ts</a>.
+
+</p>
+<p>
+    This follows standard
+    logging design that allows you to configure the logging level, styling and also log messages to the console
+    with varying levels. Currently the logger supports <code class="clr-code">VERBOSE, DEBUG, INFO, WARN, ERROR</code>
+    levels.
+</p>
+
+<p>
+    To log to the console, all you need (from any class implementing an abstraction) is call <code class="clr-code">this.log</code>,
+    and then the level you want to log at. For example (<code class="clr-code">verbose(obj), debug(obj), info(obj),
+    warn(obj), error(ob)</code>.
+    Below is an example of all the log level methods being called.
+</p>
+
+<h4>Logging Level Example</h4>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractBase &#125; from '@vmware/transport/core';
+import &#123; LogLevel &#125; from '@vmware/transport/log';
+import &#123; Component &#125; from '@angular/core';
+
+@Component(&#123;
+    selector: 'log-component',
+    template: `
+        &lt;button (click)="logMessages()"&gt;Log To Console&lt;/button&gt;`
+&#125;)
+export class LogComponent extends AbstractBase &#123;
+
+    constructor() &#123;
+        super('LogComponent');
+
+        // turn on verbose logging for our bus.
+        this.bus.api.setLogLevel(LogLevel.Verbose);
+    &#125;
+
+    /**
+     * Log messages to the console.
+     */
+    public logMessages(): void &#123;
+        this.log.verbose('this is a Verbose log message');
+        this.log.debug('this is a Debug log message');
+        this.log.info('this is an Info log message');
+        this.log.warn('this is a Warn log message');
+        this.log.error('this is an Error log message');
+    &#125;
+&#125;</code></pre>
+
+<p>
+    Which should output the following in your developer tools console. (FYI, WARN and ERROR messages will provide a
+    stack trace also).
+</p>
+
+
+<pre class="log-output">📍️️️ <span class="console-purple">[Ver]:</span> <span class="console-pink">This is a Verbose log message</span>
+🔸️ <span class="console-purple">[Deb]:</span> <span class="console-pink">This is a Debug log message</span>
+▫️ <span class="console-purple">[Inf]:</span> <span class="console-pink">This is an Info log message</span>
+⚠️ <span class="console-orange">[Warn]:</span>  <span class="console-orange">This is a Warn log message</span>
+🔴 <span class="console-red">[Error]:</span> <span class="console-red">This is an Error log message</span>
+</pre>
+
+<p>
+    Open the developer console to see logging output.
+</p>
+<hr/>
+<a routerLink="/ts/broker-overview" class="btn btn-primary btn-block btn-outline">Next Steps: Extending To A Broker Overview</a>

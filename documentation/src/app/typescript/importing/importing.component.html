@@ -1,0 +1,58 @@
+<h1>Importing Transport for TypeScript</h1>
+
+<p>
+    Pretty standard really. Package is available via npm.
+</p>
+<br/>
+<transport-animated-console [inputCommand]="'npm install @vmware/transport-typescript --save'"
+                            [consoleTheme]="'macOS'"
+                            [loopAnimation]="false"
+                            [disableAnimation]="true">
+</transport-animated-console>
+
+<hr/>
+
+
+<h2>Adding Transport to an Angular application</h2>
+
+
+
+<p>
+    Angular provides <code class="clr-code">angular.json</code> (for Angular 7+) and <code class="clr-code">angular-cli.json</code>
+    (for Angular 4-5).
+</p>
+<p>
+    In this file, there is a section defined as <code class="clr-code">scripts</code>. This section is where you provide
+    third party scripts to be booted and loaded by your Angular application.
+</p>
+<p>
+    You will need to add the Transport UMD file to this section. It's already been saved in your <code class="clr-code">node_modules</code>
+    folder. Just provide an entry like the one below.
+</p>
+
+<h3>Configuring <code class="clr-code">angular.json</code></h3>
+<pre class="code"><code class="language-json" ngNonBindable>...
+"scripts": [
+    "node_modules/@vmware/transport/transport.umd.min.js"
+]
+...</code></pre>
+
+<p>
+    Your application is ready to go, now you just need to boot transport
+</p>
+<p>
+    Angular provides a  <code class="clr-code">src/main.ts</code> file, which is essentially your initialization script, that
+    you can use to <a routerLink="./initializing">Initialize the Bus.</a>
+</p>
+
+<hr/>
+<h2>Importing Transport in your code</h2>
+
+<p>
+    The main interface you will need is <code class="clr-code">EventBus</code>. It provides access to the most common methods.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable> import &#123; EventBus &#125; from '@vmware/transport-typescript';</code></pre>
+<hr/>
+<a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
+

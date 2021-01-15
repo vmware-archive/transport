@@ -1,0 +1,87 @@
+<h1>Extending your bus to a Broker.</h1>
+<p>
+    Transport provides a decoupling mechanism between consumers and producers, via a universal API that makes pub-sub simple across any set of distributed applications. This also allows us to locate producers
+    and consumers where-ever we want across applications.
+</p>
+<p>
+    When you extend to a broker, you will be extending your local event bus, to a distributed event bus via a message/event broker. This distributed event bus can have sources, relays, producers, consumers and integrations.
+    We call this concept a 'fabric'.
+</p>
+<p>
+    As a developer, you would simply mark which channels you'd like to make 'Galactic' and they would be automatically bridged from your local application bus to the broker. A 'Galactic' Channel is a channel on the bus
+    that has been extended to a broker destination (like a topic or a queue).
+</p>
+<p>
+    The bus is designed to be extended, to child applications running in iframes, web components, shadow DOM - and to backend systems. This is key to making the distributed pattern work. The concept being that
+    services can run in any platform, running any technology - but can communicate with one another. The literal transport mechanism between apps becomes irrelevant, every actor in the system becomes either a producer
+    or a consumer, as peers.
+</p>
+
+<hr/>
+<h3>How the browser connects to the fabric.</h3>
+<p>
+    The browser connects to brokers via a WebSocket. The wire protocol used on the WebSocket is <a href="http://stomp.github.io/" target="_blank">STOMP</a>. STOMP stands for
+    <span class="emphasis">Simple Text Oriented Messaging Protocol.</span>
+</p>
+
+<hr/>
+<h4>Why STOMP?</h4>
+<ol class="list">
+    <li>
+        It's a pub/sub protocol that is a standard and is <a href="http://stomp.github.io/implementations.html" target="_blank">widely accepted</a>. It means the fabric is compatible with any STOMP broker.
+    </li>
+    <li>
+        You cannot talk AMQP over a WebSocket, Which means without STOMP, we can't talk directly to ANY broker.
+    </li>
+</ol>
+<hr/>
+
+<h3>
+    What happens when I connect to a broker
+</h3>
+
+<p>
+    Any channel that your application has been designated as 'galactic' will be automatically extended to the broker. It does this by mapping the channel name on your local bus, to a topic on the broker. If you open your developer
+    tools, look
+</p>
+<p>
+    If you don't know what a topic is, or you would like to know more about this stuff, <a href="https://www.oreilly.com/library/view/understanding-message-brokers/9781492049296/" target="_blank">here is a great introduction.</a>
+</p>
+<hr/>
+
+<h3>Galactic Channels</h3>
+
+<p>
+    Galactic Channels are the same as regular channels, except they are distributed to the fabric. The idea here is that we don't want every channel on the bus distributed. When you create a galactic channel, you are
+    bridging that specific channel from the browser, to the fabric. In pub-sub. this is the concept of subscribing to a destination topic or queue.
+</p>
+<p>
+    You can create Galactic Channels at any time, once the Broker Connector is connected to a broker, those Galactic channels will be distributed.
+</p>
+
+<hr/>
+<h4>How do I create a galactic channel?</h4>
+
+<p>
+    If you want to extend a local channel to the fabric, you can use the <code class="clr-code">markChannelAsGalactic()</code> method.
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>this.bus.markChannelAsGalactic('simple-stream');</code></pre>
+<p>
+    This will result in a subscription to a topic with the same name as your channel. You won't have to worry about any of that however.
+</p>
+<hr/>
+
+<h4>How do I stop extending a channel to the broker?</h4>
+
+<p>
+    If you want to stop extending a channel to the broker (no longer galactic) then you can use the <code class="clr-code">markChannelAsLocal()</code> method.
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>this.bus.markChannelAsLocal('simple-stream');</code></pre>
+
+
+<p>
+    This will result in an unsubscription from the topic with the same name as your channel. You won't have to worry about any of that however.
+</p>
+<hr/>
+<a routerLink="/ts/connecting-broker" class="btn btn-primary btn-block btn-outline">Next Steps: Connecting to a Broker</a>
+

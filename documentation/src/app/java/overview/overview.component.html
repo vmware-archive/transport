@@ -1,0 +1,40 @@
+<h1>Transport for Java</h1>
+<img src="assets/github.png" alt="github" title="transport on github" class="github-logo"/>
+<a href="https://github.com/vmware/transport-java">View Java source on Github</a>
+<br/>
+<br/>
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                    We're still working on these docs.
+            </span>
+        </div>
+    </div>
+</div>
+
+<p>
+    This implementation is written in Java and depends on the <a href="https://spring.io/projects/spring-framework">Spring Framework</a>, because it's awesome.
+</p>
+
+
+<section *ngFor="let cmd of javaCommands; index as i">
+    <h4 class="code-step">{{cmd.title}}</h4>
+    <transport-animated-console [inputCommand]="cmd.command"
+                                [helperTxt]="cmd.notes"
+                                [consoleTheme]="'macOS'"
+                                [loopAnimation]="false"
+                                [delay]="i * 1000">
+    </transport-animated-console>
+</section>
+
+<hr/>
+<a routerLink="/java/importing" class="btn btn-primary btn-block btn-outline">Next Steps: Importing Transport</a>
+
+
+
+
+

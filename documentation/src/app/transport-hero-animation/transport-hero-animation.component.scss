@@ -1,0 +1,37 @@
+.transport-hero-background {
+    position: absolute;
+    right: -90px;
+    width: 1252px;
+    height: 562px;
+    top: -124px;
+    z-index: 10;
+}
+
+
+
+@media (max-width: 1024px) {
+
+    .transport-hero-background {
+        right: -270px;
+        width: 1034px;
+        height: 562px;
+        top: -139px;
+
+    }
+
+}
+
+
+
+@media (max-width: 420px) {
+
+    .transport-hero-background {
+
+        right: -188px;
+        width: 903px;
+        height: 562px;
+        top: -83px;
+
+    }
+
+}

@@ -1,0 +1,36 @@
+.sample-container {
+    border: none;
+    max-height: none;
+    display: block;
+    overflow-x: auto;
+    padding: 0.9em;
+    color: #abb2bf;
+    background: #0e161b;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #0a0a14 #170f29 #332e40 #131020;
+    font-size: 0.90em;
+
+}
+
+.sample-container h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+iframe {
+    width: 100%;
+    min-height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px dashed #2e404a;
+    padding: 10px;
+}
+
+.chatty-demo-container {
+    margin-bottom: 20px;
+}
+
+

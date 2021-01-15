@@ -1,0 +1,97 @@
+<h1>Advanced Messaging Concepts</h1>
+
+<p>The basic concept of Transport is simple, but sometimes you need more control, like direct or broadcast conversations
+within channels. Some times you need to make sure you don't want conversations mixed up multiple components are messaging
+services, or listening for specific responses on a s</p>
+
+<h3>Understanding 'broadcast' vs 'direct' messaging</h3>
+
+<p>
+    Transport is analogous to Slack (for software), except Transport allows direct messages inside a channel, where
+    as Slack opens up stand-alone conversations between actors outside of a channel.
+    The concept however remains the same. When a component needs to restrict a conversation between its self, and a
+    service - we can use a direct message.
+</p>
+<p>
+    When a component is interested in everything being broadcast by a service, then that component can simply
+    subscribe to the service channel and listen for everything.
+</p>
+
+<p>
+    The use case for direct messaging between a component and service arrives when you need a specific response to be
+    delivered to a specific component, i.e. you don't want every component
+    getting that same response (because we're operating on a single channel). It's like talking in a public chat, vs
+    talking in a direct message with that service.
+</p>
+
+<hr/>
+
+<h3>Sending requests using ID's</h3>
+
+<p>
+    There are multiple ways to conduct direct messaging between a component and a service. The first is to use methods in the
+    API that accept an ID. Every API e.g.  <code class="clr-code">requestOnce()</code>
+    has multiple variations, one is the same method name that has <code class="clr-code">...withId()</code> appended to
+    the end of the name.
+
+</p>
+<p>
+    another is <code class="clr-code">...withIdAndVersion()</code>.
+    The signature for both is mostly the same, except they obviously take an ID, or an ID and a version.
+</p>
+<p>
+    Let's take a look at an example of using one of these methods:
+</p>
+<pre class="code"><code class="language-typescript" ngNonBindable>const request: PongServiceRequest = &#123;
+    command: PongRequestType.Basic,
+    message: 'basic ping'
+&#125;;
+
+this.bus.requestOnceWithId&lt;PongServiceRequest, PongServiceResponse&gt;(
+    '123456',           // message id
+    PongServiceChannel, // channel on which to send request
+    request,            // payload to be sent on the channel
+    PongServiceChannel, // channel on which to listen for response **
+    'PingComponent'     // optional identifier of requesting component
+).handle(
+    (response: PongServiceResponse) =&gt; &#123;
+        // do something with this successful request
+    &#125;,
+    (error: GeneralError) =&gt; &#123;
+        // something went wrong, lets handle it.
+    &#125;
+);</code></pre>
+
+<p class="p5">
+    <strong>**</strong> In earlier versions of Transport, we used to use a different return channel for responses,
+    this design has been phased out, however you can still use it
+    if you need to. We're using the same request and response channel (preferred design).
+</p>
+<p>
+    The above example will send a request to <code class="clr-code">PongService</code>, but this time, we're sending
+    that message with an ID of <strong>123456</strong>. This means that the component
+    is only going to listen for a response that <strong>also contains that same ID</strong>. Any other response coming
+    in over <code class="clr-code">PongServiceChannel</code> that has a different ID, or
+    has no ID <strong>will be ignored</strong> by the <code class="clr-code">handle(...)</code> method.
+</p>
+
+<hr/>
+<h3>Quick note on generating UUID's</h3>
+<p>
+    In the example above, we used <strong>123456</strong> as an ID for the message. This isn't very scalable and really
+    you should not be worrying about generating these ID's, particularly because there
+    could be thousands of messages being passed around channels. ID's should be generated instead of manually created.
+</p>
+<p>
+    There is a simple utility provided by the event bus that allows you to do this easily.
+    By using <code class="clr-code">GeneralUtil</code>, you can generate full, or short UUID's. You can import <code
+    class="clr-code">GeneralUtil</code> from <code class="clr-code">@vmware/transport/util/util</code>.
+</p>
+<p>
+    It's pretty simple to use as well, all the methods are static.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>GeneralUtil.genUUID();      // generates full 128bit random UUID
+GeneralUtil.genUUIDShort(); // generates full 128bit random UUID, but truncates to only the first 8 characters.</code></pre>
+<hr/>
+<a routerLink="/ts/transactions" class="btn btn-primary btn-block btn-outline">Next Steps: Transactions</a>

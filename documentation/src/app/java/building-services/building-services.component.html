@@ -1,0 +1,142 @@
+
+<h1>Building Services</h1>
+
+<p>
+    To get started, we should create a new class called <code class="clr-code">PongService</code>.
+</p>
+<p>
+    The first thing we need to do in order to create our first simple <code class="clr-code">PongService</code> is
+    create a <code class="clr-code">PongServiceRequest</code> model and a
+    <code class="clr-code">PongServiceResponse</code> model. These two models are responsible for allowing other actors
+    to know what to send to our service, and what to expect in response.
+</p>
+
+<h3>Java PongService</h3>
+<pre class="code"><code class="language-java" ngNonBindable>
+import com.vmware.transport.bridge.Request;
+import com.vmware.transport.bridge.Response;
+import com.vmware.transport.bus.Transaction;
+import com.vmware.transport.bus.model.Message;
+import com.vmware.transport.core.AbstractService;
+import com.vmware.transport.core.util.ClassMapper;
+import org.springframework.stereotype.Component;
+import samples.CalendarService;
+
+import java.util.UUID;
+
+@Component
+public class PongService extends AbstractService&lt;Request&lt;String&gt;, Response&lt;String&gt;&gt; &#123;
+    // define the channel the service operates on
+
+    public static final String Channel = "services-PongService";
+
+    PongService() &#123;
+        super(PongService.Channel);
+    &#125;
+
+    protected void handleServiceRequest(Request request, Message busMessage) &#123;
+
+        // which command shall we run?
+        switch(request.getRequest()) &#123;
+            case PongRequestType.Basic:
+                this.handleBasicPongRequest(request);
+                break;
+
+            case PongRequestType.Full:
+                this.handleFullPongRequest(request);
+                break;
+
+            case default:
+                this.handleUnknownRequest(request);
+                break;
+        &#125;
+    &#125;
+
+    /**
+     * Handle requests for basic pong needs
+     * @param request The request being sent over the bus.
+     */
+    private void handleBasicPongRequest(Request request) &#123;
+
+        // prepare and send a basic response.
+        Response&lt;String&gt; response = new Response&lt;&gt;(request.getId(), "Fabric Pong (Basic): Pong");
+        this.sendResponse(response, request.getId(), request.getTargetUser());
+    &#125;
+
+    /**
+     * Handle requests for full pong needs.
+     * @param request the request being sent over the bus.
+     */
+    private void handleFullPongRequest(Request request) &#123;
+
+        UUID transactionId = request.getId();
+
+        // call our calendar service and get a date and time, in two separate synchronous calls via transaction, pass
+        // in our request ID as the transaction ID, so it can be tracked correctly across service calls.
+        Transaction transaction = bus.createTransaction(Transaction.TransactionType.SYNC, "calendar-transaction", transactionId);
+
+        // queue up requests for time and date via Calendar Service.
+        transaction.sendRequest(CalendarService.Channel, new Request&lt;String&gt;(transactionId, "date")); // request date
+        transaction.sendRequest(CalendarService.Channel, new Request&lt;String&gt;(transactionId, "time")); // request time
+
+        // register complete handler for transaction.
+        transaction.onComplete(
+                (Message[] responses) -&gt; &#123;
+
+                    // concatenate service responses into a string.
+                    StringBuilder dateAndTime = new StringBuilder();
+                    for(Message msg: responses) &#123;
+                        String calendarResponse = ClassMapper.CastPayload(String.class, (Response)msg.getPayload());
+                        dateAndTime.append(calendarResponse + " "); // add each response together.
+                    &#125;
+
+                    // prepare a response, with our date and time requests stuck together as a more elaborate response.
+                    Response&lt;String&gt; response = new Response&lt;&gt;(request.getId(),
+                            "Fabric Pong (Full): Pong++ " + dateAndTime.toString());
+                    this.sendResponse(response, request.getId(), request.getTargetUser());
+                &#125;
+        );
+
+        // commit transaction.
+        transaction.commit();
+    &#125;
+&#125;
+
+abstract class PongRequestType &#123;
+    static final String Basic = "Basic";
+    static final String Full = "Full";
+&#125;
+</code></pre>
+
+<h3>
+    What is happening in the sample?
+</h3>
+
+<p>
+    First of all, the <code class="clr-code">PongService</code> is handling two requests 'Basic' and 'Full' and everything else is returned as an error, with an unknown request.
+</p>
+
+
+<pre class="code"><code class="language-java" ngNonBindable>...
+protected void handleServiceRequest(Request request, Message busMessage) &#123;
+
+    // which command shall we run?
+    switch(request.getRequest()) &#123;
+        case PongRequestType.Basic:
+            this.handleBasicPongRequest(request);
+            break;
+
+        case PongRequestType.Full:
+            this.handleFullPongRequest(request);
+            break;
+
+        case default:
+            this.handleUnknownRequest(request);
+            break;
+    &#125;
+&#125;
+...</code></pre>
+
+
+<hr/>
+<a routerLink="/java/private-channels" class="btn btn-primary btn-block btn-outline">Next Steps: Private Channels</a>

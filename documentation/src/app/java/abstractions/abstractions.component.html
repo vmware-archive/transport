@@ -1,0 +1,221 @@
+<h1>Accessing the bus and features via class Abstractions (Java)</h1>
+
+<p>
+    In the Java version of the Transport, there are currently only two abstractions available. <code class="clr-code">AbstractBase</code>
+    and
+    <code class="clr-code">AbstractService</code> (which extends from <code class="clr-code">AbstractBase</code>)
+</p>
+<p>
+    Extending your classes from these abstractions is pretty important if you want a clean, consistent design in your
+    app.
+</p>
+<hr/>
+
+<h3 id="abstractcore">Using <code class="clr-code">AbstractBase</code> - <span class="emphasis">Base class for bus enabled classes</span>
+</h3>
+
+<p>
+    <code class="clr-code">AbstractBase</code> provides access to the event bus and logging.
+</p>
+
+
+<pre class="code"><code class="language-java" ngNonBindable>import com.vmware.transport.core.AbstractBase;
+
+@Component
+public class MyClass extends AbstractBase &#123;
+    // .. regular Java stuff goes here.
+&#125;</code></pre>
+
+<p>
+    <code class="clr-code">AbstractBase</code> is actually quite basic, You can see the code at:
+    <a href="https://github.com/vmware/transport-java/blob/master/java/src/main/com/vmware/transport/core/AbstractBase.java"
+       target="_blank">
+        https://github.com/vmware/transport-java/blob/master/java/src/main/com/vmware/transport/core/AbstractBase.java
+    </a>
+</p>
+
+<p>
+    There is a single required interface method that you need to implement in order to use <code class="clr-code">AbstractBase</code>.
+    This interface method is
+    <code class="clr-code">initialize()</code>. This is your kick off / boot method, to do what ever you need to.
+</p>
+
+<pre class="code"><code class="language-java" ngNonBindable>import com.vmware.transport.core.AbstractBase;
+
+@Component
+public class MyClass extends AbstractBase &#123;
+    public void initialize() &#123;
+        // .. kick off your stuff here.
+    &#125;
+&#125;</code></pre>
+<hr/>
+
+
+<h3 id="abstractservice">Using <code class="clr-code">AbstractService&lt;ReqT, RespT&gt;</code> - <span
+    class="emphasis">For services</span></h3>
+
+<p>
+    <code class="clr-code">AbstractService</code> allows you to build services that can respond to requests via the
+    distributed bus via Galactic Channels.
+</p>
+
+<p>
+    If you want to build custom services that perform any kind of complex business logic, or call APIs.. and you want to
+    make them available to any UI or CLI that is
+    operating over the fabric, then this is the class for you!
+</p>
+
+<p>
+    The two generic params are the Request type and Response type of what your class is expecting to receive. The
+    request comes from the consumer, the response is
+    what the service returns to the consumer (as the service is the producer).
+</p>
+
+<p>
+    Let's create a sample service called <strong>CalendarService</strong> that simply returns a date or time. This is a
+    very simple example of a service that uses  <code class="clr-code">AbstractService</code>.
+</p>
+
+<h3>Java CalendarService</h3>
+<pre class="code"><code class="language-java" ngNonBindable>package samples;
+
+import com.vmware.transport.bridge.Request;
+import com.vmware.transport.bridge.Response;
+import com.vmware.transport.bus.model.Message;
+import com.vmware.transport.core.AbstractService;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+@Component
+public class CalendarService extends AbstractService&lt;Request&lt;String&gt;, Response&lt;String&gt;&gt; &#123;
+
+    // define the channel the service operates on,.
+    public static final String Channel = "calendar-service";
+
+    CalendarService() &#123;
+        super(CalendarService.Channel);
+    &#125;
+
+    // handle service request.
+    protected void handleServiceRequest(Request request, Message busMessage) &#123;
+
+        // which command/request shall we run?
+        switch(request.getRequest()) &#123;
+            case SampleCommand.Date:
+                handleDate(request);
+                break;
+
+            case SampleCommand.Time:
+                handleTime(request);
+                break;
+
+            default:
+                this.handleUnknownRequest(request);
+        &#125;
+    &#125;
+
+    private String formatCalendar(String format) &#123;
+        Calendar calendar = GregorianCalendar.getInstance();
+        SimpleDateFormat fmt = new SimpleDateFormat(format);
+        return fmt.format(calendar.getTime());
+    &#125;
+
+    private void handleTime(Request request) &#123;
+        Response&lt;String&gt; response = new Response&lt;&gt;(request.getId(), formatCalendar("hh:mm:ss a"));
+        this.sendResponse(response, request.getId(), request.getTargetUser());
+    &#125;
+
+    private void handleDate(Request request) &#123;
+        Response&lt;String&gt; response = new Response&lt;&gt;(request.getId(), formatCalendar("yyyy-MM-dd"));
+        this.sendResponse(response, request.getId(), request.getTargetUser());
+    &#125;
+&#125;
+
+abstract class SampleCommand &#123;
+    static final String Time = "time";
+    static final String Date = "date";
+&#125;</code></pre>
+
+
+<h3>How would I call CalendarService from a UI?</h3>
+
+<p>
+    It's still pretty simple. The Demo component above looks like this:
+</p>
+
+
+<h3>Angular CalendarComponent</h3>
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; ChangeDetectorRef, Component, OnDestroy, OnInit &#125; from '@angular/core';
+import &#123; ClrLoadingState &#125; from '@clr/angular';
+import &#123; APIResponse, AbstractBase &#125; from '@vmware/transport';
+import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+import &#123; FabricConnectionState &#125; from '@vmware/transport/fabric.api';
+
+@Component(&#123;
+    selector: 'calendar-service-component',
+    template: `
+        &lt;div class="clr-row" *ngIf="connected"&gt;
+            &lt;div class="clr-col-6"&gt;
+                &lt;button [clrLoading]="requestLoading" class="btn btn-primary-outline btn-sm" (click)="requestTime()"&gt;
+                    Request Time
+                &lt;/button&gt;
+                &lt;button [clrLoading]="requestLoading" class="btn btn-primary-outline btn-sm" (click)="requestDate()"&gt;
+                    Request Date
+                &lt;/button&gt;
+                &lt;button [clrLoading]="requestLoading" class="btn btn-primary-outline btn-sm" (click)="unknownCommand()"&gt;
+                    Send Invalid Command
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="clr-col-6" *ngIf="item"&gt;
+                Fabric Calendar Service Response: &lt;span class="emphasis"&gt;&#123;&#123;item&#125;&#125;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;`
+&#125;)
+export class CalendarServiceComponent extends AbstractBase implements OnInit, OnDestroy &#123;
+
+    requestLoading: ClrLoadingState = ClrLoadingState.DEFAULT;
+    public item: string;
+
+    constructor() &#123;
+        super('CalendarServiceComponent');
+    &#125;
+
+    ngOnDestroy() &#123;
+        // stop channel from being extended to fabric.
+        this.bus.markChannelAsLocal('calendar-service');
+    &#125;
+
+    ngOnInit(): void &#123;
+        // extend channel to fabric.
+        this.bus.markChannelAsGalactic('calendar-service');
+    &#125;
+
+    private makeRequest(command: string) &#123;
+        // show state on the button
+        this.requestLoading = ClrLoadingState.LOADING;
+        const request = this.fabric.generateFabricRequest(command);
+
+        this.bus.requestOnceWithId(GeneralUtil.genUUIDShort(), 'calendar-service', request)
+            .handle((response: APIResponse&lt;string&gt;) =&gt; &#123;
+                this.item = response.payload;
+                this.requestLoading = ClrLoadingState.DEFAULT;
+            &#125;);
+    &#125;
+
+    requestTime(): void &#123;
+        this.makeRequest('time');
+    &#125;
+
+    requestDate(): void &#123;
+        this.makeRequest('date');
+    &#125;
+
+    unknownCommand(): void &#123;
+        this.makeRequest('invalid');
+    &#125;
+&#125;
+</code></pre>
+

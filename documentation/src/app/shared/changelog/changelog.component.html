@@ -1,0 +1,19 @@
+<clr-datagrid [clrDgLoading]="loading">
+    <clr-dg-column [clrDgSortOrder]="ClrDatagridSortOrder.DESC">Version</clr-dg-column>
+    <clr-dg-column>Date</clr-dg-column>
+    <clr-dg-column>Notes</clr-dg-column>
+    <clr-dg-row *clrDgItems="let log of changelog">
+        <clr-dg-cell>{{log.version}}</clr-dg-cell>
+        <clr-dg-cell>{{log.date | date}}</clr-dg-cell>
+        <clr-dg-cell>
+            <ul class="list">
+                <li *ngFor="let note of log.notes">
+                    {{note.description}}
+                    <a href="{{note.review_uri}}" *ngIf="note.review_uri != null">| Code Review</a>
+                </li>
+            </ul>
+        </clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{changelog.length}} Releases</clr-dg-footer>
+</clr-datagrid>
+

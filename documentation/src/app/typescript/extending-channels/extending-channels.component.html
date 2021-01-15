@@ -1,0 +1,53 @@
+<h1>Talking to peers across the fabric.</h1>
+
+<p>
+    Extending channels is the concept of being able to decide which channels you extend to a broker, and how you map them to destinations on those brokers.
+</p>
+
+<h2>Galactic Channels</h2>
+
+<p>
+    When Transport was being developed, it was originally had a code name of 'Bifröst'. The term 'Galactic' Channel, stems from the idea that you could extend a channel to any other destination, on any compatible broker.
+</p>
+<p>
+    Essentially, marking a channel as galactic <strong class="emphasis">extends it to a broker destination</strong>, marking it as local <strong class="emphasis">boxes it to the local application</strong> only.
+</p>
+<hr/>
+<h2>Marking a channel as Galactic</h2>
+
+<p>
+    Use the <a href="https://github.com/vmware/transport-typescript/blob/master/src/bus.api.ts#L446"><code class="clr-code">bus.markChannelAsGalactic</code></a> method. You can supply a broker identity, if you're
+    using multiple brokers, to make sure you don't extend channels to all brokers.
+</p>
+
+<hr/>
+
+<h2>Private Channels (Topics)</h2>
+
+<p>
+   If you're using the Java or Golang version of Transport as your backend/service broker, you can use the optional  <code class="clr-code">isPrivate</code> argument and set it to true. This will use a queue instead of a topic
+    to communicate with your backend service. This is important if you don't want other clients or components in your applications to pick up this traffic.
+</p>
+
+<h4>
+    Using <a href="https://github.com/vmware/transport-typescript/blob/master/src/fabric.api.ts#L92"><code class="clr-code">this.fabric.generateFabricRequest</code></a>?
+</h4>
+
+<p>
+    This method creates a fabric ready request, capable of being routed across to services that are listening on remote / galactic channels, and that are using the Transport Java or Golang.
+    You supply a command and an optional payload to send.
+</p>
+<h4>
+    Can I message over galactic channels without using  <a href="https://github.com/vmware/transport-typescript/blob/master/src/fabric.api.ts#L92"><code class="clr-code">this.fabric.generateFabricRequest</code></a>?
+</h4>
+<p>
+    Yes. You can send what ever you like.
+</p>
+
+<hr/>
+<h4>
+    👉 Use requests that operate over ID's or Transactions instead of public requests/responses to avoid crosstalk. 👈
+</h4>
+<hr/>
+<a routerLink="/ts/store-basics" class="btn btn-primary btn-block btn-outline">Next Steps: store basics</a>
+
