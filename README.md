@@ -2,7 +2,7 @@
 
 Transport is a full stack, simple, fast, expandable application event bus for your applications.
 
-## What does that mean?
+### What does that mean?
 
 Transport is an event bus, that allows application developers to build components that can talk to one another, really easily.
 
@@ -12,13 +12,13 @@ It really comes to life when you use it to send messages, requests, responses an
 
 Channels can be extended to major brokers like Kafka or RabbitMQ, so Transport becomes an 'on/off-ramp' for your main sources of truth.
 
-##[View Transport Documentation](https://vmware.github.io/transport)
+###[View Transport Documentation](https://vmware.github.io/transport)
 
-##[View TypeScript Source Repository](https://github.com/vmware/transport-typescript)
+###[View TypeScript Source Repository](https://github.com/vmware/transport-typescript)
 
-##[View Java Source Repository](https://github.com/vmware/transport-java)
+###[View Java Source Repository](https://github.com/vmware/transport-java)
 
-##[View Golang Source Repository](https://github.com/vmware/transport-go)
+###[View Golang Source Repository](https://github.com/vmware/transport-go)
 
 
 ## Contributing
