@@ -1,3 +1,9 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
+
 export interface TermCommand {
     title: string;
     command: string;
@@ -47,7 +53,7 @@ export interface TermCommand {
  export const tsTerminalCommands = [
     {
         title: 'Step 1:  Install the code',
-        command: 'npm install @vmware/transport-typescript --save',
+        command: 'npm install @vmw/transport --save',
         notes: 'Install transport-typescript into your app'
     },
 ];

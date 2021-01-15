@@ -1,5 +1,6 @@
-/**
- * Copyright(c) VMware Inc. 2017-2020
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
  */
 
 export interface ChangelogEntry {

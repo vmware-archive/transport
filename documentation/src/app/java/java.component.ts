@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({

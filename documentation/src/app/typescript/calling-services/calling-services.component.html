@@ -17,10 +17,10 @@
 <p>Lets create a simple component called <code class="clr-code">PingComponent</code></p>
 
 <h3>Angular PingComponent</h3>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractBase &#125; from '@vmware/transport/core';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; AbstractBase &#125; from '@vmw/transport/core';
 import &#123; Component &#125; from '@angular/core';
 import &#123; PongRequestType, PongServiceChannel, PongServiceRequest, PongServiceResponse &#125; from './pong.service.model';
-import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+import &#123; GeneralUtil &#125; from '@vmw/transport/util/util';
 
 @Component(&#123;
     selector: 'ping-component',
@@ -79,7 +79,7 @@ export class PingComponent extends AbstractBase &#123;
 import React, &#123; useState &#125; from 'react';
 import &#123; useTransport &#125; from 'react-Transport';
 import &#123; PongRequestType, PongServiceChannel, PongServiceRequest, PongServiceResponse &#125; from 'pong.service.model';
-import &#123; GeneralUtil &#125; from '@vmware/transport/util/util';
+import &#123; GeneralUtil &#125; from '@vmw/transport/util/util';
 
 export default function PingComponent() &#123;
 

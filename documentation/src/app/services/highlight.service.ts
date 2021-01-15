@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 import { Injectable, Inject } from '@angular/core';
 
 import { PLATFORM_ID } from '@angular/core';

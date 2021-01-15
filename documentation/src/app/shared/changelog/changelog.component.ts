@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 import {Component, Input, OnInit} from '@angular/core';
 import { ClrDatagridComparatorInterface, ClrDatagridSortOrder } from '@clr/angular';
 import { ChangelogEntry } from './changelog.model';
