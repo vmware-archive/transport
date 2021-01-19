@@ -30,10 +30,10 @@ export class IframesComponent extends AbstractBase implements OnInit {
         this.proxyControl = this.bus.enableMessageProxy({
             protectedChannels: ['chatty-chat'],
             proxyType: ProxyType.Parent,
-            parentOrigin: `https://github.com`,
+            parentOrigin: `https://vmware.github.io`,
             acceptedOrigins: [
                 'http://localhost:4200',
-                'https://github.com'],
+                'https://vmware.github.io'],
             targetAllFrames: true,
             targetSpecificFrames: null,
         });
