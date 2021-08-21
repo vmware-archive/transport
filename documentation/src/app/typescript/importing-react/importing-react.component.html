@@ -1,0 +1,83 @@
+<h1>Importing Transport for TypeScript into React Applications</h1>
+
+<p>
+    Make sure you install transport first. Package is available via npm.
+</p>
+<br/>
+<transport-animated-console [inputCommand]="'npm install @vmw/transport --save'"
+                            [consoleTheme]="'macOS'"
+                            [loopAnimation]="false"
+                            [disableAnimation]="true">
+</transport-animated-console>
+
+<hr/>
+<h2></h2>
+
+<p>
+    React is really simple, it's as simple as <a routerLink="../importing">importing ES6</a>.
+</p>
+<pre class="code"><code class="language-js">import React, &#123; Component &#125; from 'react';
+import &#123; render &#125; from 'react-dom';
+import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
+
+interface AppProps &#123;&#125;
+interface AppState &#123;
+    id: string;
+&#125;
+
+class App extends Component&lt;AppProps, AppState&gt; &#123;
+    constructor(props) &#123;
+    super(props);
+
+    // boot the bus
+    BusUtil.bootBus();
+
+    // capture instance of the bus.
+    const bus = BusUtil.getBusInstance();
+
+    // set state.
+    this.state = &#123;
+        id: bus.api.getId()
+    &#125;;
+  &#125;
+
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;Hello id=&#123;this.state.id&#125; /=&gt;
+      &lt;/div&gt;
+    );
+  &#125;
+&#125;
+render(&lt;App /&gt;, document.getElementById('root'));
+</code></pre>
+
+
+<h4><a href="https://stackblitz.com/edit/react-ts-zfats4?file=index.tsx">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/react-ts-zfats4?ctl=1&embed=1&file=index.tsx" class="stackblitz"></iframe>
+<hr/>
+
+
+<h2>Using a Provider to access Transport</h2>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>import React, &#123; useContext &#125; from 'react';
+import &#123; AbstractCore &#125; from '@vmw/transport/core';
+
+export class Transport extends AbstractCore &#123;&#125;
+export const TransportContext = React.createContext&lt;any&gt;(null);
+
+interface ProviderProps extends React.Props &#123;
+    transport: Transport;
+&#125;
+
+export const Provider: React.FC&lt;ProviderProps&gt; = props => (
+  &lt;TransportContext.Provider value=&#123;props.transport&#125;&gt;
+    &#123;props.children&#125;
+  &lt;/TransportContext.Provider&gt;
+);
+
+export const useTransport = () => useContext(TransportContext);
+</code></pre>
+
+<a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
+

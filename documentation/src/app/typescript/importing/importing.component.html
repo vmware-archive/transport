@@ -1,7 +1,7 @@
-<h1>Importing Transport for TypeScript</h1>
+<h1>Importing Transport for TypeScript via ES6 Module</h1>
 
 <p>
-    Pretty standard really. Package is available via npm.
+    Make sure you install transport first, Package is available via npm.
 </p>
 <br/>
 <transport-animated-console [inputCommand]="'npm install @vmw/transport --save'"
@@ -12,38 +12,32 @@
 
 <hr/>
 
-
-<h2>Adding Transport to an Angular application</h2>
-
-
+<h2>Option 1: ES6 Module Import (recommended)</h2>
 
 <p>
-    Angular provides <code class="clr-code">angular.json</code> (for Angular 7+) and <code class="clr-code">angular-cli.json</code>
-    (for Angular 4-5).
+    This is way we recommend you import Transport. It allows build management tools such as Webpack to tree-shake unused
+    exports of the library. This in turn shaving off some bits and reduces overall size of your application.
 </p>
 <p>
-    In this file, there is a section defined as <code class="clr-code">scripts</code>. This section is where you provide
-    third party scripts to be booted and loaded by your Angular application.
-</p>
-<p>
-    You will need to add the Transport UMD file to this section. It's already been saved in your <code class="clr-code">node_modules</code>
-    folder. Just provide an entry like the one below.
+    To import and initialize Transport, simply call <code class="clr-code">BusUtil.bootBus()</code> as follows:
 </p>
 
-<h3>Configuring <code class="clr-code">angular.json</code></h3>
-<pre class="code"><code class="language-json" ngNonBindable>...
-"scripts": [
-    "node_modules/@vmw/transport/transport.umd.min.js"
-]
-...</code></pre>
+<pre class="code"><code class="language-js" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
-<p>
-    Your application is ready to go, now you just need to boot transport
-</p>
-<p>
-    Angular provides a  <code class="clr-code">src/main.ts</code> file, which is essentially your initialization script, that
-    you can use to <a routerLink="./initializing">Initialize the Bus.</a>
-</p>
+// boot the event bus!
+BusUtil.bootBus();
+
+// create a reference to the bus
+const bus = BusUtil.getBusInstance();
+
+// now do something interesting.
+...
+</code></pre>
+
+
+<h4><a href="https://stackblitz.com/edit/js-kduy8v?file=index.js">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/js-kduy8v?file=index.js&ctl=1&embed=1" class="stackblitz"></iframe>
+
 
 <hr/>
 <h2>Importing Transport in your code</h2>

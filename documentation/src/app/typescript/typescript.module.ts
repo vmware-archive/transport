@@ -28,10 +28,13 @@ import { StoreAdvancedComponent } from './store-advanced/store-advanced.componen
 import { IframesComponent } from './iframes/iframes.component';
 import { IframeDemoComponent } from './iframes/iframe-demo/iframe-demo.component';
 import { AbstractionsComponent } from './abstractions/abstractions.component';
+import { ImportingAngularComponent } from './importing-angular/importing-angular.component';
+import { ImportingUmdComponent } from './importing-umd/importing-umd.component';
+import { ImportingReactComponent } from './importing-react/importing-react.component';
 
 
 @NgModule({
-    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent, StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent],
+    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent, StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent, ImportingAngularComponent, ImportingUmdComponent, ImportingReactComponent],
     imports: [
         CommonModule,
         TypescriptRoutingModule,
