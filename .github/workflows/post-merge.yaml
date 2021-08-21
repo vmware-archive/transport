@@ -1,0 +1,25 @@
+name: GH Page Post-merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        working-directory: documentation
+        run: |
+          npm install
+          npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        working-directory: documentation
+        with:
+          branch: gh-pages
+          folder: dist/documentation
+
+
