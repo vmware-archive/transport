@@ -19,57 +19,23 @@
 <pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport (event bus)
-BusUtil.bootBus();
+const bus = BusUtil.bootBus();
 </code></pre>
 
 <h4 class="orange">Using Options</h4>
 <pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport, with debug logging enabled, and the boot message is not disabled.
-BusUtil.bootBusWithOptions(LogLevel.Debug, false);
+const bus = BusUtil.bootBusWithOptions(LogLevel.Debug, false);
 </code></pre>
 
 <p>
-    Transport is now active and ready to be be used. It operates as a singleton inside your application.
+    Transport is now active and ready to be be used. It operates as a singleton inside your application. You don't
+    need to hold on to your reference here, the bus is attached to the  <code class="clr-code">window</code> object and won't
+    be lost.
 </p>
 
 
-<hr/>
-
-<h2>Adding Transport to a React application</h2>
-
-<div class="alert alert-info" role="alert">
-    <div class="alert-items">
-        <div class="alert-item static">
-            <div class="alert-icon-wrapper">
-                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-            </div>
-            <span class="alert-text">
-                    We have not spent a huge amount of time integrating Transport into React just yet, so you need to create a Prop to access inside your components
-                </span>
-        </div>
-    </div>
-</div>
-
-
-<pre class="code"><code class="language-typescript" ngNonBindable>import React, &#123; useContext &#125; from 'react';
-import &#123; AbstractCore &#125; from '@vmw/transport/core';
-
-export class Transport extends AbstractCore &#123;&#125;
-export const TransportContext = React.createContext&lt;any&gt;(null);
-
-interface ProviderProps extends React.Props &#123;
-    transport: Transport;
-&#125;
-
-export const Provider: React.FC&lt;ProviderProps&gt; = props => (
-  &lt;TransportContext.Provider value=&#123;props.transport&#125;&gt;
-    &#123;props.children&#125;
-  &lt;/TransportContext.Provider&gt;
-);
-
-export const useTransport = () => useContext(TransportContext);
-</code></pre>
 
 <hr/>
 
@@ -103,11 +69,11 @@ export const useTransport = () => useContext(TransportContext);
     <div class="clr-col-lg-6">
         <div class="card">
             <div class="card-header">
-                Using built in <a routerLink="./abstractions">Abstract Classes</a>
+                Using built in <a routerLink="../abstractions">Abstract Classes</a>
             </div>
             <div class="card-block">
                 <div class="card-text">
-                    We created a few simple <a routerLink="./abstractions">abstract base classes</a> that prepare everything for you. This is the
+                    We created a few simple <a routerLink="../abstractions">abstract base classes</a> that prepare everything for you. This is the
                     easiest and cleanest way if you're using TypeScript.
                 </div>
             </div>

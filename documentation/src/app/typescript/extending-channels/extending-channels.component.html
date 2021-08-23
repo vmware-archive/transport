@@ -1,4 +1,4 @@
-<h1>Talking to peers across the fabric.</h1>
+<h1>Extending local channels to be 'Galactic' Channels.</h1>
 
 <p>
     Extending channels is the concept of being able to decide which channels you extend to a broker, and how you map them to destinations on those brokers.
@@ -16,16 +16,22 @@
 <h2>Marking a channel as Galactic</h2>
 
 <p>
-    Use the <a href="https://github.com/vmware/transport-typescript/blob/master/src/bus.api.ts#L446"><code class="clr-code">bus.markChannelAsGalactic</code></a> method. You can supply a broker identity, if you're
+    Use the <a href="https://github.com/vmware/transport-typescript/blob/master/src/bus.api.ts#L446"><code class="clr-code">bus.markChannelAsGalactic()</code></a> method. You can supply a broker identity, if you're
     using multiple brokers, to make sure you don't extend channels to all brokers.
 </p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>this.bus.markChannelAsGalactic('simple-stream');</code></pre>
+
+<p> To stop extending a channel, use the <code class="clr-code">bus.markChannelAsLocal()</code> method</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable>this.bus.markChannelAsLocal('simple-stream');</code></pre>
 
 <hr/>
 
 <h2>Private Channels (Topics)</h2>
 
 <p>
-   If you're using the Java or Golang version of Transport as your backend/service broker, you can use the optional  <code class="clr-code">isPrivate</code> argument and set it to true. This will use a queue instead of a topic
+    If you're using the <a routerLink="/java/overview">Java</a> or  <a routerLink="/golang/overview">Golang</a> version of Transport as your backend/service broker, you can use the optional  <code class="clr-code">isPrivate</code> argument and set it to true. This will use a queue instead of a topic
     to communicate with your backend service. This is important if you don't want other clients or components in your applications to pick up this traffic.
 </p>
 

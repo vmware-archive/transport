@@ -1,11 +1,11 @@
-<h1>Extending your bus to a Broker.</h1>
+<h1>Extending Transport to a Message Broker.</h1>
 <p>
     Transport provides a decoupling mechanism between consumers and producers, via a universal API that makes pub-sub simple across any set of distributed applications. This also allows us to locate producers
     and consumers where-ever we want across applications.
 </p>
 <p>
     When you extend to a broker, you will be extending your local event bus, to a distributed event bus via a message/event broker. This distributed event bus can have sources, relays, producers, consumers and integrations.
-    We call this concept a 'fabric'.
+    We call this concept a '<strong>fabric</strong>'.
 </p>
 <p>
     As a developer, you would simply mark which channels you'd like to make 'Galactic' and they would be automatically bridged from your local application bus to the broker. A 'Galactic' Channel is a channel on the bus
@@ -18,7 +18,7 @@
 </p>
 
 <hr/>
-<h3>How the browser connects to the fabric.</h3>
+<h3>How the browser connects to the 'fabric'.</h3>
 <p>
     The browser connects to brokers via a WebSocket. The wire protocol used on the WebSocket is <a href="http://stomp.github.io/" target="_blank">STOMP</a>. STOMP stands for
     <span class="emphasis">Simple Text Oriented Messaging Protocol.</span>
@@ -28,7 +28,7 @@
 <h4>Why STOMP?</h4>
 <ol class="list">
     <li>
-        It's a pub/sub protocol that is a standard and is <a href="http://stomp.github.io/implementations.html" target="_blank">widely accepted</a>. It means the fabric is compatible with any STOMP broker.
+        It's a standard Pub-Sub protocol that is <a href="http://stomp.github.io/implementations.html" target="_blank">widely accepted</a>. It means the fabric is compatible with any STOMP broker.
     </li>
     <li>
         You cannot talk AMQP over a WebSocket, Which means without STOMP, we can't talk directly to ANY broker.

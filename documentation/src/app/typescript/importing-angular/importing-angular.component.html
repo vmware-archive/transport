@@ -1,0 +1,54 @@
+<h1>Importing Transport for TypeScript into Angular Applications</h1>
+
+<p>
+    Make sure you install transport first. Package is available via npm.
+</p>
+<br/>
+<transport-animated-console [inputCommand]="'npm install @vmw/transport --save'"
+                            [consoleTheme]="'macOS'"
+                            [loopAnimation]="false"
+                            [disableAnimation]="true">
+</transport-animated-console>
+
+<hr/>
+<h2></h2>
+
+<p>
+    Angular provides <code class="clr-code">angular.json</code> (for Angular 7+) and <code class="clr-code">angular-cli.json</code>
+    (for Angular 4-5).
+</p>
+
+<h4>Configuring <code class="clr-code">angular.json</code></h4>
+
+<p>
+    You need to add <code class="clr-code">@vmw/transport</code> to the <code class="clr-code">allowedCommonJsDependencies</code>
+    option that is a part of <code class="clr-code">architect/build/options</code> property in your <code class="clr-code">angular.json</code>
+</p>
+
+
+<pre class="code"><code class="language-json" ngNonBindable>...
+ "allowedCommonJsDependencies": ["@vmw/transport"],
+...</code></pre>
+
+
+
+<p>
+    Your application is ready to go, now you just need to boot transport
+</p>
+<p>
+    Angular provides a  <code class="clr-code">src/main.ts</code> file, which is essentially your initialization script, that
+    you can use to <a routerLink="../initializing">Initialize the Bus.</a>
+</p>
+
+<pre class="code"><code class="language-js">import &#123;BusUtil&#125; from "@vmw/transport/util/bus.util";
+import &#123;LogLevel&#125; from "@vmw/transport/log";
+
+BusUtil.bootBus();
+</code></pre>
+
+
+<h4><a href="https://stackblitz.com/edit/angular-jxca5i">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/angular-jxca5i?ctl=1&embed=1&file=src/main.ts" class="stackblitz"></iframe>
+<hr/>
+<a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
+

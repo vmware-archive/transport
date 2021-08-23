@@ -24,6 +24,9 @@ import {StoreBasicsComponent} from "@vmw/transport-docs/typescript/store-basics/
 import {StoreAdvancedComponent} from "@vmw/transport-docs/typescript/store-advanced/store-advanced.component";
 import {IframesComponent} from "@vmw/transport-docs/typescript/iframes/iframes.component";
 import {AbstractionsComponent} from "@vmw/transport-docs/typescript/abstractions/abstractions.component";
+import {ImportingAngularComponent} from "@vmw/transport-docs/typescript/importing-angular/importing-angular.component";
+import {ImportingReactComponent} from "@vmw/transport-docs/typescript/importing-react/importing-react.component";
+import {ImportingUmdComponent} from "@vmw/transport-docs/typescript/importing-umd/importing-umd.component";
 
 const routes: Routes = [
     {
@@ -33,6 +36,9 @@ const routes: Routes = [
             {path: '', component: OverviewComponent},
             {path: 'overview', component: OverviewComponent},
             {path: 'importing', component: ImportingComponent},
+            {path: 'importing-angular', component: ImportingAngularComponent},
+            {path: 'importing-umd', component: ImportingUmdComponent},
+            {path: 'importing-react', component: ImportingReactComponent},
             {path: 'initializing', component: InitializingComponent},
             {path: 'hello-world', component: HelloWorldComponent},
             {path: 'building-services', component: BuildingServicesComponent},

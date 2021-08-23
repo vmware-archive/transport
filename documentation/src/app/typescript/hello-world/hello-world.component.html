@@ -5,81 +5,152 @@
 </p>
 
 <h3>Angular Example</h3>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; Component, OnInit &#125; from '@angular/core';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; Component, Input, OnInit &#125; from '@angular/core';
 import &#123; AbstractBase &#125; from '@vmw/transport/core';
 
 @Component(&#123;
     selector: 'hello-world',
-    template: `&#123;&#123;message&#125;&#125;`
+    template: `
+    &lt;h1&gt;Transport: Hello World Angular&lt;/h1&gt;
+    &lt;p&gt;
+      Sending Ping (to myself):
+    &lt;/p&gt;
+    &lt;hr /&gt;
+    &lt;p&gt;
+      Ping:
+      &lt;strong&gt;&lt;code&gt;&#123;&#123; ping &#125;&#125;&lt;/code&gt;&lt;/strong&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      Pong:
+      &lt;strong&gt;&lt;code&gt;&#123;&#123; pong &#125;&#125;&lt;/code&gt;&lt;/strong&gt;
+    &lt;/p&gt;
+  `,
+    styles: []
 &#125;)
 export class HelloWorldComponent extends AbstractBase implements OnInit &#123;
+    @Input() ping: string;
+    public pong: string;
+
+    // define a channel to talk on.
+    private myChannel = 'some-channel';
 
     constructor() &#123;
         super('HelloWorldComponent');
     &#125;
 
-    ngOnInit() &#123;
-
-        // define a channel to talk on.
-        let myChannel = 'some-channel';
-
+    ngOnInit(): void &#123;
         // listen for requests on 'myChannel' and return a response.
-        this.bus.respondOnce(myChannel)
-            .generate(
-                (request: string) => &#123;
-                    this.log.info(`Request Received: $&#123;request&#125;, Sending Response...`);
-                    return 'world';
-                &#125;
-            );
-
-        this.log.info('Sending Request');
+        this.bus.respondOnce(this.myChannel)
+            .generate((request: string) =&gt; &#123;
+                return 'Message received! ' + request;
+            &#125;);
 
         // send request 'hello' on channel 'myChannel'.
-        this.bus.requestOnce(myChannel, 'hello')
-            .handle(
-                (response: string) => &#123;
-                    this.log.info(`hello $&#123;response&#125;`);
-                &#125;
-            );
+        this.bus.requestOnce(this.myChannel, this.ping)
+            .handle((response: string) =&gt; &#123;
+                this.pong = response;
+            &#125;);
     &#125;
-&#125;</code></pre>
+&#125;
+</code></pre>
+
+<h4><a href="https://stackblitz.com/edit/angular-hbyhd5">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/angular-hbyhd5?ctl=1&embed=1&file=src/app/hello-world.component.ts" class="stackblitz"></iframe>
 
 <hr/>
 <h3>React Example</h3>
 
+<p>
+    There are multiple ways to use transport inside of any UI framework, so to keep things simple, we have created a
+    small but useful React Component superclass that makes the bus available easily.
+</p>
+
+<pre class="code">
+<code class="language-typescript" ngNonBindable>import &#123; EventBus &#125; from '@vmw/transport/bus.api';
+import &#123; BusUtil &#125; from '@vmw/transport/util';
+import React from 'react';
+
+export abstract class BaseComponent&lt;A, S&gt; extends React.Component&lt;A, S&gt; &#123;
+    public bus: EventBus = BusUtil.getBusInstance();
+    constructor(props: A) &#123;
+    super();
+  &#125;
+&#125;
+
+/* Define application state and props */
+interface AppProps  &#123;
+    ping: string;
+ &#125;
+interface AppState  &#123;
+    pong: string;
+&#125;</code></pre>
+
+<p>
+ Now that we have that little superclass there, we can go ahead and create the  <code class="clr-code">HelloWorld</code>
+</p>
+
 <pre class="code">
 <code class="language-typescript" ngNonBindable>
-import React, &#123; useState, useEffect &#125; from 'react';
-import &#123; useTransport &#125; from 'react-transport';
+import &#123; BaseComponent } from './BaseComponent';
+import React from 'react';
 
-export default function HelloWorld(props: any) &#123;
-    const transport = useTransport();
-
+export default class HelloWorld extends BaseComponent&lt;AppProps, AppState&gt; &#123;
     // define a channel to talk on.
-    const myChannel = 'some-channel';
+    private myChannel = 'some-channel';
 
-    useEffect(() => &#123;
+    constructor(props: AppProps) &#123;
+        super(props);
+        this.state = &#123;
+            ping: props.ping,
+            pong: 'no response'
+        &#125;;
+    &#125;
+
+    componentDidMount() &#123;
         // listen for requests on 'myChannel' and return a response.
-        transport.bus.respondOnce(myChannel).generate((request: string) => &#123;
-            transport.log.info(`Request Received: $&#123;request&#125;, Sending Response...`);
-            return 'world';
+        this.bus.respondOnce(this.myChannel).generate((request: string) => &#123;
+            return 'Message received! ' + request;
         &#125;);
-
-        transport.log.info('Sending Request');
 
         // send request 'hello' on channel 'myChannel'.
-        transport.bus.requestOnce(myChannel, 'hello').handle((response: string) => &#123;
-            transport.log.info(`hello $&#123;response&#125;`);
-        &#125;);
-    &#125;, []);
+        this.bus.requestOnce(this.myChannel, this.props.ping)
+          .handle((response: string) => &#123;
 
-    return &#60;div&#62;&#60;/div&#62;;
+            // set state.
+            this.setState(&#123; pong: response &#125;);
+          &#125;);
+    &#125;
+
+    render() &#123;
+        return (
+          &lt;div&gt;
+            &lt;h1&gt;Transport: Hello World React&lt;/h1&gt;
+              &lt;p&gt;Sending Ping (to myself):&lt;/p&gt;
+              &lt;hr /&gt;
+            &lt;p&gt;
+              Ping:&nbsp;
+              &lt;strong&gt;
+                &lt;code&gt;&#123;this.state.ping&#125;&lt;/code&gt;
+              &lt;/strong&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+              Pong:&nbsp;
+              &lt;strong&gt;
+                &lt;code&gt;&#123;this.state.pong&#125;&lt;/code&gt;
+            &lt;/strong&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+        );
+  &#125;
 &#125;
 </code>
 </pre>
 
+<h4><a href="https://stackblitz.com/edit/react-ts-vxv7zh">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/react-ts-vxv7zh?ctl=1&embed=1&file=HelloWorld.tsx" class="stackblitz"></iframe>
+
 <p>
-    In the above example, we set up a simple lambda to handle an inbound message (request). This responder uses the
+    In the above examples, we set up a simple lambda to handle an inbound message (request). This responder uses the
     <code class="clr-code">respondOnce()</code> method
     to listen for a single request, this method returns an object of type <code class="clr-code">MessageResponder&lt;string&gt;</code>.
     Responders generate responses by
@@ -87,11 +158,10 @@ export default function HelloWorld(props: any) &#123;
     argument (in the case of this example <code class="clr-code">request: string</code>),
     and returns a response (in this example <code class="clr-code">'world'</code>).
 </p>
-<pre class="log-output">
-▫️️ <span class="console-purple">[Inf]:</span> <span class="console-pink">Sending Request</span>
-▫️️ <span class="console-purple">[Inf]:</span> <span class="console-pink">Request Received: hello, Sending Response...</span>
-▫️️ <span class="console-purple">[Inf]:</span> <span class="console-pink">hello world</span>
-</pre>
+
+
+
+
 <hr/>
 
 <div class="alert alert-success" role="alert">
@@ -102,12 +172,14 @@ export default function HelloWorld(props: any) &#123;
             </div>
             <span class="alert-text">
                    That's basically it. There are tons more features, however you can essentially locate your sender and receivers in any component, anywhere in your application
-                and this will work.
+                and this will work. This is the value of transport, you can 'jump' anything, any-where, to any-point in your application.
                 </span>
         </div>
     </div>
 </div>
 <hr/>
-<a routerLink="/ts/building-services" class="btn btn-primary btn-block btn-outline">Next Steps: Calling Services</a>
+<a routerLink="/ts/broker-overview" class="btn btn-primary btn-block btn-outline">Next Steps: Broker Overview</a>
+
+
 
 

@@ -12,18 +12,22 @@
     We've tried to keep this as simple as possible. You should really just need to provide a connected and disconnected event handler.
 </p>
 
-<pre class="code"><code class="language-typescript" ngNonBindable>// Called when connected to broker
+<pre class="code"><code class="language-typescript" ngNonBindable>// Set up the bus, before we load any of the app.
+const bus: EventBus = BusUtil.bootBus();
+
+// Called when connected to broker
 const connectedHandler = (sessionId: string) => &#123;
-    this.bus.logger.info(`Connected to Broker with sessionId $&#123;sessionId&#125;`, 'main.ts');
+    bus.logger.info(`Connected to Broker with sessionId $&#123;sessionId&#125;`, 'main.ts');
 &#125;;
 
 // Called when disconnected.
 const disconnectedHandler = () => &#123;
-    this.bus.logger.info('Disconnected from Broker.', 'main.ts');
-&#123;
+    bus.logger.info('Disconnected from Broker.', 'main.ts');
+&#125;
 
-// Connect to Broker.
-this.fabric.connect(connectedHandler, disconnectedHandler);</code></pre>
+// Connect to Broker, this a real working end-point.
+bus.fabric.connect(connectedHandler, disconnectedHandler, 'transport-bus.io', 443, '/ws', true);
+</code></pre>
 
 <p>
     If you need to configure the endpoint, host, port etc, you can also pass those in also as optional args.
@@ -35,7 +39,28 @@ this.fabric.connect(connectedHandler, disconnectedHandler);</code></pre>
 
 <h4>Disconnecting from broker</h4>
 <pre class="code"><code class="language-typescript" ngNonBindable>// Disconnect (close socket completely).
-this.fabric.disconnect();</code></pre>
+bus.fabric.disconnect();</code></pre>
+
+<h4><a href="https://stackblitz.com/edit/angular-kk6cyh">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/angular-kk6cyh?ctl=1&devtoolsheight=33&embed=1&file=src/app/app.component.ts&theme=dark" class="stackblitz"></iframe>
+
+
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                You can always use the built in abstractions that can give you
+                access to the <code class="clr-code">bus</code> and <code class="clr-code">fabric</code> and
+                <code class="clr-code">storeManager</code> instances, without having to do anything.
+            </span>
+        </div>
+    </div>
+</div>
+
+
 
 <hr/>
 
@@ -55,9 +80,9 @@ this.fabric.disconnect();</code></pre>
 </ol>
 
 <h4>Using whenConnectionStateChanges()</h4>
-<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; FabricConnectionState &#125; from '@vmw/transport/fabric.api';
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; FabricApi, FabricConnectionState &#125; from '@vmw/transport/fabric.api';
 
-this.fabric.whenConnectionStateChanges(BusUtil.getFabricConnectionString('mybroker.mycompany.com', 80, '/fabric'))
+this.fabric.whenConnectionStateChanges()
     .subscribe(
         (stateChange: FabricConnectionState) => &#123;
             switch (stateChange) &#123;

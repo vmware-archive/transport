@@ -1,0 +1,47 @@
+<h1>Importing Transport for TypeScript via UMD</h1>
+
+<p>
+    Make sure you install transport first, Package is available via npm.
+</p>
+<br/>
+<transport-animated-console [inputCommand]="'npm install @vmw/transport --save'"
+                            [consoleTheme]="'macOS'"
+                            [loopAnimation]="false"
+                            [disableAnimation]="true">
+</transport-animated-console>
+
+<hr/>
+<h2>UMD module import through the HTML <code class="clr-code">&lt;script&gt;</code> tag</h2>
+
+<p>
+    If you would like to use Transport in a simple setup, say an HTML with WebComponents in it, you can import the UMD
+    version of the library via a script tag. Note that RxJS is the only prerequisite for Transport so make sure to import it first.
+</p>
+
+<pre class="code"><code class="language-js" ngNonBindable>&lt;script src="https://cdn.jsdelivr.net/npm/rxjs@6.6.3/bundles/rxjs.umd.min.js">&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@vmw/transport@latest/transport.umd.min.js">&lt;/script&gt;
+&lt;script&gt;
+    // boot the event bus!
+    transport.TransportEventBus.boot();
+&lt;/script&gt;
+</code></pre>
+
+<h4><a href="https://stackblitz.com/edit/js-yfdlde?file=index.html">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/js-yfdlde?ctl=1&embed=1&file=index.html&theme=dark" class="stackblitz"></iframe>
+
+<hr/>
+
+
+<hr/>
+<h2>Importing Transport in your code</h2>
+
+<p>
+    The main interface you will need is <code class="clr-code">EventBus</code>. It provides access to the most common methods.
+</p>
+
+<pre class="code"><code class="language-typescript" ngNonBindable> import &#123; EventBus &#125; from '@vmw/transport';</code></pre>
+
+<hr/>
+
+<a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
+
