@@ -13,7 +13,7 @@
 </p>
 
 <pre class="code"><code class="language-typescript" ngNonBindable>// Set up the bus, before we load any of the app.
-const bus: EventBus = BusUtil.bootBusWithOptions(LogLevel.Debug, false, true);
+const bus: EventBus = BusUtil.bootBus();
 
 // Called when connected to broker
 const connectedHandler = (sessionId: string) => &#123;
@@ -23,7 +23,7 @@ const connectedHandler = (sessionId: string) => &#123;
 // Called when disconnected.
 const disconnectedHandler = () => &#123;
     bus.logger.info('Disconnected from Broker.', 'main.ts');
-&#123;
+&#125;
 
 // Connect to Broker, this a real working end-point.
 bus.fabric.connect(connectedHandler, disconnectedHandler, 'transport-bus.io', 443, '/ws', true);
@@ -39,7 +39,28 @@ bus.fabric.connect(connectedHandler, disconnectedHandler, 'transport-bus.io', 44
 
 <h4>Disconnecting from broker</h4>
 <pre class="code"><code class="language-typescript" ngNonBindable>// Disconnect (close socket completely).
-this.fabric.disconnect();</code></pre>
+bus.fabric.disconnect();</code></pre>
+
+<h4><a href="https://stackblitz.com/edit/angular-kk6cyh">Try it out in StackBlitz</a></h4>
+<iframe src="https://stackblitz.com/edit/angular-kk6cyh?ctl=1&devtoolsheight=33&embed=1&file=src/app/app.component.ts&theme=dark" class="stackblitz"></iframe>
+
+
+<div class="alert alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                You can always use the built in abstractions that can give you
+                access to the <code class="clr-code">bus</code> and <code class="clr-code">fabric</code> and
+                <code class="clr-code">storeManager</code> instances, without having to do anything.
+            </span>
+        </div>
+    </div>
+</div>
+
+
 
 <hr/>
 

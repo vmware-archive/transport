@@ -19,22 +19,22 @@
 <pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport (event bus)
-BusUtil.bootBus();
+const bus = BusUtil.bootBus();
 </code></pre>
 
 <h4 class="orange">Using Options</h4>
 <pre class="code"><code class="language-typescript" ngNonBindable>import &#123; BusUtil &#125; from '@vmw/transport/util/bus.util';
 
 // initializing transport, with debug logging enabled, and the boot message is not disabled.
-BusUtil.bootBusWithOptions(LogLevel.Debug, false);
+const bus = BusUtil.bootBusWithOptions(LogLevel.Debug, false);
 </code></pre>
 
 <p>
-    Transport is now active and ready to be be used. It operates as a singleton inside your application.
+    Transport is now active and ready to be be used. It operates as a singleton inside your application. You don't
+    need to hold on to your reference here, the bus is attached to the  <code class="clr-code">window</code> object and won't
+    be lost.
 </p>
 
-
-<hr/>
 
 
 <hr/>

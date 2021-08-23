@@ -30,6 +30,24 @@
                 </clr-vertical-nav-group-children>
             </clr-vertical-nav-group>
 
+            <clr-vertical-nav-group routerLinkActive="active">
+                Extending To Brokers
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./broker-overview" routerLinkActive="active">
+                        Overview
+                    </a>
+                    <a clrVerticalNavLink routerLink="./connecting-broker" routerLinkActive="active">
+                        Connecting to a Broker
+                    </a>
+                    <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">
+                        Connecting Multiple Brokers
+                    </a>
+                    <a clrVerticalNavLink routerLink="./extending-channels" routerLinkActive="active">
+                        Extending Channels
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
 
             <clr-vertical-nav-group routerLinkActive="active">
                 Operations
@@ -53,23 +71,7 @@
                 </clr-vertical-nav-group-children>
             </clr-vertical-nav-group>
 
-            <clr-vertical-nav-group routerLinkActive="active">
-                Extending To Brokers
-                <clr-vertical-nav-group-children *clrIfExpanded="true">
-                    <a clrVerticalNavLink routerLink="./broker-overview" routerLinkActive="active">
-                        Overview
-                    </a>
-                    <a clrVerticalNavLink routerLink="./connecting-broker" routerLinkActive="active">
-                        Connecting to a Broker
-                    </a>
-                    <a clrVerticalNavLink routerLink="./multiple-brokers" routerLinkActive="active">
-                        Connecting Multiple Brokers
-                    </a>
-                    <a clrVerticalNavLink routerLink="./extending-channels" routerLinkActive="active">
-                        Extending Channels
-                    </a>
-                </clr-vertical-nav-group-children>
-            </clr-vertical-nav-group>
+
 
             <clr-vertical-nav-group routerLinkActive="active">
                 Using Stores
