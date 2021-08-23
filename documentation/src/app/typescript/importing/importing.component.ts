@@ -13,7 +13,9 @@ import {HighlightService} from '@vmw/transport-docs/services/highlight.service';
   styleUrls: ['./importing.component.scss']
 })
 export class ImportingComponent implements OnInit, AfterViewChecked {
-    constructor(private highlightService: HighlightService) {}
+    constructor(private highlightService: HighlightService) {
+    }
+
     public highlighted = false;
 
     ngOnInit() {
