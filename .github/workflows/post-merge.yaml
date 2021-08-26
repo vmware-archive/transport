@@ -17,9 +17,8 @@ jobs:
           npm run build
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
-        working-directory: documentation
         with:
           branch: gh-pages
-          folder: dist/documentation
+          folder: documentation/dist/documentation
 
 
