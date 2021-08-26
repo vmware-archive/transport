@@ -1,0 +1,30 @@
+<h1>Transport for TypeScript Example: Stock Ticker</h1>
+
+<p>
+    In this example, we have used <a href="https://clarity.design/">Clarity Core</a>, combined with <a href="https://reactjs.org/">React</a>.
+    We have created a simple <code class="clr-code">StockTicker.tsx</code> Component that renders out a form input, along with
+    a button. Type in any known stock ticker symbol and press the button.
+</p>
+
+<p>
+    When you submit the form, the component uses Transport to call our live demo broker that uses <a href="https://github.com/vmware/transport-go/tree/main/plank">plank</a>.
+</p>
+
+<p>
+    <a href="https://github.com/vmware/transport-go/tree/main/plank">plank</a> is running a simple
+    <a href="https://github.com/vmware/transport-go/blob/main/plank/services/stock-ticker-service.go">stock ticker service</a> on the <code class="clr-code">stock-ticker-service</code>
+    channel.
+</p>
+
+<p>
+    The provider API has a hard limit of 5 calls per minute and 500 calls per day, so you may see an error. Sorry.
+</p>
+
+<br/>
+
+<iframe src="https://codesandbox.io/embed/transport-example-stock-checker-1rpzn?expanddevtools=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2FStockCheck.tsx&theme=dark"
+        style="width:100%; height:90%; border:0; border-radius: 4px; overflow:hidden;"
+        title="Transport Example: Stock Checker"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

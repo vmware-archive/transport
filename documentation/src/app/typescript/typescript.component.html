@@ -97,6 +97,21 @@
                 </clr-vertical-nav-group-children>
             </clr-vertical-nav-group>
 
+            <clr-vertical-nav-group routerLinkActive="active">
+                Live Examples
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="./examples/ping-pong" routerLinkActive="active">
+                        Ping Pong
+                    </a>
+                    <a clrVerticalNavLink routerLink="./examples/stock-ticker" routerLinkActive="active">
+                        Stock Ticker
+                    </a>
+                    <a clrVerticalNavLink routerLink="./examples/simple-stream" routerLinkActive="active">
+                        Simple Stream
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+
         </clr-vertical-nav>
         <div class="content-area" id="main-content" #mainContent>
             <router-outlet (activate)="onActivate($event)"></router-outlet>

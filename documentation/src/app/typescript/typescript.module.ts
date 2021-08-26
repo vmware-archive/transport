@@ -31,10 +31,18 @@ import { AbstractionsComponent } from './abstractions/abstractions.component';
 import { ImportingAngularComponent } from './importing-angular/importing-angular.component';
 import { ImportingUmdComponent } from './importing-umd/importing-umd.component';
 import { ImportingReactComponent } from './importing-react/importing-react.component';
+import { PingPongComponent } from './examples/ping-pong/ping-pong.component';
+import { StockTickerComponent } from './examples/stock-ticker/stock-ticker.component';
+import { SimpleStreamComponent } from './examples/simple-stream/simple-stream.component';
 
 
 @NgModule({
-    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent, BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent, BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent, StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent, ImportingAngularComponent, ImportingUmdComponent, ImportingReactComponent],
+    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent,
+        BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent,
+        BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent,
+        StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent,
+        ImportingAngularComponent, ImportingUmdComponent, ImportingReactComponent, PingPongComponent,
+        StockTickerComponent, SimpleStreamComponent],
     imports: [
         CommonModule,
         TypescriptRoutingModule,
