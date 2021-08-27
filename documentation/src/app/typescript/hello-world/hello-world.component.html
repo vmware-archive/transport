@@ -66,15 +66,18 @@ export class HelloWorldComponent extends AbstractBase implements OnInit &#123;
 </p>
 
 <pre class="code">
-<code class="language-typescript" ngNonBindable>import &#123; EventBus &#125; from '@vmw/transport/bus.api';
-import &#123; BusUtil &#125; from '@vmw/transport/util';
-import React from 'react';
+<code class="language-typescript" ngNonBindable>import &#123; EventBus, BusStoreApi &#125; from "@vmw/transport/bus.api";
+import &#123; FabricApi &#125; from "@vmw/transport/fabric.api";
+import &#123; Logger &#125; from "@vmw/transport/log";
+import &#123; BusUtil &#125; from "@vmw/transport/util/bus.util";
+import React from "react";
 
-export abstract class BaseComponent&lt;A, S&gt; extends React.Component&lt;A, S&gt; &#123;
+export abstract class BaseComponent&lt;P = any, S = any&gt; extends React.Component&lt;P, S&gt; &#123;
+    // get a reference to the bus, fabric and logger
     public bus: EventBus = BusUtil.getBusInstance();
-    constructor(props: A) &#123;
-    super();
-  &#125;
+    public fabric: FabricApi = this.bus.fabric;
+    public log: Logger = this.bus.logger;               // not used in this example, but useful.
+    public storeManager: BusStoreApi = this.bus.stores; // not used in this example, but also useful.
 &#125;
 
 /* Define application state and props */
