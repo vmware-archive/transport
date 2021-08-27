@@ -762,7 +762,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class StockTickerComponent {
-    constructor() { }
+    constructor() {
+    }
     ngOnInit() {
     }
 }
@@ -1164,7 +1165,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class PingPongComponent {
-    constructor() { }
+    constructor() {
+    }
     ngOnInit() {
     }
 }
@@ -1264,10 +1266,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./examples/ping-pong/ping-pong.component */ "EvV3");
 /* harmony import */ var _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./examples/stock-ticker/stock-ticker.component */ "8h4x");
 /* harmony import */ var _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./examples/simple-stream/simple-stream.component */ "qXOb");
+/* harmony import */ var _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./examples/joke/joke.component */ "y34/");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
 
 
 
@@ -1314,7 +1318,7 @@ TypescriptModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
         _broker_overview_broker_overview_component__WEBPACK_IMPORTED_MODULE_15__["BrokerOverviewComponent"], _connecting_broker_connecting_broker_component__WEBPACK_IMPORTED_MODULE_16__["ConnectingBrokerComponent"], _multiple_brokers_multiple_brokers_component__WEBPACK_IMPORTED_MODULE_17__["MultipleBrokersComponent"], _extending_channels_extending_channels_component__WEBPACK_IMPORTED_MODULE_18__["ExtendingChannelsComponent"],
         _store_basics_store_basics_component__WEBPACK_IMPORTED_MODULE_19__["StoreBasicsComponent"], _store_advanced_store_advanced_component__WEBPACK_IMPORTED_MODULE_20__["StoreAdvancedComponent"], _iframes_iframes_component__WEBPACK_IMPORTED_MODULE_21__["IframesComponent"], _iframes_iframe_demo_iframe_demo_component__WEBPACK_IMPORTED_MODULE_22__["IframeDemoComponent"], _abstractions_abstractions_component__WEBPACK_IMPORTED_MODULE_23__["AbstractionsComponent"],
         _importing_angular_importing_angular_component__WEBPACK_IMPORTED_MODULE_24__["ImportingAngularComponent"], _importing_umd_importing_umd_component__WEBPACK_IMPORTED_MODULE_25__["ImportingUmdComponent"], _importing_react_importing_react_component__WEBPACK_IMPORTED_MODULE_26__["ImportingReactComponent"], _examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_27__["PingPongComponent"],
-        _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+        _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
         _typescript_routing_module__WEBPACK_IMPORTED_MODULE_2__["TypescriptRoutingModule"],
         _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"],
         _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -1327,7 +1331,7 @@ TypescriptModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
                     _broker_overview_broker_overview_component__WEBPACK_IMPORTED_MODULE_15__["BrokerOverviewComponent"], _connecting_broker_connecting_broker_component__WEBPACK_IMPORTED_MODULE_16__["ConnectingBrokerComponent"], _multiple_brokers_multiple_brokers_component__WEBPACK_IMPORTED_MODULE_17__["MultipleBrokersComponent"], _extending_channels_extending_channels_component__WEBPACK_IMPORTED_MODULE_18__["ExtendingChannelsComponent"],
                     _store_basics_store_basics_component__WEBPACK_IMPORTED_MODULE_19__["StoreBasicsComponent"], _store_advanced_store_advanced_component__WEBPACK_IMPORTED_MODULE_20__["StoreAdvancedComponent"], _iframes_iframes_component__WEBPACK_IMPORTED_MODULE_21__["IframesComponent"], _iframes_iframe_demo_iframe_demo_component__WEBPACK_IMPORTED_MODULE_22__["IframeDemoComponent"], _abstractions_abstractions_component__WEBPACK_IMPORTED_MODULE_23__["AbstractionsComponent"],
                     _importing_angular_importing_angular_component__WEBPACK_IMPORTED_MODULE_24__["ImportingAngularComponent"], _importing_umd_importing_umd_component__WEBPACK_IMPORTED_MODULE_25__["ImportingUmdComponent"], _importing_react_importing_react_component__WEBPACK_IMPORTED_MODULE_26__["ImportingReactComponent"], _examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_27__["PingPongComponent"],
-                    _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"]],
+                    _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"]],
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                     _typescript_routing_module__WEBPACK_IMPORTED_MODULE_2__["TypescriptRoutingModule"],
@@ -2026,10 +2030,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vmw_transport_docs_typescript_examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/ping-pong/ping-pong.component */ "EvV3");
 /* harmony import */ var _vmw_transport_docs_typescript_examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/stock-ticker/stock-ticker.component */ "8h4x");
 /* harmony import */ var _vmw_transport_docs_typescript_examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/simple-stream/simple-stream.component */ "qXOb");
+/* harmony import */ var _vmw_transport_docs_typescript_examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/joke/joke.component */ "y34/");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
 
 
 
@@ -2088,6 +2094,7 @@ const routes = [
             { path: 'examples/ping-pong', component: _vmw_transport_docs_typescript_examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_23__["PingPongComponent"] },
             { path: 'examples/stock-ticker', component: _vmw_transport_docs_typescript_examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_24__["StockTickerComponent"] },
             { path: 'examples/simple-stream', component: _vmw_transport_docs_typescript_examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_25__["SimpleStreamComponent"] },
+            { path: 'examples/joke-service', component: _vmw_transport_docs_typescript_examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_26__["JokeComponent"] },
         ]
     }
 ];
@@ -2141,7 +2148,7 @@ class ImportingReactComponent {
     }
 }
 ImportingReactComponent.ɵfac = function ImportingReactComponent_Factory(t) { return new (t || ImportingReactComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_vmw_transport_docs_services_highlight_service__WEBPACK_IMPORTED_MODULE_1__["HighlightService"])); };
-ImportingReactComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ImportingReactComponent, selectors: [["transport-importing-react"]], decls: 28, vars: 4, consts: [[3, "inputCommand", "consoleTheme", "loopAnimation", "disableAnimation"], ["routerLink", "../importing"], [1, "code"], [1, "language-js"], ["href", "https://stackblitz.com/edit/react-ts-zfats4?file=index.tsx"], ["src", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtrustConstantResourceUrl"]("https://stackblitz.com/edit/react-ts-zfats4?ctl=1&embed=1&file=index.tsx"), 1, "stackblitz"], [1, "language-typescript"], ["routerLink", "/ts/initializing", 1, "btn", "btn-primary", "btn-block", "btn-outline"]], template: function ImportingReactComponent_Template(rf, ctx) { if (rf & 1) {
+ImportingReactComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ImportingReactComponent, selectors: [["transport-importing-react"]], decls: 39, vars: 4, consts: [[3, "inputCommand", "consoleTheme", "loopAnimation", "disableAnimation"], ["routerLink", "../importing"], [1, "code"], [1, "language-js"], ["href", "https://stackblitz.com/edit/react-ts-zfats4?file=index.tsx"], ["src", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtrustConstantResourceUrl"]("https://stackblitz.com/edit/react-ts-zfats4?ctl=1&embed=1&file=index.tsx"), 1, "stackblitz"], [1, "language-typescript"], ["routerLink", "/ts/initializing", 1, "btn", "btn-primary", "btn-block", "btn-outline"]], template: function ImportingReactComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Importing Transport for TypeScript into React Applications");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -2181,8 +2188,26 @@ ImportingReactComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵenableBindings"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "a", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, "Next Steps: Initializing Transport");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "hr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "h2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Using a Base Component Class to provide access to Transport");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, " Some of us are a little old fashioned and prefer to use Classes and inheritance in our design, rather than using side effects and useState etc. You could use this very simple base component as your root component and extend from here.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "pre", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "code", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdisableBindings"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, "import { EventBus, BusStoreApi } from \"@vmw/transport/bus.api\";\nimport { FabricApi } from \"@vmw/transport/fabric.api\";\nimport { Logger } from \"@vmw/transport/log\";\nimport { BusUtil } from \"@vmw/transport/util/bus.util\";\nimport React from \"react\";\n\nexport abstract class BaseComponent<P = any, S = any> extends React.Component<P, S> {\n    // get a reference to the bus, fabric and logger\n    public bus: EventBus = BusUtil.getBusInstance();\n    public fabric: FabricApi = this.bus.fabric;\n    public log: Logger = this.bus.logger;\n    public storeManager: BusStoreApi = this.bus.stores;\n}");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵenableBindings"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](35, " This provides you with everything you need to use transport effectively in your React Components.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "hr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "a", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, "Next Steps: Initializing Transport");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
@@ -3968,7 +3993,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class SimpleStreamComponent {
-    constructor() { }
+    constructor() {
+    }
     ngOnInit() {
     }
 }
@@ -4022,6 +4048,81 @@ SimpleStreamComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
                 selector: 'transport-simple-stream',
                 templateUrl: './simple-stream.component.html',
                 styleUrls: ['./simple-stream.component.scss']
+            }]
+    }], function () { return []; }, null); })();
+
+
+/***/ }),
+
+/***/ "y34/":
+/*!************************************************************!*\
+  !*** ./src/app/typescript/examples/joke/joke.component.ts ***!
+  \************************************************************/
+/*! exports provided: JokeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JokeComponent", function() { return JokeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class JokeComponent {
+    constructor() {
+    }
+    ngOnInit() {
+    }
+}
+JokeComponent.ɵfac = function JokeComponent_Factory(t) { return new (t || JokeComponent)(); };
+JokeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: JokeComponent, selectors: [["transport-joke"]], decls: 30, vars: 0, consts: [["href", "https://clarity.design/"], ["href", "https://reactjs.org/"], [1, "clr-code"], ["href", "https://github.com/vmware/transport-go/tree/main/plank"], ["href", "https://github.com/vmware/transport-go/blob/main/plank/services/joke-service.go"], ["src", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtrustConstantResourceUrl"]("https://codesandbox.io/embed/transport-example-joke-service-yt9k4?expanddevtools=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2FJokeComponent.tsx&theme=dark"), "title", "Transport Example: Joke Service", "allow", "accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking", "sandbox", "allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts", 2, "width", "100%", "height", "90%", "border", "0", "border-radius", "4px", "overflow", "hidden"]], template: function JokeComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Transport for TypeScript Example: Joke Service");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " In this example, we have used ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "a", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Clarity Core");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, ", combined with ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "React");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, ". We have created a simple ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "code", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Joke.tsx");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " Component that renders out a button for you to press, to get a joke.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, " When you press the button the component uses Transport to call our live demo broker that uses ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "a", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "plank");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, ".\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "a", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "plank");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " is running a simple ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "a", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "joke service");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, " on ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "code", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "joke-service");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, " channel.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](28, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](29, "iframe", 5);
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJqb2tlLmNvbXBvbmVudC5zY3NzIn0= */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](JokeComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'transport-joke',
+                templateUrl: './joke.component.html',
+                styleUrls: ['./joke.component.scss']
             }]
     }], function () { return []; }, null); })();
 
@@ -4137,10 +4238,13 @@ function TypescriptComponent_clr_vertical_nav_group_children_23_Template(rf, ctx
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Ping Pong ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Stock Ticker ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Joke Service ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Simple Stream ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Stock Ticker ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Simple Stream ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
@@ -4163,7 +4267,7 @@ TypescriptComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.mainContentDiv = _t.first);
-    } }, decls: 28, vars: 8, consts: [[1, "content-container"], [3, "clrVerticalNavCollapsible", "clr-nav-level"], ["clrVerticalNavLink", "", "routerLink", "./overview", "routerLinkActive", "active"], ["routerLinkActive", "active"], [4, "clrIfExpanded"], ["id", "main-content", 1, "content-area"], ["mainContent", ""], [3, "activate"], ["clrVerticalNavLink", "", "routerLink", "./importing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-umd", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-angular", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-react", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./initializing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./hello-world", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./broker-overview", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./connecting-broker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./multiple-brokers", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./extending-channels", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./building-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./calling-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./advanced-messaging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./transactions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./logging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-basics", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-advanced", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./iframes", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./abstractions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/ping-pong", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/stock-ticker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/simple-stream", "routerLinkActive", "active"]], template: function TypescriptComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 28, vars: 8, consts: [[1, "content-container"], [3, "clrVerticalNavCollapsible", "clr-nav-level"], ["clrVerticalNavLink", "", "routerLink", "./overview", "routerLinkActive", "active"], ["routerLinkActive", "active"], [4, "clrIfExpanded"], ["id", "main-content", 1, "content-area"], ["mainContent", ""], [3, "activate"], ["clrVerticalNavLink", "", "routerLink", "./importing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-umd", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-angular", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-react", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./initializing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./hello-world", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./broker-overview", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./connecting-broker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./multiple-brokers", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./extending-channels", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./building-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./calling-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./advanced-messaging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./transactions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./logging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-basics", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-advanced", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./iframes", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./abstractions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/ping-pong", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/joke-service", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/stock-ticker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/simple-stream", "routerLinkActive", "active"]], template: function TypescriptComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-main-container");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "transport-header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 0);
@@ -4193,7 +4297,7 @@ TypescriptComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "clr-vertical-nav-group", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, " Live Examples ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, TypescriptComponent_clr_vertical_nav_group_children_23_Template, 7, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, TypescriptComponent_clr_vertical_nav_group_children_23_Template, 9, 0, "clr-vertical-nav-group-children", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 5, 6);
