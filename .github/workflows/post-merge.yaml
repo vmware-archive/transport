@@ -15,12 +15,11 @@ jobs:
         run: |
           npm install
           npm run build
-          cp dist/documentation/index.html dist/documentation/404.html  
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          token: ${{ secrets.GH_PAGE_DEPLOY_PAT }}
-          folder: documentation/dist/documentation
-
-
+        working-directory: documentation
+        env:
+          TRBOX_RSA_PRIV: ${{ secrets.TRBOX_ID_RSA }}
+          TRBOX_HOSTNAME: ${{ secrets.TRBOX_HOSTNAME }}
+        run: |
+          echo "${TRBOX_RSA_PRIV}" > /tmp/id_rsa
+          scp -i /tmp/id_rsa dist/documentation/* ${TRBOX_HOSTNAME}:~/plank_bin/public/
