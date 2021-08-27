@@ -1,0 +1,24 @@
+<h1>Transport for TypeScript Example: Joke Service</h1>
+
+<p>
+    In this example, we have used <a href="https://clarity.design/">Clarity Core</a>, combined with <a href="https://reactjs.org/">React</a>.
+    We have created a simple <code class="clr-code">Joke.tsx</code> Component that renders out a button for you to press, to get a joke.
+</p>
+
+<p>
+    When you press the button the component uses Transport to call our live demo broker that uses <a href="https://github.com/vmware/transport-go/tree/main/plank">plank</a>.
+</p>
+
+<p>
+    <a href="https://github.com/vmware/transport-go/tree/main/plank">plank</a> is running a simple <a href="https://github.com/vmware/transport-go/blob/main/plank/services/joke-service.go">joke service</a> on <code class="clr-code">joke-service</code>
+    channel.
+</p>
+
+<br/>
+
+<iframe src="https://codesandbox.io/embed/transport-example-joke-service-yt9k4?expanddevtools=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2FJokeComponent.tsx&theme=dark"
+        style="width:100%; height:90%; border:0; border-radius: 4px; overflow:hidden;"
+        title="Transport Example: Joke Service"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

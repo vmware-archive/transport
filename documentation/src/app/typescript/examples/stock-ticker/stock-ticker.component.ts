@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'transport-stock-ticker',
-  templateUrl: './stock-ticker.component.html',
-  styleUrls: ['./stock-ticker.component.scss']
+    selector: 'transport-stock-ticker',
+    templateUrl: './stock-ticker.component.html',
+    styleUrls: ['./stock-ticker.component.scss']
 })
 export class StockTickerComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

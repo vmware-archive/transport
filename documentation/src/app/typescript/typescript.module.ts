@@ -34,6 +34,7 @@ import { ImportingReactComponent } from './importing-react/importing-react.compo
 import { PingPongComponent } from './examples/ping-pong/ping-pong.component';
 import { StockTickerComponent } from './examples/stock-ticker/stock-ticker.component';
 import { SimpleStreamComponent } from './examples/simple-stream/simple-stream.component';
+import { JokeComponent } from './examples/joke/joke.component';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { SimpleStreamComponent } from './examples/simple-stream/simple-stream.co
         BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent,
         StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent,
         ImportingAngularComponent, ImportingUmdComponent, ImportingReactComponent, PingPongComponent,
-        StockTickerComponent, SimpleStreamComponent],
+        StockTickerComponent, SimpleStreamComponent, JokeComponent],
     imports: [
         CommonModule,
         TypescriptRoutingModule,
