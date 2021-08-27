@@ -1001,6 +1001,17 @@ AdvancedMessagingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
 
 /***/ }),
 
+/***/ "DzWm":
+/*!**************************************************!*\
+  !*** ./node_modules/@vmw/transport/package.json ***!
+  \**************************************************/
+/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, changelogHistory, contributors, description, homepage, license, main, name, peerDependencies, repository, version, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"_args\":[[\"@vmw/transport@1.3.2\",\"/home/runner/work/transport/transport/documentation\"]],\"_from\":\"@vmw/transport@1.3.2\",\"_id\":\"@vmw/transport@1.3.2\",\"_inBundle\":false,\"_integrity\":\"sha512-cXM3+7etUPAO6T9h60hLRSFYG0l51BZzGOlwJhXkazFmaWuc45h0tYNqKgkdq3iXXusZSOT15tGi+UnQCU1Tgg==\",\"_location\":\"/@vmw/transport\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"@vmw/transport@1.3.2\",\"name\":\"@vmw/transport\",\"escapedName\":\"@vmw%2ftransport\",\"scope\":\"@vmw\",\"rawSpec\":\"1.3.2\",\"saveSpec\":null,\"fetchSpec\":\"1.3.2\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/@vmw/transport/-/transport-1.3.2.tgz\",\"_spec\":\"1.3.2\",\"_where\":\"/home/runner/work/transport/transport/documentation\",\"author\":{\"name\":\"Dave Shanley\",\"email\":\"dshanley@vmware.com\"},\"bugs\":{\"url\":\"https://github.com/vmware/transport-typescript/issues\"},\"changelogHistory\":[{\"date\":\"8/25/21\",\"version\":\"1.3.2\",\"notes\":[{\"description\":\"Ensure messages are picked up by Angular change detection\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/55\"}]},{\"date\":\"8/24/21\",\"version\":\"1.3.1\",\"notes\":[{\"description\":\"Remove unnecessary macro task scheduling\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/54\"}]},{\"date\":\"8/20/21\",\"version\":\"1.3.0\",\"notes\":[{\"description\":\"Expose useSSL argument in fabric.connect()\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/51\"}]},{\"date\":\"5/14/21\",\"version\":\"1.2.9\",\"notes\":[{\"description\":\"Fix missing protocol and host in httpclient uri\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/44\"}]},{\"date\":\"5/10/21\",\"version\":\"1.2.8\",\"notes\":[{\"description\":\"Fix ReadableStream issue in Safari\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/43\"}]},{\"date\":\"2/11/21\",\"version\":\"1.2.7\",\"notes\":[{\"description\":\"Update README for accurate getting started and fix UMD module\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/31\"}]},{\"date\":\"2/11/21\",\"version\":\"1.2.6\",\"notes\":[{\"description\":\"Add README for npm entry and update project homepage\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/29\"}]},{\"date\":\"2/10/21\",\"version\":\"1.2.5\",\"notes\":[{\"description\":\"Official release of Transport into public npm repository\",\"review_uri\":\"https://github.com/vmware/transport-typescript/pull/27\"}]},{\"date\":\"11/19/20\",\"version\":\"1.2.4\",\"notes\":[{\"description\":\"Transport is now packaged under ES2015\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/114\"}]},{\"date\":\"11/18/20\",\"version\":\"1.2.3\",\"notes\":[{\"description\":\"whenConnectionStateChanges now fires properly even after fabric connection was previously established\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/113\"}]},{\"date\":\"10/20/20\",\"version\":\"1.2.2\",\"notes\":[{\"description\":\"Added forceError for AbstractAutoRestMock so users can force custom error messages during test\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/112\"}]},{\"date\":\"10/9/20\",\"version\":\"1.2.1\",\"notes\":[{\"description\":\"Make getDefaultConnectionString() get connString from connectionStoreMap which guarantees consistent results\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/111\"}]},{\"date\":\"10/13/20\",\"version\":\"1.2.0\",\"notes\":[{\"description\":\"APIs added to allow non-cookie based websocket authentication. This is a backward compatible feature addition.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/110\"},{\"description\":\"When autoReconnect is true, all previously subscribed galactic channels re-subscribe after re-connect.\"}]},{\"date\":\"9/1/20\",\"version\":\"1.1.0\",\"notes\":[{\"description\":\"Make connString detection automatic and fix FabricConnectionState related bugs\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/108\"}]},{\"date\":\"5/27/20\",\"version\":\"1.0.0\",\"notes\":[{\"description\":\"Rebrand VMware Bifrost to VMware Transport as an official open source project\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/107\"}]},{\"date\":\"4/22/20\",\"version\":\"0.15.4\",\"notes\":[{\"description\":\"Error code handling has been normalized in the bifrost http client..\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/105\"}]},{\"date\":\"4/13/20\",\"version\":\"0.15.3\",\"notes\":[{\"description\":\"We were special handling '401' errors as refresh-token retries.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/104\"}]},{\"date\":\"2/13/20\",\"version\":\"0.15.2\",\"notes\":[{\"description\":\"Fixed a bug with whenConnectionStateChanges so it works with multi brokers\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/103\"}]},{\"date\":\"2/3/20\",\"version\":\"0.15.1\",\"notes\":[{\"description\":\"Sync generateFabricRequest interface and implementation function signature\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/102\"}]},{\"date\":\"10/28/19\",\"version\":\"0.15.0\",\"notes\":[{\"description\":\"Support multi-broker fabric communication. Also deprecated method bus.requestGalactic() was removed in this release.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/93\"}]},{\"date\":\"1/20/20\",\"version\":\"0.14.30\",\"notes\":[{\"description\":\"Fix issue with global HTTP headers overwriting order\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/98\"}]},{\"date\":\"1/14/20\",\"version\":\"0.14.29\",\"notes\":[{\"description\":\"Add XSRF handling in abstract.operations.ts\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/97\"}]},{\"date\":\"1/2/20\",\"version\":\"0.14.28\",\"notes\":[{\"description\":\"Return network errors with fetch correctly in bifrost.httpclient.ts\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/96\"}]},{\"date\":\"12/9/19\",\"version\":\"0.14.27\",\"notes\":[{\"description\":\"Fix a bug with galactic messages from concurrent message requests\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/94\"}]},{\"date\":\"10/16/19\",\"version\":\"0.14.26\",\"notes\":[{\"description\":\"Deprecate enableDevMode() and introduce configureCorsAndCredentials()\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/92\"}]},{\"date\":\"9/25/19\",\"version\":\"0.14.25\",\"notes\":[{\"description\":\"Enforce use of typescript library of version 3.2 to be compatible with Angular 7\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/90\"}]},{\"date\":\"9/24/19\",\"version\":\"0.14.24\",\"notes\":[{\"description\":\"Add getter to expose HTTP global headers so remote REST calls can easily access them\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/89\"}]},{\"date\":\"9/4/19\",\"version\":\"0.14.23\",\"notes\":[{\"description\":\"Add support for X-XSRF-TOKEN for both local and remote REST services\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/84\"}]},{\"date\":\"9/19/19\",\"version\":\"0.14.22\",\"notes\":[{\"description\":\"Added support for opening galactic stores via StoreManager.openGalacticStore() API. This feature requires Bifrost Java version 0.0.33 or higher.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/87\"}]},{\"date\":\"9/11/19\",\"version\":\"0.14.21\",\"notes\":[{\"description\":\"Expose the id of the changed object in BusStore.onChange() and BusStore.onAllChanges() streams.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/86\"}]},{\"date\":\"9/5/19\",\"version\":\"0.14.20\",\"notes\":[{\"description\":\"Change npm package license to VMW_Proprietary\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/85\"}]},{\"date\":\"8/29/19\",\"version\":\"0.14.19\",\"notes\":[{\"description\":\"Remove galactic channel subscriptions when the STOMP WebSocket is closed. This fixes https://gitlab.eng.vmware.com/bifrost/typescript/issues/5\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/83\"}]},{\"date\":\"8/28/19\",\"version\":\"0.14.18\",\"notes\":[{\"description\":\"VMC and bifrost now handle AutoMockService.forceResponse identically\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/79\"}]},{\"date\":\"8/21/19\",\"version\":\"0.14.17\",\"notes\":[{\"description\":\"Change npm package license to VMW_Proprietary\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/77\"}]},{\"date\":\"8/20/19\",\"version\":\"0.14.16\",\"notes\":[{\"description\":\"Ensure that after automatic re-connect there will be only one active StompSession.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/75\"}]},{\"date\":\"8/5/19\",\"version\":\"0.14.15\",\"notes\":[{\"description\":\"Add accept-version:1.2 header to all packets sent over the wire.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/74\"}]},{\"date\":\"7/12/19\",\"version\":\"0.14.14\",\"notes\":[{\"description\":\"Add accessToken in STOMP header for SUBSCRIBE command.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/73\"}]},{\"date\":\"7/7/19\",\"version\":\"0.14.13\",\"notes\":[{\"description\":\"Deprecated short UUID generation from GeneralUtil. It's not valid and confuses cross platform technologies.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/72\"}]},{\"date\":\"5/30/19\",\"version\":\"0.14.12\",\"notes\":[{\"description\":\"Fixed a bug introduced by 0.14.11 where local RestService called by restServiceRequest() is broken. It works with the new remote REST service as well.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/71\"}]},{\"date\":\"5/30/19\",\"version\":\"0.14.11\",\"notes\":[{\"description\":\"Fixed a bug in the rest.operations.ts where fabricResponseObject was accessing a property that does not exist in the APIResponse object.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/70\"}]},{\"date\":\"5/23/19\",\"version\":\"0.14.10\",\"notes\":[{\"description\":\"Improved reliability of ServiceLoader to pull out RestService correctly.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/68\"}]},{\"date\":\"5/23/19\",\"version\":\"0.14.9\",\"notes\":[{\"description\":\"Fixed small glitch in Transactions when handling errors, fix subscription leak\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/67\"}]},{\"date\":\"5/23/19\",\"version\":\"0.14.8\",\"notes\":[{\"description\":\"Fixed small glitch in ServiceLoader when enabling/disabling RestService, added tests to validate.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/66\"}]},{\"date\":\"5/23/19\",\"version\":\"0.14.7\",\"notes\":[{\"description\":\"Added support for Fabric based RestService calls.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/65\"},{\"description\":\"Improved test coverage across app, added more tests for edge cases.\"},{\"description\":\"Deprecated old galacticRequest code from AbstractService.\"}]},{\"date\":\"4/3/19\",\"version\":\"0.14.6\",\"notes\":[{\"description\":\"Support a case where DELETE call might not have body\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/64\"}]},{\"date\":\"3/28/19\",\"version\":\"0.14.5\",\"notes\":[{\"description\":\"Supported customization of topic and queue in fabric.connect()\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/63\"}]},{\"date\":\"3/27/19\",\"version\":\"0.14.4\",\"notes\":[{\"description\":\"Fixed silly bug that tries to open non-guaranteed version channel on connect. VMC kills session.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/61\"},{\"description\":\"Added support for private channels mapped to queues for Spring/Java bifröst.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/60\"}]},{\"date\":\"3/24/19\",\"version\":\"0.14.3\",\"notes\":[{\"description\":\"Added synthetic msg args support in sewing machine abstractions.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/59\"},{\"description\":\"0.14.2 was a republished NPM archive, no new functionality.\"}]},{\"date\":\"3/20/19\",\"version\":\"0.14.1\",\"notes\":[{\"description\":\"Artifactory locked 0.14.0 with a failed publish.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/56\"}]},{\"date\":\"3/20/19\",\"version\":\"0.14.0\",\"notes\":[{\"description\":\"Aligned RestService with Java Fabric code, matched channels and interfaces\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/55\"},{\"description\":\"Generating full API docs and bundling with NPM module   .\"}]},{\"date\":\"3/14/19\",\"version\":\"0.13.3\",\"notes\":[{\"description\":\"Updated dev deps and upgrading versions of various tooling\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/54\"},{\"description\":\"Moved payload to optional arg for fabric requests.\"},{\"description\":\"Modified readme and added auto API doc generation to npm package.\"}]},{\"date\":\"3/13/19\",\"version\":\"0.13.2\",\"notes\":[{\"description\":\"Fixed ServiceLoader methods, added tests to validate\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/52\"},{\"description\":\"Added new fabric API for local getting fabric version from version service.\"}]},{\"date\":\"3/9/19\",\"version\":\"0.13.1\",\"notes\":[{\"description\":\"Fixed broker connector issue with channels using ':' in the name when being distributed.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/50\"}]},{\"date\":\"3/9/19\",\"version\":\"0.13.0\",\"notes\":[{\"description\":\"New Fabric features available on bus.fabric. Can also now be accessed as 'fabric' from AbstractBase.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/49\"},{\"description\":\"Autogenerated code via SewingMachine is now compatible with sending across the bridge, without wrapping.\"},{\"description\":\"Any actor can now call local or remote fabric services with the same APIs now. NO need for any *Galactic calls anymore.\"},{\"description\":\"Deprecated galactic APIs, No longer required, may be removed in the future\"},{\"description\":\"New  fabric connect & disconnect simple APIs, listening for state changes\"},{\"description\":\"Added new header and fetch options to AbstractBase for changing application host/scheme use for RestService\"},{\"description\":\"Bumped test coverage back up over 96%\"},{\"description\":\"Fixed test rig applications (chatApp)\"},{\"description\":\"Added new optional advancedConfig parameter to the EventBus.connectBridge() API, The parameter allows customer to specify the incoming and outgoing heartbeat intervals and also a custom function for starting intervals instead of the standard \\\"setInterval\\\" function.\"}]},{\"date\":\"2/7/19\",\"version\":\"0.12.0\",\"notes\":[{\"description\":\"Added markChannelsAsGalactic & markChannelsAsLocal methods.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/48\"},{\"description\":\"The behavior of sendRequestMessage method for a specific channel can now be controlled by markChannelsAsGalactic & markChannelsAsLocal methods. The message will be sent to remote destinations if the channel is marked as galactic. Otherwise, local channel subscribers will receive the message.\"}]},{\"date\":\"4/2/19\",\"version\":\"0.11.1\",\"notes\":[{\"description\":\"Fixed generics in signature in store API for mutations that were broken in 0.10.0. Implements correct definitions..\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/47\"}]},{\"date\":\"4/2/19\",\"version\":\"0.11.0\",\"notes\":[{\"description\":\"0.11.0 is a <strong>Breaking Change</strong>. Stores API has changed.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/46\"},{\"description\":\"Upgraded RxJS 6.4.0\"},{\"description\":\"Added more methods to ServiceLoader for service manipulation\"},{\"description\":\"Added convenience methods for setting orgId for all Cloud Services API auto-magically\"},{\"description\":\"Simplified Store API to remove the need to pass object types for listening for state changes\"},{\"description\":\"Added store reloading/refreshing/wiping/cleaning API's to Store API\"},{\"description\":\"Added service online/offline capability\"},{\"description\":\"Added fixes for Abstractions for Services and Operations.\"}]},{\"date\":\"1/9/19\",\"version\":\"0.10.0\",\"notes\":[{\"description\":\"Fixed broken import issue for autogen with version 0.9.20\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/45\"},{\"description\":\"Upgraded to TypeScript 3.2.2 and fixed some invalid signatures\"},{\"description\":\"Fixed AbstractService to match signatures for older AbstractAutoService\"}]},{\"date\":\"1/4/19\",\"version\":\"0.9.20\",\"notes\":[{\"description\":\"Fixing Issue with duplicate events for listenGalacticStream()\",\"issue_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/issues/1\"},{\"description\":\"Added built in support for orgId (VMware Cloud Services) to abstractions\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/44\"}]},{\"date\":\"12/13/18\",\"version\":\"0.9.19\",\"notes\":[{\"description\":\"Making compatible with bifrost-java version 0.5 (change to APIRequest model).\"}]},{\"date\":\"12/03/18\",\"version\":\"0.9.18\",\"notes\":[{\"description\":\"Added broadcastNotification() as alias for broadcastResponse() to `AbstractService`\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/38\"}]},{\"date\":\"11/15/18\",\"version\":\"0.9.17\",\"notes\":[{\"description\":\"Added Referer-Policy to httpclient to handle VMC Microservices\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/37\"},{\"description\":\"Updated RestOperation to passthrough autogen properties\"}]},{\"date\":\"11/13/18\",\"version\":\"0.9.16\",\"notes\":[{\"description\":\"Changed the signatures of AbstractMessageObject and RestObject to support strict mode\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/36\"}]},{\"date\":\"11/09/18\",\"version\":\"0.9.15\",\"notes\":[{\"description\":\"Added correct ErrorResponse support from ss-base in error handling for http client.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/35\"}]},{\"date\":\"10/30/18\",\"version\":\"0.9.14\",\"notes\":[{\"description\":\"Fixed bug with double JSON stringification during fetch call via RestService\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/34\"}]},{\"date\":\"10/25/18\",\"version\":\"0.9.13\",\"notes\":[{\"description\":\"Created high level operations abstractions for service calls\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/33\"},{\"description\":\"Fixed error handling fetch handling for error edge cases\"}]},{\"date\":\"10/18/18\",\"version\":\"0.9.12\",\"notes\":[{\"description\":\"Updated Broker connector config to allow configurable auto-reconnect\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/32\"},{\"description\":\"Updated sample application components to use multiple allows origins for docs.\"}]},{\"date\":\"10/18/18\",\"version\":\"0.9.11\",\"notes\":[{\"description\":\"Improved HTTP client,to cleanly handle various 200 bodyless return types.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/31\"}]},{\"date\":\"10/18/18\",\"version\":\"0.9.10\",\"notes\":[{\"description\":\"Updated http client to provide more detailed error handling\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/29\"}]},{\"date\":\"10/17/18\",\"version\":\"0.9.9\",\"notes\":[{\"description\":\"Rebuilt RestService to use internal fetch based HttpClient\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/28\"}]},{\"date\":\"10/17/18\",\"version\":\"0.9.8\",\"notes\":[{\"description\":\"Fixed error handling with core abstractions, when using servgen\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/27\"}]},{\"date\":\"10/16/18\",\"version\":\"0.9.7\",\"notes\":[{\"description\":\"Fixed error handling and response channel handling on core abstractions\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/24\"}]},{\"date\":\"10/16/18\",\"version\":\"0.9.6\",\"notes\":[{\"description\":\"Renamed required mock core abstractions, they were being ignored by the build.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/23\"}]},{\"date\":\"10/16/18\",\"version\":\"0.9.5\",\"notes\":[{\"description\":\"Version bump, manual published occurred before additional code added to 0.9.4\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/21\"}]},{\"date\":\"10/15/18\",\"version\":\"0.9.4\",\"notes\":[{\"description\":\"Updated abstractions to match new documentation, mostly moving non essential args to optional\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/19\"},{\"description\":\"Exposed core abstractions required by APIGen and ServGen.\"}]},{\"date\":\"09/25/18\",\"version\":\"0.9.3\",\"notes\":[{\"description\":\"Added support for APIGen to AbstractService and core abstractions, re-bumped test coverage\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/16\"}]},{\"date\":\"09/18/18\",\"version\":\"0.9.2\",\"notes\":[{\"description\":\"Set AbstractCore properties to public to fix broken VMC unit tests.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/15\"}]},{\"date\":\"09/17/18\",\"version\":\"0.9.1\",\"notes\":[{\"description\":\"Wired in shared VMC AbstractService code to enable universal support across UI's\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/14\"},{\"description\":\"Reverted build back to ES5, not ready for ES2015 primetime yet, IE still lives on.\"}]},{\"date\":\"09/04/18\",\"version\":\"0.9.0\",\"notes\":[{\"description\":\"Added new proxy/distributed bus feature, allows multiple event bus instances across iframes to become distributed\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/13\"},{\"description\":\"Added return number for bus.api.tickEventLoop() so it can be tracked. (VMCUI-1896)\",\"jira_uri\":\"https://jira.eng.vmware.com/browse/VMCUI-1896\"},{\"description\":\"Extracted core Abstractions for VMC/H5C into bus, will be moved into own project shortly\"},{\"description\":\"Rebuilt REST Service usint Tango as Http provider. Will be wired into VMC and H5C soon.\"},{\"description\":\"Added Support for headers to new REST Service to address VMCUI-1783\",\"jira_uri\":\"https://jira.eng.vmware.com/browse/VMCUI-1783\"}]},{\"date\":\"05/22/18\",\"version\":\"0.8.2\",\"notes\":[{\"description\":\"Fixed typo in package.json\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/10\"}]},{\"date\":\"05/22/18\",\"version\":\"0.8.1\",\"notes\":[{\"description\":\"Added new performance tests to validate bus performance\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/9\"},{\"description\":\"Refined performance bottlenecks in broker connector\"}]},{\"date\":\"05/03/18\",\"version\":\"0.8.0\",\"notes\":[{\"description\":\"Added new simple API's for handling message ID's, versions and names.\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/8\"},{\"description\":\"New optional MessageArgs object is passed to MessageFunction. Contains message ID, version and sender\"},{\"description\":\"Added detail to debug levels in logging\"},{\"description\":\"Firefly project & DataService design require a new form of meta-transaction to solve the need for unique channels per conversation.\"},{\"description\":\"Increased test coverage to 99.21%\"}]},{\"date\":\"04/07/18\",\"version\":\"0.7.2\",\"notes\":[{\"description\":\"Updated changelog format in package.json, after feedback on component\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/7\"}]},{\"date\":\"04/06/18\",\"version\":\"0.7.1\",\"notes\":[{\"description\":\"Added logo and cleaned up package.json for integration into website\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/6\"}]},{\"date\":\"03/14/18\",\"version\":\"0.7.0\",\"notes\":[{\"description\":\"New Transactions API, Cache Converted to Stores, Much more testing, decoupled from Angular\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/5\"}]},{\"date\":\"02/09/18\",\"version\":\"0.5.6\",\"notes\":[{\"description\":\"Fix for VMCUI-955\"}]},{\"date\":\"02/05/18\",\"version\":\"0.5.5\",\"notes\":[{\"description\":\"Fix for VMCUI-800\"}]},{\"date\":\"11/03/17\",\"version\":\"0.6.0\",\"notes\":[{\"description\":\"Decoupled low-level API from main API, refactored older code, updated tests to new API\",\"review_uri\":\"https://gitlab.eng.vmware.com/bifrost/typescript/merge_requests/1\"}]},{\"date\":\"09/21/17\",\"version\":\"0.5.1\",\"notes\":[{\"description\":\"BusCache / Model Store introduced, simplified broker connection and stream handling\"}]},{\"date\":\"08/08/17\",\"version\":\"0.4.0\",\"notes\":[{\"description\":\"Generics introduced, responder code fixed\"}]},{\"date\":\"06/23/17\",\"version\":\"0.3.0\",\"notes\":[{\"description\":\"Project structure change, bugfixes and new getObservable() feature added to MessageHandler\"}]},{\"date\":\"03/27/17\",\"version\":\"0.1.19\",\"notes\":[{\"description\":\"Lots of cleanup, error fixes, more tests and documentation\"}]},{\"date\":\"03/06/17\",\"version\":\"0.1.11\",\"notes\":[{\"description\":\"Added schema support and schema handling\"}]},{\"date\":\"02/08/17\",\"version\":\"0.1.8\",\"notes\":[{\"description\":\"More wrappers around simplified API\"}]},{\"date\":\"01/30/17\",\"version\":\"0.1.7\",\"notes\":[{\"description\":\"Added simplified API\"}]},{\"date\":\"01/06/17\",\"version\":\"0.1.6\",\"notes\":[{\"description\":\"Cleaned up build issues, fixed linting and refactors\"}]},{\"date\":\"01/05/17\",\"version\":\"0.1.0\",\"notes\":[{\"description\":\"Published 0.1.0 after extracting from VMC codebase\"}]}],\"contributors\":[{\"name\":\"Akmal Khan\",\"email\":\"akmalk@vmware.com\"},{\"name\":\"Etienne Le Sueur\",\"email\":\"elesueur@vmware.com\"},{\"name\":\"Ashwini Manjunath\",\"email\":\"ashwinim@vmware.com\"},{\"name\":\"Matt Critchlow\",\"email\":\"mcritch@vmware.com\"},{\"name\":\"Andrii Alieksashyn\",\"email\":\"aalieksashyn@vmware.com\"},{\"name\":\"Stoyan Hristov\",\"email\":\"shristov@vmware.com\"},{\"name\":\"Josh Kim\",\"email\":\"kjosh@vmware.com\"}],\"description\":\"Channel / stream based event bus & model store that extends to brokers via WebSockets & STOMP.\",\"homepage\":\"https://vmware.github.io/transport/\",\"license\":\"BSD-2-Clause\",\"main\":\"./transport.umd.min.js\",\"name\":\"@vmw/transport\",\"peerDependencies\":{\"rxjs\":\"^6.4.0\"},\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/vmware/transport-typescript.git\"},\"version\":\"1.3.2\"}");
+
+/***/ }),
+
 /***/ "E36J":
 /*!*****************************************************************!*\
   !*** ./src/app/typescript/hello-world/hello-world.component.ts ***!
@@ -1267,10 +1278,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./examples/stock-ticker/stock-ticker.component */ "8h4x");
 /* harmony import */ var _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./examples/simple-stream/simple-stream.component */ "qXOb");
 /* harmony import */ var _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./examples/joke/joke.component */ "y34/");
+/* harmony import */ var _changelog_changelog_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./changelog/changelog.component */ "hX0g");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
 
 
 
@@ -1318,7 +1331,7 @@ TypescriptModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
         _broker_overview_broker_overview_component__WEBPACK_IMPORTED_MODULE_15__["BrokerOverviewComponent"], _connecting_broker_connecting_broker_component__WEBPACK_IMPORTED_MODULE_16__["ConnectingBrokerComponent"], _multiple_brokers_multiple_brokers_component__WEBPACK_IMPORTED_MODULE_17__["MultipleBrokersComponent"], _extending_channels_extending_channels_component__WEBPACK_IMPORTED_MODULE_18__["ExtendingChannelsComponent"],
         _store_basics_store_basics_component__WEBPACK_IMPORTED_MODULE_19__["StoreBasicsComponent"], _store_advanced_store_advanced_component__WEBPACK_IMPORTED_MODULE_20__["StoreAdvancedComponent"], _iframes_iframes_component__WEBPACK_IMPORTED_MODULE_21__["IframesComponent"], _iframes_iframe_demo_iframe_demo_component__WEBPACK_IMPORTED_MODULE_22__["IframeDemoComponent"], _abstractions_abstractions_component__WEBPACK_IMPORTED_MODULE_23__["AbstractionsComponent"],
         _importing_angular_importing_angular_component__WEBPACK_IMPORTED_MODULE_24__["ImportingAngularComponent"], _importing_umd_importing_umd_component__WEBPACK_IMPORTED_MODULE_25__["ImportingUmdComponent"], _importing_react_importing_react_component__WEBPACK_IMPORTED_MODULE_26__["ImportingReactComponent"], _examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_27__["PingPongComponent"],
-        _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+        _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"], _changelog_changelog_component__WEBPACK_IMPORTED_MODULE_31__["ChangelogComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
         _typescript_routing_module__WEBPACK_IMPORTED_MODULE_2__["TypescriptRoutingModule"],
         _shared_shared_module__WEBPACK_IMPORTED_MODULE_4__["SharedModule"],
         _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -1331,7 +1344,7 @@ TypescriptModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
                     _broker_overview_broker_overview_component__WEBPACK_IMPORTED_MODULE_15__["BrokerOverviewComponent"], _connecting_broker_connecting_broker_component__WEBPACK_IMPORTED_MODULE_16__["ConnectingBrokerComponent"], _multiple_brokers_multiple_brokers_component__WEBPACK_IMPORTED_MODULE_17__["MultipleBrokersComponent"], _extending_channels_extending_channels_component__WEBPACK_IMPORTED_MODULE_18__["ExtendingChannelsComponent"],
                     _store_basics_store_basics_component__WEBPACK_IMPORTED_MODULE_19__["StoreBasicsComponent"], _store_advanced_store_advanced_component__WEBPACK_IMPORTED_MODULE_20__["StoreAdvancedComponent"], _iframes_iframes_component__WEBPACK_IMPORTED_MODULE_21__["IframesComponent"], _iframes_iframe_demo_iframe_demo_component__WEBPACK_IMPORTED_MODULE_22__["IframeDemoComponent"], _abstractions_abstractions_component__WEBPACK_IMPORTED_MODULE_23__["AbstractionsComponent"],
                     _importing_angular_importing_angular_component__WEBPACK_IMPORTED_MODULE_24__["ImportingAngularComponent"], _importing_umd_importing_umd_component__WEBPACK_IMPORTED_MODULE_25__["ImportingUmdComponent"], _importing_react_importing_react_component__WEBPACK_IMPORTED_MODULE_26__["ImportingReactComponent"], _examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_27__["PingPongComponent"],
-                    _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"]],
+                    _examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_28__["StockTickerComponent"], _examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_29__["SimpleStreamComponent"], _examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_30__["JokeComponent"], _changelog_changelog_component__WEBPACK_IMPORTED_MODULE_31__["ChangelogComponent"]],
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                     _typescript_routing_module__WEBPACK_IMPORTED_MODULE_2__["TypescriptRoutingModule"],
@@ -2031,10 +2044,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vmw_transport_docs_typescript_examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/stock-ticker/stock-ticker.component */ "8h4x");
 /* harmony import */ var _vmw_transport_docs_typescript_examples_simple_stream_simple_stream_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/simple-stream/simple-stream.component */ "qXOb");
 /* harmony import */ var _vmw_transport_docs_typescript_examples_joke_joke_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @vmw/transport-docs/typescript/examples/joke/joke.component */ "y34/");
+/* harmony import */ var _vmw_transport_docs_typescript_changelog_changelog_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @vmw/transport-docs/typescript/changelog/changelog.component */ "hX0g");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
 
 
 
@@ -2090,6 +2105,7 @@ const routes = [
             { path: 'store-advanced', component: _vmw_transport_docs_typescript_store_advanced_store_advanced_component__WEBPACK_IMPORTED_MODULE_17__["StoreAdvancedComponent"] },
             { path: 'iframes', component: _vmw_transport_docs_typescript_iframes_iframes_component__WEBPACK_IMPORTED_MODULE_18__["IframesComponent"] },
             { path: 'abstractions', component: _vmw_transport_docs_typescript_abstractions_abstractions_component__WEBPACK_IMPORTED_MODULE_19__["AbstractionsComponent"] },
+            { path: 'changelog', component: _vmw_transport_docs_typescript_changelog_changelog_component__WEBPACK_IMPORTED_MODULE_27__["ChangelogComponent"] },
             { path: 'examples', component: _vmw_transport_docs_typescript_examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_23__["PingPongComponent"] },
             { path: 'examples/ping-pong', component: _vmw_transport_docs_typescript_examples_ping_pong_ping_pong_component__WEBPACK_IMPORTED_MODULE_23__["PingPongComponent"] },
             { path: 'examples/stock-ticker', component: _vmw_transport_docs_typescript_examples_stock_ticker_stock_ticker_component__WEBPACK_IMPORTED_MODULE_24__["StockTickerComponent"] },
@@ -2891,6 +2907,63 @@ ImportingUmdComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
                 styleUrls: ['./importing-umd.component.scss']
             }]
     }], function () { return [{ type: _vmw_transport_docs_services_highlight_service__WEBPACK_IMPORTED_MODULE_1__["HighlightService"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "hX0g":
+/*!*************************************************************!*\
+  !*** ./src/app/typescript/changelog/changelog.component.ts ***!
+  \*************************************************************/
+/*! exports provided: ChangelogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangelogComponent", function() { return ChangelogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _vmw_transport_package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vmw/transport/package.json */ "DzWm");
+var _vmw_transport_package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! @vmw/transport/package.json */ "DzWm", 1);
+/* harmony import */ var _shared_changelog_changelog_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/changelog/changelog.component */ "PFjW");
+
+
+
+
+class ChangelogComponent {
+    constructor() {
+        this.changelog = [];
+        this.packageJSON = _vmw_transport_package_json__WEBPACK_IMPORTED_MODULE_1___namespace;
+    }
+    ngOnInit() {
+        this.changelog = _vmw_transport_package_json__WEBPACK_IMPORTED_MODULE_1__["changelogHistory"];
+    }
+}
+ChangelogComponent.ɵfac = function ChangelogComponent_Factory(t) { return new (t || ChangelogComponent)(); };
+ChangelogComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ChangelogComponent, selectors: [["changelog-typescript"]], decls: 9, vars: 1, consts: [["href", "https://vmc.vmware.com/home"], [3, "changelog"]], template: function ChangelogComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Transport For TypeScript Changelog");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " This project has been around for a while inside VMware. This is a history of how it has evolved and what we changed, as we figured things out along the way. It originally started life inside of the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "a", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "VMware Cloud Console");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " (it's still there, humming away at scale).\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "hr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "transport-changelog", 1);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("changelog", ctx.changelog);
+    } }, directives: [_shared_changelog_changelog_component__WEBPACK_IMPORTED_MODULE_2__["ChangelogComponent"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjaGFuZ2Vsb2cuY29tcG9uZW50LnNjc3MifQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ChangelogComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'changelog-typescript',
+                templateUrl: './changelog.component.html',
+                styleUrls: ['./changelog.component.scss']
+            }]
+    }], null, null); })();
 
 
 /***/ }),
@@ -4155,95 +4228,95 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _c0 = ["mainContent"];
-function TypescriptComponent_clr_vertical_nav_group_children_8_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_10_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Importing Transport (ES6) ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Importing Transport (UMD) ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 11);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Importing into Angular ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 12);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Importing into React ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "a", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "a", 13);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Initializing Transport ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "a", 13);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "a", 14);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " Hello World! ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function TypescriptComponent_clr_vertical_nav_group_children_11_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_13_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Overview ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 16);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Connecting to a Broker ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 17);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Connecting Multiple Brokers ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Extending Channels ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function TypescriptComponent_clr_vertical_nav_group_children_14_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_16_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 19);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Building Services ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 20);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Calling Services ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Advanced Messaging ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 22);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Transactions ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "a", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "a", 23);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Logging ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function TypescriptComponent_clr_vertical_nav_group_children_17_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Stores: Basics ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Stores: Advanced ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function TypescriptComponent_clr_vertical_nav_group_children_20_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_22_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Messaging Across iFrames ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 27);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Built in Abstractions ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function TypescriptComponent_clr_vertical_nav_group_children_23_Template(rf, ctx) { if (rf & 1) {
+function TypescriptComponent_clr_vertical_nav_group_children_25_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-vertical-nav-group-children");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Ping Pong ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Joke Service ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 30);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " Stock Ticker ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Simple Stream ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4267,7 +4340,7 @@ TypescriptComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.mainContentDiv = _t.first);
-    } }, decls: 28, vars: 8, consts: [[1, "content-container"], [3, "clrVerticalNavCollapsible", "clr-nav-level"], ["clrVerticalNavLink", "", "routerLink", "./overview", "routerLinkActive", "active"], ["routerLinkActive", "active"], [4, "clrIfExpanded"], ["id", "main-content", 1, "content-area"], ["mainContent", ""], [3, "activate"], ["clrVerticalNavLink", "", "routerLink", "./importing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-umd", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-angular", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-react", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./initializing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./hello-world", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./broker-overview", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./connecting-broker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./multiple-brokers", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./extending-channels", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./building-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./calling-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./advanced-messaging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./transactions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./logging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-basics", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-advanced", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./iframes", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./abstractions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/ping-pong", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/joke-service", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/stock-ticker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/simple-stream", "routerLinkActive", "active"]], template: function TypescriptComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 30, vars: 8, consts: [[1, "content-container"], [3, "clrVerticalNavCollapsible", "clr-nav-level"], ["clrVerticalNavLink", "", "routerLink", "./overview", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./changelog", "routerLinkActive", "active"], ["routerLinkActive", "active"], [4, "clrIfExpanded"], ["id", "main-content", 1, "content-area"], ["mainContent", ""], [3, "activate"], ["clrVerticalNavLink", "", "routerLink", "./importing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-umd", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-angular", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./importing-react", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./initializing", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./hello-world", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./broker-overview", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./connecting-broker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./multiple-brokers", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./extending-channels", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./building-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./calling-services", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./advanced-messaging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./transactions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./logging", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-basics", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./store-advanced", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./iframes", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./abstractions", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/ping-pong", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/joke-service", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/stock-ticker", "routerLinkActive", "active"], ["clrVerticalNavLink", "", "routerLink", "./examples/simple-stream", "routerLinkActive", "active"]], template: function TypescriptComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "clr-main-container");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "transport-header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 0);
@@ -4275,43 +4348,46 @@ TypescriptComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "a", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, " TypeScript Overview ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, " Getting Started ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, TypescriptComponent_clr_vertical_nav_group_children_8_Template, 13, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, " Changelog ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Extending To Brokers ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, TypescriptComponent_clr_vertical_nav_group_children_11_Template, 9, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, " Getting Started ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, TypescriptComponent_clr_vertical_nav_group_children_10_Template, 13, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, " Operations ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, TypescriptComponent_clr_vertical_nav_group_children_14_Template, 11, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " Extending To Brokers ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](13, TypescriptComponent_clr_vertical_nav_group_children_13_Template, 9, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, " Using Stores ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](17, TypescriptComponent_clr_vertical_nav_group_children_17_Template, 5, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, " Operations ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](16, TypescriptComponent_clr_vertical_nav_group_children_16_Template, 11, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, " Utilities ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, TypescriptComponent_clr_vertical_nav_group_children_20_Template, 5, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Using Stores ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](19, TypescriptComponent_clr_vertical_nav_group_children_19_Template, 5, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "clr-vertical-nav-group", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, " Live Examples ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, TypescriptComponent_clr_vertical_nav_group_children_23_Template, 9, 0, "clr-vertical-nav-group-children", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " Utilities ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](22, TypescriptComponent_clr_vertical_nav_group_children_22_Template, 5, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 5, 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "router-outlet", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("activate", function TypescriptComponent_Template_router_outlet_activate_26_listener($event) { return ctx.onActivate($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "clr-vertical-nav-group", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, " Live Examples ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, TypescriptComponent_clr_vertical_nav_group_children_25_Template, 9, 0, "clr-vertical-nav-group-children", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 6, 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "router-outlet", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("activate", function TypescriptComponent_Template_router_outlet_activate_28_listener($event) { return ctx.onActivate($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](27, "transport-footer");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](29, "transport-footer");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("clrVerticalNavCollapsible", false)("clr-nav-level", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("clrIfExpanded", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("clrIfExpanded", true);

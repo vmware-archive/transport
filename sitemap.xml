@@ -105,6 +105,31 @@
         <priority>1</priority>
     </url>
     <url>
+        <loc>https://vmware.github.io/transport/ts/examples/ping-pong</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://vmware.github.io/transport/ts/examples/joke-service</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://vmware.github.io/transport/ts/examples/stock-ticker</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://vmware.github.io/transport/ts/examples/simple-stream</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://vmware.github.io/transport/ts/changelog</loc>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
         <loc>https://vmware.github.io/transport/java</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
