@@ -1021,8 +1021,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class TransportHeroAnimationComponent extends _models_base_component__WEBPACK_IMPORTED_MODULE_1__["BaseComponent"] {
-    constructor() {
+    constructor(ngZone) {
         super('WelcomeComponent');
+        this.ngZone = ngZone;
+        this.intervalTimers = [];
         this.MIN_ANIMATE = 1000;
         this.MAX_ANIMATE = 2100;
         this.MIN_DELAY = 4500;
@@ -1073,51 +1075,57 @@ class TransportHeroAnimationComponent extends _models_base_component__WEBPACK_IM
             this.startAnimations();
         }
     }
+    ngOnDestroy() {
+        this.intervalTimers.forEach(clearInterval);
+    }
     startAnimations() {
-        this.pinkPath1Interval = setInterval(() => {
+        this.ngZone.runOutsideAngular(() => {
+            this.pinkPath1Interval = setInterval(() => {
+                this.runPinkLine1Message();
+            }, 8000);
+            this.pinkPath2Interval = setInterval(() => {
+                this.runPinkLine2Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.pinkPath3Interval = setInterval(() => {
+                this.runPinkLine3Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.bluePath1Interval = setInterval(() => {
+                this.runBlueLine1Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.bluePath2Interval = setInterval(() => {
+                this.runBlueLine2Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.lightBluePath1Interval = setInterval(() => {
+                this.runLightBlueLine1Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.lightBluePath2Interval = setInterval(() => {
+                this.runLightBlueLine1Message();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
+            this.purplePathInterval = setInterval(() => {
+                this.runPurpleMessage();
+            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
             this.runPinkLine1Message();
-        }, 8000);
-        this.pinkPath2Interval = setInterval(() => {
-            this.runPinkLine2Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.pinkPath3Interval = setInterval(() => {
-            this.runPinkLine3Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.bluePath1Interval = setInterval(() => {
-            this.runBlueLine1Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.bluePath2Interval = setInterval(() => {
-            this.runBlueLine2Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.lightBluePath1Interval = setInterval(() => {
-            this.runLightBlueLine1Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.lightBluePath2Interval = setInterval(() => {
-            this.runLightBlueLine1Message();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.purplePathInterval = setInterval(() => {
-            this.runPurpleMessage();
-        }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY));
-        this.runPinkLine1Message();
-        this.bus.api.tickEventLoop(() => {
-            this.runPinkLine2Message();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
-        this.bus.api.tickEventLoop(() => {
-            this.runPinkLine3Message();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
-        this.bus.api.tickEventLoop(() => {
-            this.runBlueLine1Message();
-            this.runPurpleMessage();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
-        this.bus.api.tickEventLoop(() => {
-            this.runBlueLine2Message();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
-        this.bus.api.tickEventLoop(() => {
-            this.runLightBlueLine1Message();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
-        this.bus.api.tickEventLoop(() => {
-            this.runLightBlueLine2Message();
-        }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.intervalTimers.push(this.pinkPath1Interval, this.pinkPath2Interval, this.pinkPath3Interval, this.bluePath1Interval, this.bluePath2Interval, this.lightBluePath1Interval, this.lightBluePath2Interval, this.purplePathInterval);
+            this.bus.api.tickEventLoop(() => {
+                this.runPinkLine2Message();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.bus.api.tickEventLoop(() => {
+                this.runPinkLine3Message();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.bus.api.tickEventLoop(() => {
+                this.runBlueLine1Message();
+                this.runPurpleMessage();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.bus.api.tickEventLoop(() => {
+                this.runBlueLine2Message();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.bus.api.tickEventLoop(() => {
+                this.runLightBlueLine1Message();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+            this.bus.api.tickEventLoop(() => {
+                this.runLightBlueLine2Message();
+            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER));
+        });
     }
     runPurpleMessage() {
         let msg = this.pinkMessage.clone().children()[0];
@@ -1167,7 +1175,7 @@ class TransportHeroAnimationComponent extends _models_base_component__WEBPACK_IM
         }, duration, snapsvg_cjs__WEBPACK_IMPORTED_MODULE_2___default.a.easeinout);
     }
 }
-TransportHeroAnimationComponent.ɵfac = function TransportHeroAnimationComponent_Factory(t) { return new (t || TransportHeroAnimationComponent)(); };
+TransportHeroAnimationComponent.ɵfac = function TransportHeroAnimationComponent_Factory(t) { return new (t || TransportHeroAnimationComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"])); };
 TransportHeroAnimationComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TransportHeroAnimationComponent, selectors: [["transport-hero-animation"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]], decls: 57, vars: 0, consts: [[1, "transport-hero-background"], ["id", "transport-hero-banner", "xmlns", "http://www.w3.org/2000/svg", 0, "xmlns", "xlink", "http://www.w3.org/1999/xlink", "viewBox", "0 0 1211.01 571"], ["id", "radial-gradient", "cx", "1095.02", "cy", "189.57", "r", "67.25", "gradientTransform", "translate(-720.05 82.75) scale(1.05 1.23)", "gradientUnits", "userSpaceOnUse"], ["offset", "0", "stop-color", "#b3edff"], ["offset", "0.22", "stop-color", "#aee9fc"], ["offset", "0.36", "stop-color", "#a8e5f8"], ["offset", "0.43", "stop-color", "#a1e0f3"], ["offset", "0.54", "stop-color", "#8cd0e7"], ["offset", "0.68", "stop-color", "#6bb8d3"], ["offset", "0.83", "stop-color", "#3c95b6"], ["offset", "0.99", "stop-color", "#026992"], ["offset", "1", "stop-color", "#006891"], ["id", "radial-gradient-2", "cx", "658.78", "cy", "250.44", "r", "73.35", "gradientTransform", "matrix(1, 0, 0, 1, 0, 0)", 0, "xlink", "href", "#radial-gradient"], ["id", "radial-gradient-3", "cx", "529.5", "cy", "262.44", "r", "71.71", "gradientTransform", "matrix(-1, 0, 0, 1, 1192.01, 108)", 0, "xlink", "href", "#radial-gradient"], ["id", "radial-gradient-4", "cx", "315.01", "cy", "315", "r", "29", "gradientTransform", "matrix(1, 0, 0, 1, 0, 0)", 0, "xlink", "href", "#radial-gradient"], ["id", "radial-gradient-5", "cx", "524.76", "cy", "316.75", "r", "59.25", "gradientTransform", "matrix(1, 0, 0, 1, 0, 0)", 0, "xlink", "href", "#radial-gradient"], ["id", "radial-gradient-6", "cx", "760.01", "cy", "206", "r", "36", "gradientTransform", "matrix(1, 0, 0, 1, 0, 0)", 0, "xlink", "href", "#radial-gradient"], ["id", "radial-gradient-7", "cx", "775.01", "cy", "426", "r", "43", "gradientTransform", "matrix(1, 0, 0, 1, 0, 0)", 0, "xlink", "href", "#radial-gradient"], ["id", "right-channels"], ["id", "right-blue-pipe", "points", "766.51 396.5 1085.01 396.5 1167.51 504.5 1167.51 517", 2, "fill", "none", "stroke", "#175f75", "stroke-linejoin", "round", "stroke-width", "41px"], ["id", "right-pink-pipe", "points", "788.51 199.5 1107.01 199.5 1190.51 99.5 1190.51 90", 2, "fill", "none", "stroke", "#88599e", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "right-light-blue-pipe", "points", "776.01 451.5 1055.01 451.5 1098.51 507.5 1114.51 530.5", 2, "fill", "none", "stroke", "#2789af", "stroke-linejoin", "round", "stroke-width", "41px"], ["id", "left-channels"], ["id", "left-purple-pipe", "d", "M943.5,400V227.23a10.18,10.18,0,0,0-3-7.22L700.5-20.5", "transform", "translate(-685.99 108)", 2, "fill", "none", "stroke", "#491d5e", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "left-pink-pipe", "d", "M995.5,400V203.23a10.18,10.18,0,0,0-3-7.22L772-25", "transform", "translate(-685.99 108)", 2, "fill", "none", "stroke", "#88599e", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "main-bus"], ["id", "middle-light-blue-pipe", "x1", "524.51", "y1", "507", "x2", "524.51", "y2", "106", 2, "fill", "none", "stroke", "#2789af", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "middle-blue-pipe", "x1", "569.51", "y1", "507", "x2", "569.51", "y2", "106", 2, "fill", "none", "stroke", "#175f75", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "middle-pink-pipe", "x1", "479.51", "y1", "507", "x2", "479.51", "y2", "106", 2, "fill", "none", "stroke", "#88599e", "stroke-miterlimit", "10", "stroke-width", "41px"], ["id", "pipes"], ["id", "middle-pipe", "x1", "326.01", "y1", "316.75", "x2", "525.01", "y2", "316.75", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "45px", "fill", "url(#radial-gradient)"], ["id", "top-right-pipe", "x1", "565.51", "y1", "295.84", "x2", "752.06", "y2", "205.05", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "45px", "fill", "url(#radial-gradient-2)"], ["id", "bottom-right-pipe", "x1", "569.51", "y1", "330", "x2", "755.51", "y2", "410.88", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "45px", "fill", "url(#radial-gradient-3)"], ["id", "messages"], ["id", "purple-message"], ["cx", "300.01", "cy", "68", "r", "17", 2, "fill", "#491d5e"], ["id", "pink-message"], ["cx", "262.01", "cy", "68", "r", "17", 2, "fill", "#8959a5"], ["id", "blue-message"], ["cx", "338.01", "cy", "68", "r", "17", 2, "fill", "#105666"], ["id", "light-blue-message"], ["cx", "377.01", "cy", "68", "r", "17", 2, "fill", "#328c9b"], ["id", "nodes"], ["id", "left-node", "cx", "315.01", "cy", "315", "r", "29", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "10px", "fill", "url(#radial-gradient-4)"], ["id", "middle-node", "cx", "524.76", "cy", "316.75", "r", "59.25", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "16px", "fill", "url(#radial-gradient-5)"], ["id", "top-right-node", "cx", "760.01", "cy", "206", "r", "36", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "16px", "fill", "url(#radial-gradient-6)"], ["id", "bottom-right-node", "cx", "775.01", "cy", "426", "r", "43", 2, "stroke", "#002635", "stroke-miterlimit", "10", "stroke-width", "16px", "fill", "url(#radial-gradient-7)"], ["id", "paths"], ["id", "pink-path-1", "d", "M691-108,994.68,200.58a21.79,21.79,0,0,0,15.33,6.5l200.74,1.67,233.4-112.42A24.19,24.19,0,0,1,1454.38,94L1793,91.5,1895-33", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "blue-path-1", "d", "M1853.5,429.68V401.31a14.24,14.24,0,0,0-2.92-8.63L1774.45,293a11.48,11.48,0,0,0-9.13-4.52H1487.15a11.12,11.12,0,0,0-8.48,3.93L1468,305.08a12.35,12.35,0,0,1-14.38,3.34L1263,225.26a11.62,11.62,0,0,1-7-10.64V-14.21", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "light-blue-path-1", "d", "M1211,412.07V-.08a15.33,15.33,0,0,0-7.66-13.27L1171-32", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "pink-path-2", "d", "M1165.5,409V223.48A14.48,14.48,0,0,0,1151,209H1006.87a14.16,14.16,0,0,1-10-4.15L741-57", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "purple-path", "d", "M691.7-29.25,938.18,217.23A18.07,18.07,0,0,1,943.47,230V417.79", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "pink-path-3", "d", "M1165.5-29,1165,194.35A12.68,12.68,0,0,1,1152.35,207H1007.67a12.17,12.17,0,0,0-12.17,12.17V463", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "blue-path-2", "d", "M1255.5,405.46V231a5.86,5.86,0,0,1,8.23-5.36L1450.3,308a16,16,0,0,0,13.31-.2l37.79-18.1a12.8,12.8,0,0,1,5.48-1.24h255.76a12.6,12.6,0,0,1,9.9,4.82l78,99.42a13.84,13.84,0,0,1,3,8.54v35.89", "transform", "translate(-685.99 108)", 2, "fill", "none"], ["id", "light-blue-path-2", "d", "M1800.5,422.5l-55.65-73.89a12.83,12.83,0,0,0-10.24-5.11H1480a13.22,13.22,0,0,1-9.35-3.88L1430.26,299a13.2,13.2,0,0,0-4.4-2.93L1222.2,213.3a8.16,8.16,0,0,0-11.23,7.54L1210.5,420", "transform", "translate(-685.99 108)", 2, "fill", "none"]], template: function TransportHeroAnimationComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnamespaceSVG"]();
@@ -1250,7 +1258,7 @@ TransportHeroAnimationComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0
                 templateUrl: './transport-hero-animation.component.html',
                 styleUrls: ['./transport-hero-animation.component.scss']
             }]
-    }], function () { return []; }, null); })();
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"] }]; }, null); })();
 
 
 /***/ }),
@@ -1650,7 +1658,11 @@ HighlightService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vmw/transport/fabric.api */ "6K84");
+/* harmony import */ var _vmw_transport_log__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vmw/transport/log */ "Av6t");
+/* harmony import */ var _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vmw/transport/util/bus.util */ "raco");
+/* harmony import */ var _vmw_transport_util_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vmw/transport/util/util */ "ocLK");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
@@ -1658,15 +1670,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+// Called when connected to broker
+const connectedHandler = (sessionId) => {
+    _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__["BusUtil"].getBusInstance().logger.info(`Connected to Broker with sessionId ${sessionId}`, 'main.ts');
+};
+// Called when disconnected.
+const disconnectedHandler = () => {
+    _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__["BusUtil"].getBusInstance().logger.info('Disconnected from Broker.', 'main.ts');
+};
 class AppComponent {
-    constructor() {
+    constructor(ngZone) {
+        this.ngZone = ngZone;
         this.title = 'documentation';
+        this.initBus();
+        this.createStores();
+        this.connectToFabric();
+    }
+    initBus() {
+        const bus = _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__["BusUtil"].bootBusWithOptions(_vmw_transport_log__WEBPACK_IMPORTED_MODULE_2__["LogLevel"].Debug, false, true);
+        bus.setNgZoneRef(this.ngZone);
+    }
+    connectToFabric() {
+        const bus = _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__["BusUtil"].getBusInstance();
+        // Connect to Broker.
+        bus.fabric.connect(connectedHandler, disconnectedHandler, 'transport-bus.io', 443, '/ws', true);
+        this.connectionStore.put('connecting', true, null);
+        // listen for connection state changes
+        bus.fabric.whenConnectionStateChanges(_vmw_transport_util_util__WEBPACK_IMPORTED_MODULE_4__["GeneralUtil"].getFabricConnectionString('transport-bus.io', 443, '/ws'))
+            .subscribe((stateChange) => {
+            switch (stateChange) {
+                case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_1__["FabricConnectionState"].Connected:
+                    this.connectionStore.put('connected', true, null);
+                    this.connectionStore.put('connecting', false, null);
+                    break;
+                case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_1__["FabricConnectionState"].Disconnected:
+                    this.connectionStore.put('connected', false, null);
+                    this.connectionStore.put('connecting', false, null);
+                    break;
+                case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_1__["FabricConnectionState"].Failed:
+                    this.connectionStore.put('failed', true, null);
+                    this.connectionStore.put('connecting', false, null);
+                    break;
+            }
+        });
+    }
+    createStores() {
+        let state = new Map();
+        state.set('connected', false);
+        state.set('connecting', false);
+        state.set('failed', false);
+        this.connectionStore = _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_3__["BusUtil"].getBusInstance().stores.createStore('connectionState', state);
+        this.connectionStore.initialize();
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"])); };
 AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 1, vars: 0, template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "router-outlet");
-    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */"] });
+    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -1674,7 +1738,7 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
                 templateUrl: './app.component.html',
                 styleUrls: ['./app.component.scss']
             }]
-    }], null, null); })();
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"] }]; }, null); })();
 
 
 /***/ }),
@@ -1911,15 +1975,15 @@ __webpack_require__.r(__webpack_exports__);
 /* tslint:disable */
 const VERSION = {
     "dirty": false,
-    "raw": "1bfca39",
-    "hash": "1bfca39",
+    "raw": "69220a5",
+    "hash": "69220a5",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "1bfca39",
+    "suffix": "69220a5",
     "semverString": null,
     "version": "1.1.0",
-    "time": "2021-08-27T00:23:36.752Z"
+    "time": "2021-08-27T02:59:45.516Z"
 };
 /* tslint:enable */
 
@@ -1987,11 +2051,8 @@ AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ "AytR");
-/* harmony import */ var _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vmw/transport/util/bus.util */ "raco");
-/* harmony import */ var _vmw_transport_log__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vmw/transport/log */ "Av6t");
-/* harmony import */ var _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vmw/transport/fabric.api */ "6K84");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app/app.module */ "ZAI4");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "ZAI4");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
 /*
  * Copyright 2021 VMware, Inc.
  * SPDX-License-Identifier: BSD-2-Clause
@@ -2000,55 +2061,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
-_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_5__["AppModule"])
+_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
     .catch(err => console.error(err));
-const bus = _vmw_transport_util_bus_util__WEBPACK_IMPORTED_MODULE_2__["BusUtil"].bootBusWithOptions(_vmw_transport_log__WEBPACK_IMPORTED_MODULE_3__["LogLevel"].Debug, false, true);
-// Called when connected to broker
-const connectedHandler = (sessionId) => {
-    bus.logger.info(`Connected to transport-bus.io with sessionId ${sessionId}`, 'main.ts');
-};
-// Called when disconnected.
-const disconnectedHandler = () => {
-    bus.logger.info('Disconnected from transport-bus.io', 'main.ts');
-};
-let connectionStore;
-// Create state stores
-function createStores() {
-    let state = new Map();
-    state.set(_vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Connected, false);
-    state.set('connecting', false);
-    state.set(_vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Failed, false);
-    connectionStore = bus.stores.createStore('connectionState', state);
-    connectionStore.initialize();
-}
-createStores();
-// Connect to Broker.
-bus.fabric.connect(connectedHandler, disconnectedHandler, 'transport-bus.io', 443, '/ws', true);
-connectionStore.put('connecting', true, null);
-// listen for connection state changes
-bus.fabric.whenConnectionStateChanges()
-    .subscribe((stateChange) => {
-    switch (stateChange) {
-        case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Connected:
-            connectionStore.put(_vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Connected, true, null);
-            connectionStore.put('connecting', false, null);
-            break;
-        case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Disconnected:
-            connectionStore.put(_vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Connected, false, null);
-            connectionStore.put('connecting', false, null);
-            break;
-        case _vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Failed:
-            connectionStore.put(_vmw_transport_fabric_api__WEBPACK_IMPORTED_MODULE_4__["FabricConnectionState"].Failed, true, null);
-            connectionStore.put('connecting', false, null);
-            break;
-    }
-});
 
 
 /***/ }),
