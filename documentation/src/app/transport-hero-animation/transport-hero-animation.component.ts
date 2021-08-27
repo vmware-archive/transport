@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import {BaseComponent} from "../models/base.component";
 import Snap from 'snapsvg-cjs';
 import mina from 'snapsvg-cjs';
@@ -13,7 +13,9 @@ import mina from 'snapsvg-cjs';
   templateUrl: './transport-hero-animation.component.html',
   styleUrls: ['./transport-hero-animation.component.scss']
 })
-export class TransportHeroAnimationComponent extends BaseComponent implements OnInit {
+export class TransportHeroAnimationComponent extends BaseComponent implements OnInit, OnDestroy {
+
+    private intervalTimers: Array<number> = [];
 
     private MIN_ANIMATE: number = 1000;
     private MAX_ANIMATE: number = 2100;
@@ -38,21 +40,20 @@ export class TransportHeroAnimationComponent extends BaseComponent implements On
     public hero: any;
 
 
-    public bluePath1Interval: number
-    public bluePath2Interval: number
-    public lightBluePath1Interval: number
-    public lightBluePath2Interval: number
-    public pinkPath1Interval: number
-    public pinkPath2Interval: number
-    public pinkPath3Interval: number
-    public purplePathInterval: number
+    public bluePath1Interval: number;
+    public bluePath2Interval: number;
+    public lightBluePath1Interval: number;
+    public lightBluePath2Interval: number;
+    public pinkPath1Interval: number;
+    public pinkPath2Interval: number;
+    public pinkPath3Interval: number;
+    public purplePathInterval: number;
 
-    constructor() {
+    constructor(private ngZone: NgZone) {
         super('WelcomeComponent');
     }
 
     ngOnInit(): void {
-
         this.hero = Snap('#transport-hero-banner');
         if (this.hero != null) {
             this.pinkPath1 = this.hero.select("#pink-path-1");
@@ -105,81 +106,104 @@ export class TransportHeroAnimationComponent extends BaseComponent implements On
         }
     }
 
+    ngOnDestroy(): void {
+        this.intervalTimers.forEach(clearInterval);
+    }
+
     public startAnimations(): void {
-        this.pinkPath1Interval = setInterval(
-            () => {
-                this.runPinkLine1Message()
-            }, 8000
-        );
+        this.ngZone.runOutsideAngular(() => {
+            this.pinkPath1Interval = setInterval(
+                () => {
+                    this.runPinkLine1Message()
+                }, 8000
+            );
 
-        this.pinkPath2Interval = setInterval(
-            () => {
-                this.runPinkLine2Message()
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.pinkPath3Interval = setInterval(
-            () => {
-                this.runPinkLine3Message()
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.bluePath1Interval = setInterval(
-            () => {
-                this.runBlueLine1Message()
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.bluePath2Interval = setInterval(
-            () => {
-                this.runBlueLine2Message()
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.lightBluePath1Interval = setInterval(
-            () => {
-                this.runLightBlueLine1Message();
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.lightBluePath2Interval = setInterval(
-            () => {
-                this.runLightBlueLine1Message();
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.purplePathInterval = setInterval(
-            () => {
-                this.runPurpleMessage()
-            }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
-        );
-        this.runPinkLine1Message()
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runPinkLine2Message()
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runPinkLine3Message()
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runBlueLine1Message();
-                this.runPurpleMessage()
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runBlueLine2Message();
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runLightBlueLine1Message()
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
-        this.bus.api.tickEventLoop(
-            () => {
-                this.runLightBlueLine2Message()
-            }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
-        )
+            this.pinkPath2Interval = setInterval(
+                () => {
+                    this.runPinkLine2Message()
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.pinkPath3Interval = setInterval(
+                () => {
+                    this.runPinkLine3Message()
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.bluePath1Interval = setInterval(
+                () => {
+                    this.runBlueLine1Message()
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.bluePath2Interval = setInterval(
+                () => {
+                    this.runBlueLine2Message()
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.lightBluePath1Interval = setInterval(
+                () => {
+                    this.runLightBlueLine1Message();
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.lightBluePath2Interval = setInterval(
+                () => {
+                    this.runLightBlueLine1Message();
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
+            this.purplePathInterval = setInterval(
+                () => {
+                    this.runPurpleMessage();
+                }, this.getRandomValue(this.MIN_DELAY, this.MAX_DELAY)
+            );
 
+            this.runPinkLine1Message();
+
+            this.intervalTimers.push(
+                this.pinkPath1Interval,
+                this.pinkPath2Interval,
+                this.pinkPath3Interval,
+                this.bluePath1Interval,
+                this.bluePath2Interval,
+                this.lightBluePath1Interval,
+                this.lightBluePath2Interval,
+                this.purplePathInterval
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runPinkLine2Message()
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runPinkLine3Message()
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runBlueLine1Message();
+                    this.runPurpleMessage()
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runBlueLine2Message();
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runLightBlueLine1Message()
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+
+            this.bus.api.tickEventLoop(
+                () => {
+                    this.runLightBlueLine2Message()
+                }, this.getRandomValue(this.MIN_STAGGER, this.MAX_STAGGER)
+            );
+        });
     }
 
     public runPurpleMessage(): void {
