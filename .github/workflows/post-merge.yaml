@@ -21,5 +21,5 @@ jobs:
           TRBOX_RSA_PRIV: ${{ secrets.TRBOX_ID_RSA }}
           TRBOX_HOSTNAME: ${{ secrets.TRBOX_HOSTNAME }}
         run: |
-          echo "${TRBOX_RSA_PRIV}" > /tmp/id_rsa
+          echo "${TRBOX_RSA_PRIV}" > /tmp/id_rsa && chmod 0600 /tmp/id_rsa
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /tmp/id_rsa dist/documentation/* ${TRBOX_HOSTNAME}:~/plank_bin/public/
