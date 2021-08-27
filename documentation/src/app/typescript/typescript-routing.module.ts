@@ -30,6 +30,7 @@ import {ImportingUmdComponent} from "@vmw/transport-docs/typescript/importing-um
 import {PingPongComponent} from "@vmw/transport-docs/typescript/examples/ping-pong/ping-pong.component";
 import {StockTickerComponent} from "@vmw/transport-docs/typescript/examples/stock-ticker/stock-ticker.component";
 import {SimpleStreamComponent} from "@vmw/transport-docs/typescript/examples/simple-stream/simple-stream.component";
+import {JokeComponent} from "@vmw/transport-docs/typescript/examples/joke/joke.component";
 
 const routes: Routes = [
     {
@@ -61,6 +62,7 @@ const routes: Routes = [
             {path: 'examples/ping-pong', component: PingPongComponent},
             {path: 'examples/stock-ticker', component: StockTickerComponent},
             {path: 'examples/simple-stream', component: SimpleStreamComponent},
+            {path: 'examples/joke-service', component: JokeComponent},
         ]
     }
 ];

@@ -79,5 +79,34 @@ export const Provider: React.FC&lt;ProviderProps&gt; = props => (
 export const useTransport = () => useContext(TransportContext);
 </code></pre>
 
+<hr/>
+<h2>Using a Base Component Class to provide access to Transport</h2>
+
+<p>
+    Some of us are a little old fashioned and prefer to use Classes and inheritance in our design, rather than using
+    side effects and useState etc. You could use this very simple base component as your root component and extend from here.
+</p>
+
+
+<pre class="code"><code class="language-typescript" ngNonBindable>import &#123; EventBus, BusStoreApi &#125; from "@vmw/transport/bus.api";
+import &#123; FabricApi &#125; from "@vmw/transport/fabric.api";
+import &#123; Logger &#125; from "@vmw/transport/log";
+import &#123; BusUtil &#125; from "@vmw/transport/util/bus.util";
+import React from "react";
+
+export abstract class BaseComponent&lt;P = any, S = any&gt; extends React.Component&lt;P, S&gt; &#123;
+    // get a reference to the bus, fabric and logger
+    public bus: EventBus = BusUtil.getBusInstance();
+    public fabric: FabricApi = this.bus.fabric;
+    public log: Logger = this.bus.logger;
+    public storeManager: BusStoreApi = this.bus.stores;
+&#125;</code></pre>
+
+<p>
+    This provides you with everything you need to use transport effectively in your React Components.
+</p>
+
+<hr/>
+
 <a routerLink="/ts/initializing" class="btn btn-primary btn-block btn-outline">Next Steps: Initializing Transport</a>
 
