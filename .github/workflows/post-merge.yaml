@@ -19,6 +19,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
+          token: ${{ secrets.GH_PAGE_DEPLOY_PAT }}
           folder: documentation/dist/documentation
 
 
