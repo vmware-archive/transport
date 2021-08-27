@@ -1,6 +1,6 @@
 # Transport Documentation
 
-This is a locally deployable Transport documentation site, powered by Angular. It is hosted at https://vmware.github.io/transport
+This is a locally deployable Transport documentation site, powered by Angular. It is hosted at https://transport-bus.io
 
 ## Development server
 
