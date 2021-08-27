@@ -22,4 +22,4 @@ jobs:
           TRBOX_HOSTNAME: ${{ secrets.TRBOX_HOSTNAME }}
         run: |
           echo "${TRBOX_RSA_PRIV}" > /tmp/id_rsa
-          scp -i /tmp/id_rsa dist/documentation/* ${TRBOX_HOSTNAME}:~/plank_bin/public/
+          scp -i /tmp/id_rsa dist/documentation/* -q -o StrictHostKeyChecking=no ${TRBOX_HOSTNAME}:~/plank_bin/public/
