@@ -14,7 +14,7 @@ It really comes to life when you use it to send messages, requests, responses an
 
 Channels can be extended to major brokers like Kafka or RabbitMQ, so Transport becomes an 'on/off-ramp' for your main sources of truth.
 
-## [View Transport Documentation](https://vmware.github.io/transport)
+## [View Transport Documentation](https://transport-bus.io)
 
 ### [TypeScript Source Repository](https://github.com/vmware/transport-typescript)
 

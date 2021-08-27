@@ -1,221 +1,221 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://vmware.github.io/transport/about</loc>
+        <loc>https://transport-bus.io/about</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts</loc>
+        <loc>https://transport-bus.io/ts</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/overview</loc>
+        <loc>https://transport-bus.io/ts/overview</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/importing</loc>
+        <loc>https://transport-bus.io/ts/importing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/importing-umd</loc>
+        <loc>https://transport-bus.io/ts/importing-umd</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/importing-angular</loc>
+        <loc>https://transport-bus.io/ts/importing-angular</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/importing-react</loc>
+        <loc>https://transport-bus.io/ts/importing-react</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/initializing</loc>
+        <loc>https://transport-bus.io/ts/initializing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/hello-world</loc>
+        <loc>https://transport-bus.io/ts/hello-world</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/building-services</loc>
+        <loc>https://transport-bus.io/ts/building-services</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/advanced-messaging</loc>
+        <loc>https://transport-bus.io/ts/advanced-messaging</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/transactions</loc>
+        <loc>https://transport-bus.io/ts/transactions</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/logging</loc>
+        <loc>https://transport-bus.io/ts/logging</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/broker-overview</loc>
+        <loc>https://transport-bus.io/ts/broker-overview</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/connecting-broker</loc>
+        <loc>https://transport-bus.io/connecting-broker</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/multiple-brokers</loc>
+        <loc>https://transport-bus.io/ts/multiple-brokers</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/extending-channels</loc>
+        <loc>https://transport-bus.io/ts/extending-channels</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/store-basics</loc>
+        <loc>https://transport-bus.io/ts/store-basics</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/store-advanced</loc>
+        <loc>https://transport-bus.io/ts/store-advanced</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/iframes</loc>
+        <loc>https://transport-bus.io/ts/iframes</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/abstractions</loc>
+        <loc>https://transport-bus.io/ts/abstractions</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/examples/ping-pong</loc>
+        <loc>https://transport-bus.io/ts/examples/ping-pong</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/examples/joke-service</loc>
+        <loc>https://transport-bus.io/ts/examples/joke-service</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/examples/stock-ticker</loc>
+        <loc>https://transport-bus.io/ts/examples/stock-ticker</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/examples/simple-stream</loc>
+        <loc>https://transport-bus.io/ts/examples/simple-stream</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/ts/changelog</loc>
+        <loc>https://transport-bus.io/ts/changelog</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java</loc>
+        <loc>https://transport-bus.io/java</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/overview</loc>
+        <loc>https://transport-bus.io/java/overview</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/importing</loc>
+        <loc>https://transport-bus.io/java/importing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/configuring</loc>
+        <loc>https://transport-bus.io/java/configuring</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/initializing</loc>
+        <loc>https://transport-bus.io/java/initializing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/hello-world</loc>
+        <loc>https://transport-bus.io/java/hello-world</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/building-services</loc>
+        <loc>https://transport-bus.io/java/building-services</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/messaging</loc>
+        <loc>https://transport-bus.io/java/messaging</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/private-channels</loc>
+        <loc>https://transport-bus.io/java/private-channels</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/transactions</loc>
+        <loc>https://transport-bus.io/java/transactions</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/logging</loc>
+        <loc>https://transport-bus.io/java/logging</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/rest</loc>
+        <loc>https://transport-bus.io/java/rest</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/java/abstractions</loc>
+        <loc>https://transport-bus.io/java/abstractions</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/golang</loc>
+        <loc>https://transport-bus.io/golang</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/golang/overview</loc>
+        <loc>https://transport-bus.io/golang/overview</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/golang/initializing</loc>
+        <loc>https://transport-bus.io/golang/initializing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/golang/importing</loc>
+        <loc>https://transport-bus.io/golang/importing</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/transport/golang/hello-world</loc>
+        <loc>https://transport-bus.io/golang/hello-world</loc>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>
