@@ -33,7 +33,7 @@ export class ChangelogComponent implements OnInit {
 
     versionComparator = new VersionComparator();
     ClrDatagridSortOrder = ClrDatagridSortOrder;
-    loading = true;
+    loading = false;
 
     constructor() {
     }

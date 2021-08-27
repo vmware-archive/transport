@@ -36,6 +36,7 @@ import { ChangelogComponent } from './changelog/changelog.component';
         FooterComponent,
         AnimatedConsoleComponent,
         QuickstartComponent,
+        ChangelogComponent,
     ],
     providers: [HighlightService]
 })

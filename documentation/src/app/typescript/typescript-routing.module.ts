@@ -31,6 +31,7 @@ import {PingPongComponent} from "@vmw/transport-docs/typescript/examples/ping-po
 import {StockTickerComponent} from "@vmw/transport-docs/typescript/examples/stock-ticker/stock-ticker.component";
 import {SimpleStreamComponent} from "@vmw/transport-docs/typescript/examples/simple-stream/simple-stream.component";
 import {JokeComponent} from "@vmw/transport-docs/typescript/examples/joke/joke.component";
+import {ChangelogComponent} from "@vmw/transport-docs/typescript/changelog/changelog.component";
 
 const routes: Routes = [
     {
@@ -58,6 +59,7 @@ const routes: Routes = [
             {path: 'store-advanced', component: StoreAdvancedComponent},
             {path: 'iframes', component: IframesComponent},
             {path: 'abstractions', component: AbstractionsComponent},
+            {path: 'changelog', component: ChangelogComponent},
             {path: 'examples', component: PingPongComponent},
             {path: 'examples/ping-pong', component: PingPongComponent},
             {path: 'examples/stock-ticker', component: StockTickerComponent},

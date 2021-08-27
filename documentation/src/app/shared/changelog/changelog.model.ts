@@ -4,12 +4,12 @@
  */
 
 export interface ChangelogEntry {
-    date: string;
-    version: string;
-    notes: ChangelogNote[];
+    date?: string;
+    version?: string;
+    notes?: ChangelogNote[];
 }
 
 export class ChangelogNote {
-    description: string;
-    review_uri: string;
+    description?: string;
+    review_uri?: string;
 }
