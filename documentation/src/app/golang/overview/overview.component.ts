@@ -4,18 +4,17 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
-import {goTerminalCommands, javaTerminalCommands, tsTerminalCommands} from "@vmw/transport-docs/shared/model";
-import {TermCommand} from "@vmw/transport-docs/welcome/welcome.component";
-import {BaseComponent} from "@vmw/transport-docs/base.component";
+import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
+import { goTerminalCommands, javaTerminalCommands, tsTerminalCommands } from '@vmw/transport-docs/shared/model';
+import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';
+import { BaseComponent } from '@vmw/transport-docs/base.component';
 
 @Component({
-  selector: 'transport-golang-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+    selector: 'transport-golang-overview',
+    templateUrl: './overview.component.html',
+    styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
-
     public goCommands: Array<TermCommand>;
     public highlighted = false;
 
@@ -29,7 +28,6 @@ export class OverviewComponent extends BaseComponent implements OnInit {
 
     ngOnInit(): void {
         this.goCommands = goTerminalCommands;
-
     }
 
     ngAfterViewChecked() {
@@ -38,5 +36,4 @@ export class OverviewComponent extends BaseComponent implements OnInit {
             this.highlighted = true;
         }
     }
-
 }

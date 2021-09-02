@@ -6,15 +6,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'transport-logging',
-  templateUrl: './logging.component.html',
-  styleUrls: ['./logging.component.scss']
+    selector: 'transport-logging',
+    templateUrl: './logging.component.html',
+    styleUrls: ['./logging.component.scss'],
 })
 export class LoggingComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

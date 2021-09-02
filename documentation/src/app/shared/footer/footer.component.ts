@@ -3,19 +3,18 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {BaseComponent} from '../../models/base.component';
-import {VERSION} from '@vmw/transport-docs/environments/version';
-import {BusStore, StoreStream} from '@vmw/transport';
-import {FabricConnectionState} from "@vmw/transport/fabric.api";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { BaseComponent } from '../../models/base.component';
+import { VERSION } from '@vmw/transport-docs/environments/version';
+import { BusStore, StoreStream } from '@vmw/transport';
+import { FabricConnectionState } from '@vmw/transport/fabric.api';
 
 @Component({
     selector: 'transport-footer',
     templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss']
+    styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent extends BaseComponent implements OnInit, OnDestroy {
-
     public date = new Date().getFullYear();
     public version = VERSION;
     public buildTime = Date.parse(VERSION.time);
@@ -67,9 +66,7 @@ export class FooterComponent extends BaseComponent implements OnInit, OnDestroy 
         this.cd.detectChanges();
     }
 
-    ngOnDestroy(): void {
-
-    }
+    ngOnDestroy(): void {}
 
     ngOnInit(): void {
         this.connectionStateStore = this.storeManager.getStore('connectionState');
@@ -80,7 +77,7 @@ export class FooterComponent extends BaseComponent implements OnInit, OnDestroy 
         this.listenForStateChanges();
 
         if (this.connecting) {
-           this.setConnecting();
+            this.setConnecting();
         }
 
         if (this.connected) {
@@ -97,23 +94,17 @@ export class FooterComponent extends BaseComponent implements OnInit, OnDestroy 
 
     listenForStateChanges(): void {
         this.connectionStateStream = this.connectionStateStore.onChange(FabricConnectionState.Connected);
-        this.connectionStateStream.subscribe(
-            (connected) => {
-                if (connected) {
-                    this.setConnected();
-                } else {
-                    this.setDisconnected();
-                }
+        this.connectionStateStream.subscribe((connected) => {
+            if (connected) {
+                this.setConnected();
+            } else {
+                this.setDisconnected();
             }
-        );
-
+        });
 
         this.disconnectStateStream = this.connectionStateStore.onChange(FabricConnectionState.Failed);
-        this.disconnectStateStream.subscribe(
-            () => {
-                this.setConnectError()
-            }
-        );
+        this.disconnectStateStream.subscribe(() => {
+            this.setConnectError();
+        });
     }
-
 }

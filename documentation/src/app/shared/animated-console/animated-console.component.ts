@@ -3,27 +3,14 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import {
-    Component,
-    ElementRef, EventEmitter,
-    Input, OnDestroy,
-    OnInit, Output,
-    Renderer2,
-    ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { concat, EMPTY, fromEvent, interval, Observable, of, Subscription, timer } from 'rxjs';
-import {
-    repeat,
-    switchMapTo,
-    takeWhile,
-    tap,
-    delay
-} from 'rxjs/operators';
+import { repeat, switchMapTo, takeWhile, tap, delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'transport-animated-console',
-  templateUrl: './animated-console.component.html',
-  styleUrls: ['./animated-console.component.scss']
+    selector: 'transport-animated-console',
+    templateUrl: './animated-console.component.html',
+    styleUrls: ['./animated-console.component.scss'],
 })
 export class AnimatedConsoleComponent implements OnInit, OnDestroy {
     public static readonly CARET_PROGRESSION_INTERVAL = 50;
@@ -50,7 +37,7 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
     public consoleTheme = 'blue macOS';
 
     @Input()
-    public delay: number
+    public delay: number;
 
     @Input()
     public loopAnimation = false;
@@ -73,7 +60,7 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
     @Output()
     public cmdExecutionComplete: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild('cmdInputBox', {read: ElementRef})
+    @ViewChild('cmdInputBox', { read: ElementRef })
     public cmdInputBox: ElementRef;
 
     public commandExecuted: boolean;
@@ -89,9 +76,7 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
     // set minimum height if specified by the user through [consoleMinHeight] input parameter. then proceed to
     // set the terminal to either interactive mode or autotype mode based on [interactiveConsole].
     ngOnInit(): void {
-        this.renderer.setStyle(
-            this.elRef.nativeElement.querySelector('.console-body'),
-            'min-height', this.consoleMinHeight || 'auto');
+        this.renderer.setStyle(this.elRef.nativeElement.querySelector('.console-body'), 'min-height', this.consoleMinHeight || 'auto');
 
         if (this.interactiveMode) {
             this.interact();
@@ -135,11 +120,15 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
 
         // execute the provided function that invokes the command in the backend.
         this.cmdOutput = [];
-        this.cmdOutputObservable.subscribe((line: string) => {
-            this.cmdOutput.push(line);
-        }, (err) => console.error(err), () => {
-            this.cmdExecutionComplete.emit(this.cmdOutput);
-        });
+        this.cmdOutputObservable.subscribe(
+            (line: string) => {
+                this.cmdOutput.push(line);
+            },
+            (err) => console.error(err),
+            () => {
+                this.cmdExecutionComplete.emit(this.cmdOutput);
+            }
+        );
     }
 
     // autotype simulates typing of inputCommand character by character into this.display. once the command has been
@@ -150,15 +139,12 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
         this.display = '';
 
         const typerObs = interval(AnimatedConsoleComponent.CARET_PROGRESSION_INTERVAL)
-            .pipe(
-                takeWhile((v) => v < this.inputCommand.length)
-            ).pipe(
-                delay(this.delay)
-            );
+            .pipe(takeWhile((v) => v < this.inputCommand.length))
+            .pipe(delay(this.delay));
 
         const outputsObs = timer(AnimatedConsoleComponent.EXECUTION_DELAY).pipe(
             switchMapTo<string>(this.cmdOutputObservable),
-            tap(line => {
+            tap((line) => {
                 this.cmdOutput.push(line);
                 this.commandExecuted = true;
             }),
@@ -172,9 +158,11 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
                     this.cmdOutput = [];
                 }
             }),
-            switchMapTo(EMPTY));
+            switchMapTo(EMPTY)
+        );
 
-        this.autotypeSubscription = concat(typerObs, outputsObs, resetObs).pipe(repeat(loop ? -1 : 1))
+        this.autotypeSubscription = concat(typerObs, outputsObs, resetObs)
+            .pipe(repeat(loop ? -1 : 1))
             .subscribe((v) => {
                 if (this.display.length === this.inputCommand.length) {
                     this.display = '';

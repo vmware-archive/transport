@@ -3,21 +3,20 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
-import {AbstractBase} from "@vmw/transport/core";
-import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AbstractBase } from '@vmw/transport/core';
+import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 
 @Component({
-  selector: 'transport-calling-services',
-  templateUrl: './calling-services.component.html',
-  styleUrls: ['./calling-services.component.scss']
+    selector: 'transport-calling-services',
+    templateUrl: './calling-services.component.html',
+    styleUrls: ['./calling-services.component.scss'],
 })
 export class CallingServicesComponent extends AbstractBase implements OnInit, AfterViewChecked {
     constructor(private highlightService: HighlightService) {
-        super('CallingServicesComponent')
+        super('CallingServicesComponent');
     }
-public highlighted = false;
+    public highlighted = false;
 
     ngOnInit() {}
 
@@ -28,4 +27,3 @@ public highlighted = false;
         }
     }
 }
-

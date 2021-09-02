@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ClrDatagridComparatorInterface, ClrDatagridSortOrder } from '@clr/angular';
 import { ChangelogEntry } from './changelog.model';
 
@@ -12,8 +12,8 @@ export class VersionComparator implements ClrDatagridComparatorInterface<Changel
         const pa = a.version.split('.');
         const pb = b.version.split('.');
         for (let i = 0; i < 3; i++) {
-            let na = Number(pa[i]);
-            let nb = Number(pb[i]);
+            const na = Number(pa[i]);
+            const nb = Number(pb[i]);
             if (na > nb) return 1;
             if (nb > na) return -1;
             if (!isNaN(na) && isNaN(nb)) return 1;
@@ -26,7 +26,7 @@ export class VersionComparator implements ClrDatagridComparatorInterface<Changel
 @Component({
     selector: 'transport-changelog',
     templateUrl: './changelog.component.html',
-    styleUrls: ['./changelog.component.scss']
+    styleUrls: ['./changelog.component.scss'],
 })
 export class ChangelogComponent implements OnInit {
     @Input() changelog: Array<ChangelogEntry> = [];
@@ -35,10 +35,7 @@ export class ChangelogComponent implements OnInit {
     ClrDatagridSortOrder = ClrDatagridSortOrder;
     loading = false;
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
-
+    ngOnInit(): void {}
 }

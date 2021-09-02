@@ -3,20 +3,18 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-
-import {Component, OnInit} from '@angular/core';
-import {BaseComponent} from "@vmw/transport-docs/base.component";
-import {TermCommand} from "@vmw/transport-docs/welcome/welcome.component";
-import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
-import {tsTerminalCommands} from "@vmw/transport-docs/shared/model";
+import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '@vmw/transport-docs/base.component';
+import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';
+import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
+import { tsTerminalCommands } from '@vmw/transport-docs/shared/model';
 
 @Component({
     selector: 'transport-ts-overview',
     templateUrl: './overview.component.html',
-    styleUrls: ['./overview.component.scss']
+    styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
-
     public tsCommands: Array<TermCommand>;
     public highlighted = false;
 
@@ -39,4 +37,3 @@ export class OverviewComponent extends BaseComponent implements OnInit {
         }
     }
 }
-
