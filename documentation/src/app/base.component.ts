@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-
-import {AbstractBase} from '@vmw/transport/core';
+import { AbstractBase } from '@vmw/transport/core';
 
 export abstract class BaseComponent extends AbstractBase {
     protected constructor(name: string) {

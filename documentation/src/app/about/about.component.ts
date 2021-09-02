@@ -6,15 +6,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'transport-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'transport-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

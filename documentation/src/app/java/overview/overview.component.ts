@@ -4,18 +4,18 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {BaseComponent} from "@vmw/transport-docs/base.component";
-import {TermCommand} from "@vmw/transport-docs/welcome/welcome.component";
-import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
-import {javaTerminalCommands} from "@vmw/transport-docs/shared/model";
+
+import { BaseComponent } from '@vmw/transport-docs/base.component';
+import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';
+import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
+import { javaTerminalCommands } from '@vmw/transport-docs/shared/model';
 
 @Component({
-  selector: 'transport-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+    selector: 'transport-overview',
+    templateUrl: './overview.component.html',
+    styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
-
     public javaCommands: Array<TermCommand>;
     public highlighted = false;
 
@@ -37,5 +37,4 @@ export class OverviewComponent extends BaseComponent implements OnInit {
             this.highlighted = true;
         }
     }
-
 }

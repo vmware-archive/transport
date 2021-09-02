@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-
 import { Component, NgZone } from '@angular/core';
+
 import { BusStore, EventBus } from '@vmw/transport';
 import { FabricConnectionState } from '@vmw/transport/fabric.api';
 import { LogLevel } from '@vmw/transport/log';
@@ -22,19 +22,17 @@ const disconnectedHandler = () => {
 };
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
     private connectionStore: BusStore<any>;
 
     constructor(private ngZone: NgZone) {
         this.initBus();
         this.createStores();
         this.connectToFabric();
-
     }
 
     initBus(): void {
@@ -49,36 +47,35 @@ export class AppComponent {
         this.connectionStore.put('connecting', true, null);
 
         // listen for connection state changes
-        bus.fabric.whenConnectionStateChanges(GeneralUtil.getFabricConnectionString('transport-bus.io', 443, '/ws'))
-            .subscribe(
-                (stateChange: FabricConnectionState) => {
-                    switch (stateChange) {
-                        case FabricConnectionState.Connected:
-                            this.connectionStore.put('connected', true, null);
-                            this.connectionStore.put('connecting', false, null);
-                            break;
+        bus.fabric
+            .whenConnectionStateChanges(GeneralUtil.getFabricConnectionString('transport-bus.io', 443, '/ws'))
+            .subscribe((stateChange: FabricConnectionState) => {
+                switch (stateChange) {
+                    case FabricConnectionState.Connected:
+                        this.connectionStore.put('connected', true, null);
+                        this.connectionStore.put('connecting', false, null);
+                        break;
 
-                        case FabricConnectionState.Disconnected:
-                            this.connectionStore.put('connected', false, null);
-                            this.connectionStore.put('connecting', false, null);
-                            break;
+                    case FabricConnectionState.Disconnected:
+                        this.connectionStore.put('connected', false, null);
+                        this.connectionStore.put('connecting', false, null);
+                        break;
 
-                        case FabricConnectionState.Failed:
-                            this.connectionStore.put('failed', true, null);
-                            this.connectionStore.put('connecting', false, null);
-                            break;
-                    }
+                    case FabricConnectionState.Failed:
+                        this.connectionStore.put('failed', true, null);
+                        this.connectionStore.put('connecting', false, null);
+                        break;
                 }
-            );
+            });
     }
 
     createStores(): void {
-        let state: Map<string, boolean> = new Map();
-        state.set('connected', false)
-        state.set('connecting', false)
-        state.set('failed', false)
+        const state: Map<string, boolean> = new Map();
+        state.set('connected', false);
+        state.set('connecting', false);
+        state.set('failed', false);
         this.connectionStore = BusUtil.getBusInstance().stores.createStore('connectionState', state);
         this.connectionStore.initialize();
     }
-  title = 'documentation';
+    title = 'documentation';
 }

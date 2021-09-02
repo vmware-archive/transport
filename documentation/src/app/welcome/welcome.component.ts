@@ -3,18 +3,19 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import {AfterViewChecked, Component, OnChanges, OnInit} from '@angular/core';
-import {BaseComponent} from '../models/base.component';
-import {HighlightService} from "@vmw/transport-docs/services/highlight.service";
-import {goTerminalCommands, javaTerminalCommands, tsTerminalCommands} from "@vmw/transport-docs/shared/model";
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
+import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
+import { goTerminalCommands, javaTerminalCommands, tsTerminalCommands } from '@vmw/transport-docs/shared/model';
+
+import { BaseComponent } from '../models/base.component';
 
 @Component({
     selector: 'app-welcome',
     templateUrl: './welcome.component.html',
-    styleUrls: ['./welcome.component.scss']
+    styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent extends BaseComponent implements OnInit, AfterViewChecked {
-
     public goCommands: Array<TermCommand>;
     public javaCommands: Array<TermCommand>;
     public tsCommands: Array<TermCommand>;
@@ -29,10 +30,9 @@ export class WelcomeComponent extends BaseComponent implements OnInit, AfterView
     }
 
     ngOnInit(): void {
-       this.goCommands = goTerminalCommands;
-       this.tsCommands = tsTerminalCommands;
-       this.javaCommands = javaTerminalCommands;
-
+        this.goCommands = goTerminalCommands;
+        this.tsCommands = tsTerminalCommands;
+        this.javaCommands = javaTerminalCommands;
     }
 
     ngAfterViewChecked() {

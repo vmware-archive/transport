@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ClarityModule } from '@clr/angular';
 
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TypescriptRoutingModule} from './typescript-routing.module';
-import {TypescriptComponent} from './typescript.component';
-import {SharedModule} from '../shared/shared.module';
-import {ClarityModule} from '@clr/angular';
-import {OverviewComponent} from './overview/overview.component';
-import {ImportingComponent } from './importing/importing.component';
+import { SharedModule } from '../shared/shared.module';
+
+import { TypescriptRoutingModule } from './typescript-routing.module';
+import { TypescriptComponent } from './typescript.component';
+import { OverviewComponent } from './overview/overview.component';
+import { ImportingComponent } from './importing/importing.component';
 import { InitializingComponent } from './initializing/initializing.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { BuildingServicesComponent } from './building-services/building-services.component';
@@ -37,21 +38,36 @@ import { SimpleStreamComponent } from './examples/simple-stream/simple-stream.co
 import { JokeComponent } from './examples/joke/joke.component';
 import { ChangelogComponent } from './changelog/changelog.component';
 
-
 @NgModule({
-    declarations: [TypescriptComponent, OverviewComponent, ImportingComponent, InitializingComponent, HelloWorldComponent,
-        BuildingServicesComponent, CallingServicesComponent, AdvancedMessagingComponent, TransactionsComponent, LoggingComponent,
-        BrokerOverviewComponent, ConnectingBrokerComponent, MultipleBrokersComponent, ExtendingChannelsComponent,
-        StoreBasicsComponent, StoreAdvancedComponent, IframesComponent, IframeDemoComponent, AbstractionsComponent,
-        ImportingAngularComponent, ImportingUmdComponent, ImportingReactComponent, PingPongComponent,
-        StockTickerComponent, SimpleStreamComponent, JokeComponent, ChangelogComponent],
-    imports: [
-        CommonModule,
-        TypescriptRoutingModule,
-        SharedModule,
-        CommonModule,
-        ClarityModule,
-    ]
+    declarations: [
+        TypescriptComponent,
+        OverviewComponent,
+        ImportingComponent,
+        InitializingComponent,
+        HelloWorldComponent,
+        BuildingServicesComponent,
+        CallingServicesComponent,
+        AdvancedMessagingComponent,
+        TransactionsComponent,
+        LoggingComponent,
+        BrokerOverviewComponent,
+        ConnectingBrokerComponent,
+        MultipleBrokersComponent,
+        ExtendingChannelsComponent,
+        StoreBasicsComponent,
+        StoreAdvancedComponent,
+        IframesComponent,
+        IframeDemoComponent,
+        AbstractionsComponent,
+        ImportingAngularComponent,
+        ImportingUmdComponent,
+        ImportingReactComponent,
+        PingPongComponent,
+        StockTickerComponent,
+        SimpleStreamComponent,
+        JokeComponent,
+        ChangelogComponent,
+    ],
+    imports: [CommonModule, TypescriptRoutingModule, SharedModule, CommonModule, ClarityModule],
 })
-export class TypescriptModule {
-}
+export class TypescriptModule {}
