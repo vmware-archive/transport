@@ -5,10 +5,12 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ClarityModule } from '@clr/angular';
+
+import { SharedModule } from '../shared/shared.module';
+
 import { TypescriptRoutingModule } from './typescript-routing.module';
 import { TypescriptComponent } from './typescript.component';
-import { SharedModule } from '../shared/shared.module';
-import { ClarityModule } from '@clr/angular';
 import { OverviewComponent } from './overview/overview.component';
 import { ImportingComponent } from './importing/importing.component';
 import { InitializingComponent } from './initializing/initializing.component';

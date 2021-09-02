@@ -5,6 +5,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { ClrDatagridComparatorInterface, ClrDatagridSortOrder } from '@clr/angular';
+
 import { ChangelogEntry } from './changelog.model';
 
 export class VersionComparator implements ClrDatagridComparatorInterface<ChangelogEntry> {

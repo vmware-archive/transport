@@ -4,6 +4,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+
 import { MessageHandler, ProxyControl, ProxyType } from '@vmw/transport';
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 import { AbstractBase } from '@vmw/transport/core';

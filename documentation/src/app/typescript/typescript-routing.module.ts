@@ -5,6 +5,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { TypescriptComponent } from '@vmw/transport-docs/typescript/typescript.component';
 import { OverviewComponent } from '@vmw/transport-docs/typescript/overview/overview.component';
 import { ImportingComponent } from '@vmw/transport-docs/typescript/importing/importing.component';

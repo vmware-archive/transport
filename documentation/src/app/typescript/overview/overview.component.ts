@@ -4,10 +4,11 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+
 import { BaseComponent } from '@vmw/transport-docs/base.component';
-import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 import { tsTerminalCommands } from '@vmw/transport-docs/shared/model';
+import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';
 
 @Component({
     selector: 'transport-ts-overview',

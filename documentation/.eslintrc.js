@@ -1,12 +1,16 @@
-{
+module.exports = {
     "root": true,
+    "parserOptions": {
+        "project": ["tsconfig.*?.json"],
+        "tsconfigRootDir": __dirname,
+        "createDefaultProgram": true
+    },
     "overrides": [
         {
             "files": ["*.ts"],
-            "parserOptions": {
-                "project": ["tsconfig.*?.json"],
-                "createDefaultProgram": true
-            },
+            "plugins": [
+                "eslint-plugin-import"
+            ],
             "extends": [
                 "plugin:@angular-eslint/recommended",
                 "eslint:recommended",
@@ -32,7 +36,27 @@
                 "@angular-eslint/no-empty-function": "off",
                 "@angular-eslint/no-output-rename": "off",
                 "@angular-eslint/component-class-suffix": "off",
-                "@angular-eslint/no-output-native": "off"
+                "@angular-eslint/no-output-native": "off",
+                "import/order": [
+                    "error",
+                    {
+                        "newlines-between": "always",
+                        "groups": ["external", "internal", "parent", "sibling", "index"],
+                        "pathGroups": [
+                            {
+                                "pattern": "@vmc/**",
+                                "group": "internal",
+                                "position": "before"
+                            },
+                            {
+                                "pattern": "@vmw/**",
+                                "group": "external",
+                                "position": "after"
+                            }
+                        ],
+                        "pathGroupsExcludedImportTypes": ["builtin"]
+                    }
+                ],
             }
         },
         {
@@ -42,4 +66,4 @@
             ]
         }
     ]
-}
+};

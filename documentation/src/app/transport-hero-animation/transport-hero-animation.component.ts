@@ -4,9 +4,9 @@
  */
 
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { default as mina, default as Snap } from 'snapsvg-cjs';
+
 import { BaseComponent } from '../models/base.component';
-import Snap from 'snapsvg-cjs';
-import mina from 'snapsvg-cjs';
 
 @Component({
     selector: 'transport-hero-animation',

@@ -4,8 +4,9 @@
  */
 
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { AbstractBase } from '@vmw/transport/core';
+
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
+import { AbstractBase } from '@vmw/transport/core';
 
 @Component({
     selector: 'transport-calling-services',

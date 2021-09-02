@@ -5,9 +5,11 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GolangRoutingModule } from './golang-routing.module';
-import { SharedModule } from '@vmw/transport-docs/shared/shared.module';
 import { ClarityModule } from '@clr/angular';
+
+import { SharedModule } from '@vmw/transport-docs/shared/shared.module';
+
+import { GolangRoutingModule } from './golang-routing.module';
 import { OverviewComponent } from './overview/overview.component';
 import { GolangComponent } from './golang.component';
 import { ImportingComponent } from './importing/importing.component';

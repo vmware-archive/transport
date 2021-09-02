@@ -5,6 +5,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { GolangComponent } from '@vmw/transport-docs/golang/golang.component';
 import { OverviewComponent } from '@vmw/transport-docs/golang/overview/overview.component';
 import { InitializingComponent } from '@vmw/transport-docs/golang/initializing/initializing.component';

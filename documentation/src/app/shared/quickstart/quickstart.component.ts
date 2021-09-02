@@ -4,6 +4,7 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
+
 import { BaseComponent } from '../../models/base.component';
 import { TermCommand } from '../model';
 

@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import { AfterViewChecked, Component, OnChanges, OnInit } from '@angular/core';
-import { BaseComponent } from '../models/base.component';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 import { goTerminalCommands, javaTerminalCommands, tsTerminalCommands } from '@vmw/transport-docs/shared/model';
+
+import { BaseComponent } from '../models/base.component';
 
 @Component({
     selector: 'app-welcome',

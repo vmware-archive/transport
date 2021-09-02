@@ -1,4 +1,5 @@
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 
 @Component({

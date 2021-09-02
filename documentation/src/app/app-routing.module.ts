@@ -5,9 +5,11 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { IframeDemoComponent } from '@vmw/transport-docs/typescript/iframes/iframe-demo/iframe-demo.component';
+
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutComponent } from './about/about.component';
-import { IframeDemoComponent } from '@vmw/transport-docs/typescript/iframes/iframe-demo/iframe-demo.component';
 
 const routes: Routes = [
     { path: '', component: WelcomeComponent },

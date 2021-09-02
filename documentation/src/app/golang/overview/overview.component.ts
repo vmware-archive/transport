@@ -4,6 +4,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+
 import { HighlightService } from '@vmw/transport-docs/services/highlight.service';
 import { goTerminalCommands, javaTerminalCommands, tsTerminalCommands } from '@vmw/transport-docs/shared/model';
 import { TermCommand } from '@vmw/transport-docs/welcome/welcome.component';

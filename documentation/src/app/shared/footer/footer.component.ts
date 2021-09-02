@@ -4,10 +4,12 @@
  */
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { BaseComponent } from '../../models/base.component';
+
 import { VERSION } from '@vmw/transport-docs/environments/version';
 import { BusStore, StoreStream } from '@vmw/transport';
 import { FabricConnectionState } from '@vmw/transport/fabric.api';
+
+import { BaseComponent } from '../../models/base.component';
 
 @Component({
     selector: 'transport-footer',
