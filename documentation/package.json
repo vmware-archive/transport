@@ -11,7 +11,9 @@
     "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
     "build:version": "node version.js",
+    "prepare": "cd .. && husky install documentation/.husky",
     "postinstall": "npm run build:version",
+    "husky": "husky",
     "prettier": "prettier"
   },
   "private": true,
@@ -65,6 +67,7 @@
     "eslint-plugin-react": "latest",
     "fs-extra": "^7.0.1",
     "git-describe": "^4.0.4",
+    "husky": "^7.0.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.1",
