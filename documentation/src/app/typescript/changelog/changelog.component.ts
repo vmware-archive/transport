@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import * as packageJSON from '@vmw/transport/package.json';
+import packageJSON from '@vmw/transport/package.json';
 import { ChangelogEntry } from '@vmw/transport-docs/shared/changelog/changelog.model';
 
 @Component({
