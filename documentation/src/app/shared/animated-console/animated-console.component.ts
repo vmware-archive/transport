@@ -143,7 +143,7 @@ export class AnimatedConsoleComponent implements OnInit, OnDestroy {
             .pipe(delay(this.delay));
 
         const outputsObs = timer(AnimatedConsoleComponent.EXECUTION_DELAY).pipe(
-            switchMapTo<string>(this.cmdOutputObservable),
+            switchMapTo(this.cmdOutputObservable),
             tap((line) => {
                 this.cmdOutput.push(line);
                 this.commandExecuted = true;
