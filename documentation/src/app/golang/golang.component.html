@@ -21,6 +21,17 @@
                 </clr-vertical-nav-group-children>
             </clr-vertical-nav-group>
 
+            <clr-vertical-nav-group>
+                Plank
+                <clr-vertical-nav-group-children *clrIfExpanded="true">
+                    <a clrVerticalNavLink routerLink="plank" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        What is Plank?
+                    </a>
+                    <a clrVerticalNavLink routerLink="plank/hello-world" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        Hello World
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
 
         </clr-vertical-nav>
         <div class="content-area" id="main-content" #mainContent>

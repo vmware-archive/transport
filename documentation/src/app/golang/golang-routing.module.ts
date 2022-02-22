@@ -22,6 +22,10 @@ const routes: Routes = [
             { path: 'initializing', component: InitializingComponent },
             { path: 'importing', component: ImportingComponent },
             { path: 'hello-world', component: HelloWorldComponent },
+            {
+                path: 'plank',
+                loadChildren: () => import('./plank/plank.module').then((m) => m.PlankModule),
+            },
         ],
     },
 ];
